@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Gneu.tk</title>
+<style>
+
+#centeredDiv {
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%) scale(4.5);
+}
+
+</style>
+<script>
+
+window.onload = function() {
+	document.getElementsByTagName('title')[0].innerText=document.getElementById('centeredDiv').innerText=window.location.href;
+};
+
+</script>
+</head>
+<body>
+
+<div id="centeredDiv"></div>
+
+</body>
+</html>
