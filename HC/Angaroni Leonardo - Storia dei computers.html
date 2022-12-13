@@ -1,0 +1,1870 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Angaroni Leonardo - Storia dei Computers</title>
+	<link rel="icon" href="me.png">
+	<script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script> <!-- under ( URL https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@master/LICENSE ) ( date 202211232243 ) -->
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap'); // under ( URL https://fonts.google.com/specimen/Syne+Mono/about?query=syne ) ( date 202211232245 )
+
+:root {
+	--colorScheme-main: white;
+	--colorScheme-second: black;
+	--colorScheme-title: red;
+	--colorScheme-evidence: teal;
+	--colorScheme-bkg: lightgray;
+	--colorScheme-selection: teal;
+	--colorScheme-selectionFont: white;
+	--CS-sizeScale: 1.35914091423; /* math( e/2 math) */
+}
+
+::selection {
+	color: var(--colorScheme-selectionFont,white);
+	background: var(--colorScheme-selection,teal);
+} ::-moz-selection {
+	color: var(--colorScheme-selectionFont,white);
+	background: var(--colorScheme-selection,teal);
+}
+
+* {
+	color: var(--colorScheme-second,black);
+	transition-duration: 1400ms;
+	tab-size: 4;
+}
+
+body {
+	background: var(--colorScheme-main,white);
+	font-size: 1rem;
+}
+
+#slideSet {
+	display: none;
+}
+
+#screen {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	z-index: 128;
+}
+
+#screenBox {
+	--scale: 1.33;
+	position: absolute;
+	right: 50%;
+	top: 50%;
+	transform: translate(+50%,-50%) scale(var(--scale));
+	align-items: center;
+	text-align: center;
+	max-width: calc( 96% / var(--scale) );
+	/* for height I'll have to insert scroll-bar if height>100% */
+	transform-origin: center;
+} #screenBox * {
+} #screenBox > * {
+	margin: .82rem .53rem;
+} #screenBox img {
+	max-width: 80vw;
+	max-height: 50vh;
+	margin: inherit;
+	border-radius: .6rem;
+} #screenBox ul {
+	list-style-type: "⚙️"; /*⎆, ⚙️, ✲, ❂, ❃*/
+	padding-left: 1rem;
+} #screenBox ul > li {
+	padding-left: .716rem;
+	padding-right: .176rem;
+	margin: 1.2rem 0px;
+	border-top: 1.38px solid var(--colorScheme-bkg,lightgray) !important;
+	border-right: 1.38px solid var(--colorScheme-bkg,lightgray) !important;
+	border-radius: .4rem;
+	text-align: right;
+} #screenBox pre {
+	width: max-content;
+	text-align: left;
+	font-size: .5rem;
+	border: 1.38px solid var(--colorScheme-bkg,lightgray);
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-radius: .4rem;
+	margin-right: auto;
+	margin-left: auto;
+	padding: .5rem .6rem;
+}
+
+#colorModeBtn {
+	position: fixed;
+	height: 1rem;
+	width: 1rem;
+	right: .78rem;
+	top: .78rem;
+	border: 1px solid var(--colorScheme-second,black);
+	border-radius: .27rem;
+	z-index: 192;
+	-webkit-touch-callout: none; /* iOS Safari */
+	  -webkit-user-select: none; /* Safari */
+	   -khtml-user-select: none; /* Konqueror HTML */
+	     -moz-user-select: none; /* Old versions of Firefox */
+	      -ms-user-select: none; /* Internet Explorer/Edge */
+	          user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+} #colorModeBtn:active {
+	transform: rotate(1turn);
+}
+
+#colorModeBtnLetter {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+}
+
+#slideNumb {
+	position: fixed;
+	bottom: .34rem;
+	right: .34rem;
+	background: var(--colorScheme-bkg);
+	z-index: 256;
+	-webkit-touch-callout: none; /* iOS Safari */
+	  -webkit-user-select: none; /* Safari */
+	   -khtml-user-select: none; /* Konqueror HTML */
+	     -moz-user-select: none; /* Old versions of Firefox */
+	      -ms-user-select: none; /* Internet Explorer/Edge */
+	          user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+} #slideNumb > div {
+	position: relative;
+	margin: .12rem;
+	font-family: 'Syne Mono', monospace;
+}
+
+#progressBar {
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	height: .2rem;
+	width: 100%;
+	z-index: 128;
+} #progressBar > div {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 100%;
+	background: var(--colorScheme-evidence,teal);
+}
+
+#URL-QRCode {
+	margin: auto;
+	margin-bottom: 1.42rem;
+	width: max-content;
+	height: max-content;
+	background: rgba(235,256,245,.96);
+	border: .8rem solid rgba(235,256,245,.96);
+	border-radius: .5rem;
+	aspect-ratio: 1;
+} #URL-QRCode > * {
+	width: max-content;
+	height: max-content;
+	aspect-ratio: 1;
+} #URL-QRCode img {
+	margin: unset;
+	border-radius: 0px;
+	height: 14rem;
+}
+
+.CS-header {
+	color: var(--colorScheme-title,red);
+	font-size: 2.62rem;
+} .CS-evidence {
+	color: var(--colorScheme-evidence,red);
+} .CS-ref {
+	color: var(--colorScheme-bkg);
+	font-size: calc( 27.2925764192% * var(--CS-sizeScale,1.35914091423) );
+} .CS-sep::after {
+	content: '·•·';
+} .CS-dataSheet {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	align-content: center;
+	justify-content: space-around;
+	align-items: center;
+	gap: .4rem;
+	padding: .7rem .9rem;
+	border: 1.6px solid var(--colorScheme-bkg,lightgray);
+	border-radius: .67rem;
+	font-size: calc( 75.7036254451% * var(--CS-sizeScale,1.35914091423) ); /* CS-3_8 */
+	width: max-content;
+	margin: 1.22rem !important;
+	margin-right: auto !important;
+	margin-left: auto !important;
+} .CS-dataSheet > div {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-content: center;
+	align-items: center;
+	justify-content: space-between;
+	gap: .78rem;
+	width: 100%;
+} .CS-dataSheet > div > div:nth-child(1):after {
+	content: ":";
+	font-size: 86%;
+	opacity: 92%;
+} .CS-dataSheet > div > div:nth-child(2) {
+	font-size: 86%;
+	text-align: right;
+} .CS-dataSheet > div > div:nth-child(2) > div, .CS-dataSheet > div > div:nth-child(2) > span {
+	font-size: 62%;
+	opacity: 62%;
+}
+
+/* font-size: math( (((2e)^v)-.5)/1.832 math); */
+.CS-1 {
+	font-size: calc( 269.46308171% * var(--CS-sizeScale,1.35914091423) );
+} .CS-7_8 {
+	font-size: calc( 212.857897785% * var(--CS-sizeScale,1.35914091423) );
+} .CS-3_4 {
+	font-size: calc( 167.049969985% * var(--CS-sizeScale,1.35914091423) );
+} .CS-5_8 {
+	font-size: calc( 129.979756554% * var(--CS-sizeScale,1.35914091423) );
+} .CS-1_2 {
+	font-size: calc( 99.980566681% * var(--CS-sizeScale,1.35914091423) );
+} .CS-3_8 {
+	font-size: calc( 75.7036254451% * var(--CS-sizeScale,1.35914091423) );
+} .CS-1_4 {
+	font-size: calc( 56.0574323892% * var(--CS-sizeScale,1.35914091423) );
+} .CS-1_8 {
+	font-size: calc( 40.1586872449% * var(--CS-sizeScale,1.35914091423) );
+} .CS-0 {
+	font-size: calc( 27.2925764192% * var(--CS-sizeScale,1.35914091423) );
+}
+
+</style>
+<script>
+
+var CSSRoot = document.querySelector(':root');
+let colorMode = undefined;
+let slideIndex = undefined;
+let slideLength = undefined;
+let URL = undefined;
+
+function setURLRefs() {
+	const URLQRCode = new QRCode(document.getElementById('URL-QRCode'), {
+		text: document.getElementById('URL-link').innerHTML=URL=window.location.href,
+		width: 1024,
+		height: 1024,
+		colorDark: 'black',
+		colorLight: 'rgba(235,256,245,.96)',
+		correctLevel: QRCode.CorrectLevel.H,
+	});
+};
+
+document.addEventListener('touchstart',touchStart,false);
+document.addEventListener('touchmove',touchMove,false);
+document.addEventListener('touchend',touchEnd,false); 
+
+const mt=1000/10, mS=.4, MS=10;
+let Px=Py=Δx=Δy=Pt = null;
+
+function targetContainsArrayE(t,arrayE) {
+	for(let i=arrayE.length-1; i>=0; i--) if(t.classList.contains(arrayE[i])) return true ;
+	return false;
+};
+
+function touchStart(e) {
+	let touchStartTarget = e.target;
+	if(targetContainsArrayE(touchStartTarget,['swipBlock','handle','drag-ruble'])) return ;
+	Pt = Date.now();
+	Px = e.touches[0].clientX;
+	Py = e.touches[0].clientY;
+	Δx=Δy = 0;
+};
+
+function touchMove(e) {
+	if(!Px||!Py) return ;
+	Δx = e.touches[0].clientX;
+	Δy = e.touches[0].clientY;
+};
+
+function touchEnd() {
+	Δx -= Px;
+	Δy -= Py;
+	let Δt=Math.abs(Date.now()-Pt), Δs=Math.sqrt(Δx**2+Δy**2), S=Δs/Δt;
+	if(S>=mS&&S<=MS&&mt<=Δt) // speed check
+		if(0==Δx&&0==Δy) console.log('swipe Δx=Δy=null trashhold') // resultant 0
+		else if(Math.abs(Δx)>Math.abs(Δy)*2) // Horizontal
+			if(Δx>0) slidePrev() ; // Right
+			else slideNext() ; // Left
+		else if(Math.abs(Δy)>Math.abs(Δx)*2) // Vertical
+			if(Δy>0) console.log('DOWN') ; // Down
+			else console.log('UP') ; // Up
+		else // Diagonal
+			if(Δx>0)
+				if(Δy>0) console.log('DOWN-RIGHT') ; // Down-Right
+				else console.log('UP-RIGHT') ; // Up-Right
+			else
+				if(Δy>0) console.log('DOWN-LEFT') ; // Down-Left
+				else console.log('UP-LEFT') ; // Up-Left
+	else console.log('swipe speed trashhold') ; // too fast, too slow or too quick
+	Px=Py=Pt = null;
+};
+
+function setColorScheme() {
+	switch(colorMode) {
+		case 'light':
+			document.querySelector('#colorModeBtnLetter').innerHTML = 'L';
+			break;
+		case 'dark':
+			document.querySelector('#colorModeBtnLetter').innerHTML = 'D';
+			break;
+		default:
+			document.querySelector('#colorModeBtnLetter').innerHTML = '·';
+	};
+	let schemeSet = {
+		"dark": {
+			"main": 'rgba(37,33,33,.98)',
+			"second": 'rgba(230,247,247,.965)',
+			"title": 'rgba(250,38,38,.97)',
+			"evidence": 'rgba(5,215,165,.96)',
+			"bkg": 'rgba(75,69,69,.77)',
+			"selection": 'rgba(2,115,85,.68)',
+			"selectionFont": 'rgba(256,144,144,.92)',
+		},
+		"light": {
+			"main": 'rgba(230,247,247,.98)',
+			"second": 'rgba(37,33,33,.965)',
+			"title": 'rgba(249,15,15,.97)',
+			"evidence": 'rgba(3,175,126,.96)',
+			"bkg": 'rgba(180,176,176,.77)',
+			"selection": 'rgba(53,245,176,.68)',
+			"selectionFont": 'rgba(157,3,11,.92)',
+		},
+	};
+	let scheme = schemeSet[colorMode];
+	for(let j in scheme) {
+		CSSRoot.style.setProperty('--colorScheme-'+j,scheme[j]);
+	};
+	localStorage.colorMode = colorMode;
+	console.log("Setted color scheme: "+colorMode);
+};
+
+function checkColorMode(e) {
+	if(!window.matchMedia) {
+		console.log("ERROR: \"window.matchMedia\" not found !");
+		return;
+	};
+	if(!e) e=window.matchMedia('(prefers-color-scheme: dark)') ;
+	colorMode = e.matches?"dark":"light";
+	setColorScheme();
+};
+
+function changeColorModeLD() {
+	switch(colorMode) {
+		case 'light':
+			colorMode = 'dark';
+			break;
+		case 'dark':
+			colorMode = 'light';
+			break;
+		default:
+			colorMode = prompt('Please, insert n for:\n\t0 →\tLight Mode\n\t1 →\tDark Mode',0)==0?'light':'dark';
+	}
+	setColorScheme();
+};
+
+function displaySlideN(n) {
+	if(0>n||n>slideLength) {
+		console.log('Err: slide index out of range!');
+		return 'Err: slide index out of range!';
+	};
+	document.querySelector('#screenBox').innerHTML = document.querySelectorAll('#slideSet > div')[n].innerHTML;
+	document.querySelector('#progressBar > div').style.width = n/(slideLength-1)*99.9+.1+'%';
+	document.querySelector('#slideNumb > div').innerHTML = n;
+	localStorage.slideIndex = slideIndex;
+	console.log('Displayed slide: "'+n+'"');
+};
+
+function slideNext() {
+	if(slideIndex==undefined) displaySlideN(slideIndex=0) ;
+	else if(slideIndex<slideLength-1) displaySlideN(++slideIndex) ;
+};
+
+function slidePrev() {
+	if(slideIndex==undefined) displaySlideN(slideIndex=0) ;
+	else if(0<slideIndex) displaySlideN(--slideIndex) ;
+};
+
+function countSlides() {
+	slideLength = document.querySelectorAll('#slideSet > div').length;
+};
+
+let writeinLS = false;
+function launchAndRestoreLS() {
+	if (!localStorage||typeof(Storage)=="undefined") return ;
+	writeinLS = true;
+	colorMode = localStorage.colorMode;
+	slideIndex = localStorage.slideIndex;
+};
+
+function keyDown(e) {
+	e = e.which||e.keyCode;
+	if(e==37||e==80||e==65||e==66) slidePrev();
+	if(e==39||e==32||e==68||e==78) slideNext();
+	if(e==36) displaySlideN(slideIndex=0) ;
+	if(e==35) displaySlideN(slideIndex=slideLength-1) ;
+};
+
+window.onload = function() {
+	checkColorMode();
+	launchAndRestoreLS();
+	countSlides();
+	displaySlideN(slideIndex?slideIndex:slideIndex=0);
+	setURLRefs();
+};
+
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => { checkColorMode(event); });
+
+</script>
+</head>
+<body onkeydown="keyDown(event)">
+
+<div id="slideSet">
+	<div>
+		<div class="CS-evidence CS-3_4">Angaroni Leonardo</div>
+		<div class="CS-header CS-1">Storia dei Computer</div>
+	</div>
+	<div>
+		<div id="URL-QRCode"></div>
+		<div id="URL-link" class="CS-evidence CS-1_2"></div>
+	</div>
+	<div>
+		<div class="CS-header CS-3_4">Definizione:</div>
+		<div class="CS-5_8">Un computer è un calcolatore.</div>
+		<div class="CS-1_2">Un computer (in italiano <span class="CS-evidence">elaboratore</span> o <span class="CS-evidence">calcolatore</span>) è una <span class="CS-evidence">macchina automatizzata programmabile</span> in grado di eseguire complesse elaborazioni di dati.<div class="CS-ref">Wikipedia</div></div>
+	</div>
+	<div>
+		<img alt="mano" src="https://cdn.pixabay.com/photo/2014/04/02/16/16/hand-306763_1280.png" style="height:7rem" />
+		<div class="CS-1_2">Primo strumento di calcolo.</div>
+		<div class="CS-ref">Pixabay.com</div>
+	</div>
+	<div>
+		<div class="CS-header CS-3_4">Preistoria:</div>
+		<div class="CS-5_8 CS-evidence">Osso di Lebombo</div>
+		<div class="CS-1_2">Osso di babbuino con incise 29 tacche.</div>
+		<div class="CS-1_4">35'000 a.C.</div>
+	</div>
+	<div>
+		<div class="CS-5_8 CS-evidence">Osso d'Ishango</div>
+		<img alt="Osso d'Ishango" src="https://upload.wikimedia.org/wikipedia/commons/0/06/IshangoColumnB.png" />
+		<div class="CS-1_4">20'000 a.C.</div>
+	</div>
+	<div>
+		<img alt="Osso d'Ishango" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Os_d%27Ishango_IRSNB.JPG/130px-Os_d%27Ishango_IRSNB.JPG" />
+		<div class="CS-1_4">Osso d'Ishango</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-header CS-3_4">Età Antica:</div>
+	</div>
+	<div>
+		<div class="CS-5_8 CS-evidence">Abaco Romano</div>
+		<img alt="Abaco Romano" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Roman_tablet_employed_in_making_arithmetical_calculations_%2814781129921%29.jpg/220px-Roman_tablet_employed_in_making_arithmetical_calculations_%2814781129921%29.jpg" />
+		<div class="CS-1_4">2'700 - 2'300 a.C.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-5_8 CS-evidence">Suanpan</div>
+		<img alt="Suanpan" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Abacus_6.png/220px-Abacus_6.png" />
+		<div class="CS-1_2">Abaco Cinese</div>
+		<div class="CS-1_4">190 d.C.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Tramite gli abachi sono nati i concetti di “<span class="CS-evidence">input</span>” e di “<span class="CS-evidence">output</span>”</div>
+		<div class="CS-3_8">a fronte della restituzione del risultato di un calcolo prodotto dall'inserimento di dati.</div>
+	</div>
+	<div>
+		<div class="CS-3_8">…fondamentali per</div>
+		<div class="CS-evidence CS-3_4">la Macchina di Anticitera</div>
+		<img alt="Macchina di Anticitera" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/NAMA_Machine_d%27Anticyth%C3%A8re_5.jpg/220px-NAMA_Machine_d%27Anticyth%C3%A8re_5.jpg" style="height:15rem;"/>
+		<div class="CS-1_4">150 - 100 a.C.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Uno studio del 2022 data la calibrazione iniziale al 23 dicembre 178 a.C.</div>
+		<div class="CS-1_2">Questo lo rende il più antico <span class="CS-evidence">calcolatore meccanico</span> conosciuto.</div>
+	</div>
+	<div>
+		<div class="CS-3_8">… e ne seguirono</div>
+		<div class="CS-evidence CS-3_4">gli Astrolabi</div>
+		<div class="CS-1_2">a partire dal II secolo a.C.</div>
+		<img alt="Astrolabio" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Astrolabe-Persian-18C.jpg/220px-Astrolabe-Persian-18C.jpg" />
+		<div class="CS-1_4">XVIII secolo</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-3_8">Ma nel</div>
+		<div class="CS-header CS-3_4">Medioevo:</div>
+		<div class="CS-1_2">Non ci furono sviluppi oltre agli <span class="CS-evidence">astrolabi</span>.</div>
+	</div>
+	<div>
+		<div class="CS-3_4">L'<span class="CS-header">Età Moderna:</span></div>
+		<div class="CS-1_2">Inizia con particolari progressi sui logaritmi in ambito matematico forniti dai <span class="CS-evidence">bastoncini di Neplero</span>.</div>
+		<div class="CS-1_2">Questi permettono al matematico inglese William Oughtred nel 1632 di realizzare il <span class="CS-evidence">regolo calcolatore</span> che rese immediati molti calcoli matematici.</div>
+	</div>
+	<div>
+		<img alt="Bastoncini di Neplero" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/An_18th_century_set_of_Napier%27s_Bones.JPG/220px-An_18th_century_set_of_Napier%27s_Bones.JPG" style="height:13rem;" />
+		<img alt="Bastoncini di Neplero" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Napier%27s_rods.svg/220px-Napier%27s_rods.svg.png" style="height:13rem;background:white;padding-left:.4rem;padding-right:1rem;" />
+		<div class="CS-1_2">Bastoncini di Neplero, in particolare “6 X 384”</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<img alt="Regolo calcolatore" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/RegoloFaber-Castell.jpg/1920px-RegoloFaber-Castell.jpg"/>
+		<div class="CS-1_2">Regolo calcolatore</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-3_8">La nascita di queste nuove conoscenze comporta una propensione al realizzazione delle prime calcolatrici meccaniche.</div>
+		<div class="CS-3_8">Prima fu la</div>
+		<div class="CS-evidence CS-3_4">Macchina Calcolatrice</div>
+		<img alt="Macchina Calcolatrice" src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Rechenmaschine_wilhelm_schickard.png" style="height:11.2rem;" />
+		<div class="CS-1_2">di Wilhelm Schickard realizzata nel 1623.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-evidence CS-3_4">Pascalina</div>
+		<img alt="Pascalina" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Pascaline_-_top_view_and_mechanism.jpg/800px-Pascaline_-_top_view_and_mechanism.jpg" style="height:12rem;" />
+		<img alt="Pascalina" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Pascaline_calculator.jpg/1280px-Pascaline_calculator.jpg" style="height:12rem;" />
+		<div class="CS-1_2">Blaise Pascal la ideò nel 1642 e<br />a partire dal 1645 realizzò 50 prototipi.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-3_8">Nel 1670 il vescovo cattolico spagnolo Juan Caramuel y Lobkowitz espose dei generali principi sulla rappresentazione dei numeri usando una <span class="CS-evidence">base diversa da 10</span>.</div>
+		<img alt="Sistema binario di Leibniz" src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Leibniz_binary_system_1703.png" style="height:18.7rem;" />
+		<div class="CS-1_4">Tabella dei numeri da 0 a 32 in forma binaria.<br />Scritti da Leibniz e ispirati agli esagrammi cinesi.</div>
+		<div class="CS-3_8">Accenni a questi studi si possono trovare anche da Nepero e Leibniz.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Nel 1672 Leibniz ideò la</div>
+		<div class="CS-evidence CS-3_4">Stepped Reckoner</div>
+		<img alt="Stepped Reckoner" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Leibnitzrechenmaschine.jpg/220px-Leibnitzrechenmaschine.jpg" style="height:15rem;" />
+		<div class="CS-1_2">In grado di svolgere tutte e 4 le operazioni fondamentali</div>
+		<div class="CS-1_4">ma il primo prototipo fu realizzato solo nel 1694 e non dall'ideatore.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Nel 1709 il veneziano Giovanni Poleni</div>
+		<img alt="Giovanni Poleni" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Giovanni_Poleni.jpeg/220px-Giovanni_Poleni.jpeg" />
+		<div class="CS-1_2">ideò e realizzò un'altra macchina aritmetica contenuta nel volume dei suoi studi intitolato “Miscellanea”.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<img alt="Macchina da cucito di Basile Bouchon" src="https://history-computer.com/Dreamers/images/Basile_Bouchon_loom1.jpg" style="height:15.6rem;" />
+		<img alt="Macchina da cucito di Basile Bouchon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Basile_Bouchon_1725_loom.jpg/300px-Basile_Bouchon_1725_loom.jpg" style="height:15.6rem;" />
+		<div class="CS-1_4">Primo prototipo di carte perforate di Basile Bouchon.</div>
+		<div class="CS-3_8">Nel 1725 Basile Bouchon usò rotoli di <span class="CS-evidence">carta perforata</span> su telai per regolare il motivo ornamentale da riprodurre sulla stoffa.</div>
+		<div class="CS-3_8">Nel 1726 il suo collaboratore Jean-Baptiste Falcon migliorò il progetto utilizzando sequenze di <span class="CS-evidence">schede perforate</span>, rendendo più semplice il cambiamento di programmazione delle macchine.</div>
+		<div class="CS-ref">History-Computer.com, Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">L'ingegnere tedesco J.H. von Müller</div>
+		<img alt="Prototipo della macchina da calcolo di Johann Helfrich von Müller" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Detail_der_Rechenmaschine_von_Johann_Helfrich_M%C3%BCller.jpg/800px-Detail_der_Rechenmaschine_von_Johann_Helfrich_M%C3%BCller.jpg" style="height:15rem;" />
+		<div class="CS-1_2">Nel 1786 pubblicò un libro nel quale descrisse l'idea di una macchina in cui dati gli “<span class="CS-evidence">input</span>” iniziali bastasse <span class="CS-evidence">girare una manovella</span> per ottenere degli “<span class="CS-evidence">output</span>” finali.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-3_8">Lunedì 14 Luglio 1789</div>
+		<div class="CS-header CS-3_4">Età Contemporanea:</div>
+	</div>
+	<div>
+		<div class="CS-3_4">Il <span class="CS-evidence">Thomas Arithmometer</span></div>
+		<div class="CS-3_8">fù creato attorno al 1820 da Charles Xavier Thomas de Colmar</div>
+		<div class="CS-1_4">ed era capace di compiere addizioni, sottrazioni e lunghe moltiplicazioni e divisioni grazie ad un carrello mobile.</div>
+		<div class="CS-3_8">Questo prototipo diede vita nel resto del secolo ad una moltitudine di sue copie rendendolo il primo calcolatore meccanico di successo <span class="CS-evidence">prodotto in serie</span>.</div>
+		<img alt="Calcolatore Thomas Arithmometer del 1863" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Arithmometer_-_One_of_the_first_machines_with_unique_serial_number.jpg/220px-Arithmometer_-_One_of_the_first_machines_with_unique_serial_number.jpg" style="height:12rem;" />
+		<div class="CS-1_4">Calcolatore a 10 cifre del 1863.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">A partire dal 1851 vi fu un enorme diffusione di queste <span class="CS-evidence">calcolatrici meccaniche da tavolo</span> che terminò solo con l'inizio della prima guerra mondiale.</div>
+		<img alt="Calcolatrici meccaniche da tavolo in produzione nel XIX secolo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/DesktopMechanicalCalculators_inProduction_intheXIXCentury.svg/550px-DesktopMechanicalCalculators_inProduction_intheXIXCentury.svg.png" style="background:white;height:15rem;" />
+		<div class="CS-1_4">Grafico dei 4'000 pezzi prodotti tra il 1820 e il 1915.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Nel 1833 Gauss e Weber svilupparono il primo <span class="CS-evidence">relè</span> elettromagnetico.</div>
+		<img alt="Relè" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Relay_principle_vertical.jpg/800px-Relay_principle_vertical.jpg" style="height:15rem;" />
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Nel 1822 Charles Babbage realizzò</div>
+		<div class="CS-3_4">La <span class="CS-evidence">Macchina Differenziale</span></div>
+		<img alt="Macchina Differenziale di Charles Babbage" src="https://upload.wikimedia.org/wikipedia/commons/5/53/BabbageDifferenceEngine.jpg" style="height:14rem;" />
+		<div class="CS-1_4">Prototipo realizzato tra il 1989 e il 1991<br />poiché gli esemplari originali non furono mai completati per mancanza di fondi.</div>
+		<div class="CS-1_2">Tuttavia…</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">nel 1833 egli iniziò a progettare</div>
+		<div class="CS-3_4">La <span class="CS-evidence">Macchina Analitica</span></div>
+		<img alt="Macchina Analitica di Charles Babbage" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Babbages_Analytical_Engine%2C_1834-1871._%289660574685%29.jpg/220px-Babbages_Analytical_Engine%2C_1834-1871._%289660574685%29.jpg" />
+		<div class="CS-1_2">e il 26 dicembre 1837 ne pubblicò i progetti…</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Ispirato da grandi idee egli creò il primo vero <span class="CS-evidence">calcolatore programmabile</span>, in senso moderno, della storia.<br />Era infatti il primo esempio di macchina dotata sia di unità di memoria che di calcolo.</div>
+		<div class="CS-3_8">Venne costruito il mulino, tuttavia la ALU fu mai del tutto realizzata.</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Nel 1842 la contessa di Lovelace, Ada Byron, scrisse alcuni programmi per la macchina analitica di Babbage.</div>
+		<div class="CS-1_2">Furono i primi programmi della storia e ciò la rese la <span class="CS-evidence">prima programmatrice</span> di computer al mondo.</div>
+		<div class="CS-1_2">Inoltre immaginò che tramite la Macchina Analitica di Babbage si potesse realizzare una forma di <span class="CS-evidence">intelligenza artificiale</span>.</div>
+	</div>
+	<div>
+		<div class="CS-3_8">Nel 1847 George Boole pubblica un libro dal titolo “The Mathematical Analysis of Logic”</div>
+		<img alt="Pagina nel “The Mathematical Analysis of Logic” di George Boole" src="https://content.wolfram.com/uploads/sites/43/2015/11/algebraic-logic-formulations-boole.png" style="height:15.5rem;" />
+		<div class="CS-1_2">nel quale tratta un nuovo sistema di logica (successivamente denominato “<span class="CS-evidence">logica booleana</span>”) studiato dal punto di vista matematico, che poi amplierà nel 1854.</div>
+		<div class="CS-1_4">Ciò rese obsoleto il precedente modello aristotelico.</div>
+		<div class="CS-ref">Wolfram.com</div>
+	</div>
+	<div>
+		<img alt="Nord America raffigurato nel 1858" src="https://www.publicdomainpictures.net/pictures/290000/velka/map-of-north-america-1858.jpg" style="height:14rem;" />
+		<div class="CS-1_2">Nel 1858 gli <span class="CS-evidence">Stati Uniti</span> iniziarono a sviluppare i propri filoni di ricerca scientifica e tecnologica basandosi sui progetti di Babbage.</div>
+		<div class="CS-1_4">Carta realizzata nello stesso anno e raffigurante il Nord America.</div>
+		<div class="CS-ref">PublicDomainPictures.net</div>
+	</div>
+	<div>
+		<div class="CS-3_8">Nel 1885 Julius E. Pitrap brevettò la “Computing Scale”.</div>
+		<div class="CS-1_2">Nel 1888 Herman Hollerith brevettò l'“Electric Tabulating Machine” e delle <span class="CS-evidence">schede perforate leggibili elettricamente</span>.</div>
+		<img alt="“Electric Tabulating Machine” di Herman Hollerith" src="https://upload.wikimedia.org/wikipedia/commons/8/86/Tabulatrice%2C_selezionarice_e_perforatrice_hollerith_-_Museo_scienza_tecnologia_Milano_D0779.jpg" style="height:13.6rem;" />
+		<div class="CS-1_4">“Electric Tabulating Machine” di Herman Hollerith.</div>
+		<div class="CS-3_8">E nel medesimo anno i fratelli Bundy inventarono un orologio per registrare su carta l'orario di ingresso e di uscita dei lavoratori.</div>
+		<div class="CS-ref">PublicDomainPictures.net</div>
+	</div>
+	<div>
+		<img alt="Schede perforate di Herman Hollerith" src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Hollerith_Punched_Card.jpg" />
+		<div class="CS-1_4">Schede perforate di Herman Hollerith.</div>
+		<div class="CS-1_2">che assieme alla sua “Electric Tabulating Machine” furono utilizzate per l'elaborazione del censimento Statunitense.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Nel 1896 Herman Hollerith fondò la “<span class="CS-evidence">Tabulating Machine Company</span>” (TMC).</div>
+		<img alt="Schede perforate di Herman Hollerith" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/CTR_Company_Logo.png" style="background:white;border-radius:50%;" />
+		<div class="CS-1_2">Il 16 giugno 1911 Hollerith riunì altre quattro compagnie,<span style="font-size:95%;"> delle quali facevano parte gli ultimi 2 inventori visti</span>, formando la “<span class="CS-evidence">Computing-Tabulating-Recording</span> Company” (CTR-Co).</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-3_8">Avendo avuto fin da subito incredibili successi</div>
+		<div class="CS-1_2">il 14 febbraio 1924 l'azienda cambiò il nome in “<span class="CS-evidence">International Business Machines</span>” (IBM)</div>
+		<img alt="IBM" src="https://cms.qz.com/wp-content/uploads/2015/07/ibm_logo_rev_colorcorrected.jpeg?quality=75&strip=all&w=940" style="height:13.8rem;" />
+		<div class="CS-3_8">che nel 1949 divenne l'attuale “International Business Machines (World Trade) Corporation”.</div>
+		<div class="CS-ref">AlfredoPassos.WordPress.com</div>
+	</div>
+	<div>
+		<div class="CS-3_8">Lunedì 1 Gennaio 1900</div>
+		<div class="CS-header CS-3_4">'900:</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Nel 1904 l'elettrotecnico e radiotecnico inglese John Ambrose Fleming inventa il <span class="CS-evidence">tubo a vuoto</span>,</div>
+		<img alt="Prime valvole Fleming del 1904" src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Fleming_valves.jpg" style="height:15rem;" />
+		<div class="CS-1_4">Primo prototipo di valvole Fleming costruite nell'ottobre 1904.</div>
+		<div class="CS-1_2">progenitore delle valvole termoioniche.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">All'inizio del XX secolo si riprogettarono i macchinari per poter funzionare con <span class="CS-evidence">motori elettrici</span>.</div>
+		<div class="CS-sep"></div>
+		<div class="CS-1_2">Nel 1909 l'irlandese Percy Ludgate, ignaro del suo lavoro di Babbage, pubblicò dei suoi progetti su un altro computer meccanico programmabile.</div>
+		<div class="CS-1_2">Nel 1913 Leonardo Torres y Quevedo e Vannevar Bush seguirono la ricerca basata sul lavoro di Babbage realizzando nei decenni successivi prototipi di macchine elettromeccaniche che utilizzavano schede perforate.</div>
+	</div>
+	<div>
+		<div class="CS-1_4">I cannoni principali da 305 mm della corazzata italiana Dante Alighieri.</div>
+		<img alt="Corrazzata Dante Alighieri" src="https://upload.wikimedia.org/wikipedia/it/e/e9/RN_Dante_Alighieri_torre_trinata_C.jpg" style="height:12rem;" />
+		<div class="CS-1_2">Nella prima guerra mondiale si svilupparono i primi sistemi di controllo del fuoco per il puntamento di navi a lungo raggio, ovvero i primi <span class="CS-evidence">sistemi navali di calcolo balistico</span>.</div>
+		<div class="CS-1_2">Nel 1912 l'ingegnere britannico Arthur Pollen sviluppò il primo computer analogico meccanico per questo ruolo.<br />Esso fu utilizzato dalle Marina imperiale sia Russa che Britannica.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<img alt="Самолет “Илья Муромец”" src="https://upload.wikimedia.org/wikipedia/commons/f/fb/%D0%A1%D0%B0%D0%BC%D0%BE%D0%BB%D0%B5%D1%82_%22%D0%98%D0%BB%D1%8C%D1%8F_%D0%9C%D1%83%D1%80%D0%BE%D0%BC%D0%B5%D1%86%22.jpg" style="height:18rem;" />
+		<div class="CS-1_4">Un bombardiere pesante russo Самолет “Илья Муромец”.</div>
+		<div class="CS-1_2">Similmente per i bombardamenti aerei da parte dell'aviazione.</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Negli anni '20 lo scienziato britannico Lewis Fry Richardson inizia ad utilizzare le macchine per le <span class="CS-evidence">previsioni meteorologiche</span> utilizzando le equazioni di Navier-Stokes.</div>
+		<img alt="Lewis Fry Richardson" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Lewis_Fry_Richardson.png/220px-Lewis_Fry_Richardson.png" />
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Il fisico e ingegnere Julius Edgar Lilienfeld progettò il primo <span class="CS-evidence">transistor</span> in Canada nel 1925.</div>
+		<img alt="Transistor" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Transistors.agr.jpg/800px-Transistors.agr.jpg" style="height:15rem;" />
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-3_8">Dopo un primo prototipo del 1876</div>
+		<div class="CS-1_2">nel 1927 Vannevar Bush realizza l'<span class="CS-evidence">analizzatore differenziale</span> capace di risolvere equazioni differenziali</div>
+		<div class="CS-3_8">utilizzando meccanismi a ruota e disco per effettuare i calcoli.</div>
+		<img alt="Analizzatore Differenziale" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/KayMcNultyAlyseSnyderSisStumpDifferentialAnalyzer.jpg/1024px-KayMcNultyAlyseSnyderSisStumpDifferentialAnalyzer.jpg" style="height:15rem;" />
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<img alt="Odhner clone del 1950 di Marchant" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Marchant_-_Odhner_clone_1950.png/1024px-Marchant_-_Odhner_clone_1950.png" />
+		<div class="CS-1_2">Negli anni '30 aziende come Friden, Marchant Calculator e Monroe realizzarono nuove tipologie di calcolatrici meccaniche da tavolo.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Nel 1932 venne ideato da Vannevar Bush un sistema di archiviazione chiamato</div>
+		<div class="CS-3_4 CS-evidence">Memex</div>
+		<div class="CS-3_8">dalla contrazione di memory-expansion</div>
+		<img alt="Vannevar Bush" src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Vannevar_Bush_portrait.jpg" style="height:8.86rem;" />
+		<div class="CS-1_4">Scienziato e tecnologo statunitense Vannevar Bush.</div>
+		<div class="CS-1_2">Era descritto come una “scrivania” dotata di “schermi traslucidi”, una tastiera, bottoni e leve e avente un sistema di memoria <span class="CS-evidence">elettro-ottico</span>.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Progettato nel 1932 e realizzato nel 1938 fu</div>
+		<div class="CS-3_4">La <span class="CS-evidence">“Bomba” polacca</span></div>
+		<img alt="Marian Adam Rejewski" src="https://upload.wikimedia.org/wikipedia/commons/3/30/Marian_Rejewski.jpg" style="height:13.8rem;" />
+		<div class="CS-1_4">Marian Adam Rejewski.</div>
+		<div class="CS-1_2">Realizzata dal matematico polacco Marian Rejewski per decriptare i messaggi tedeschi prodotti da Enigma.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-3_8">Questa portò alla realizzazione nel 1939 di una macchina conosciuta come</div>
+		<div class="CS-3_4">La <span class="CS-evidence">“Bomba” inglese</span></div>
+		<img alt="“Bomba” inglese" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bombe-rebuild.jpg/800px-Bombe-rebuild.jpg" style="height:13.8rem;" />
+		<div class="CS-1_4">Riproduzione della “Bomba” inglese di Alan Turing.</div>
+		<div class="CS-1_2">Realizzata da un gruppo di matematici inglesi sotto la guida di Alan Turing allo stesso scopo.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-3_4">Film</div>
+		<div style="display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;align-content:center;align-items:center;gap:1rem;column-gap:.8rem;">
+			<div>
+				<img alt="Enigma" src="https://upload.wikimedia.org/wikipedia/it/0/0f/Enigma_film_2001.png" style="height:8.6rem;" />
+				<div class="CS-1_4">Scena del film “Enigma” del 2001</div>
+			</div>
+			<div>
+				<img alt="The Imitation Game" src="https://live.staticflickr.com/8649/16652039476_9bc855ae74_z.jpg" style="height:11rem;" />
+				<div class="CS-1_4">Scena del film “The Imitation Game” del 2014</div>
+			</div>
+		</div>
+		<div class="CS-ref">Wikipedia, flickr.com, live.staticFlickr.com</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Konrad Zuse progettò nel 1937 e realizzò nel 1939</div>
+		<div class="CS-3_4">Lo <span class="CS-evidence">Z1</span></div>
+		<img alt="Z1" src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Zuse_Z1.jpg" style="height:15rem;" />
+		<div class="CS-1_4">Riproduzione dello Z1.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Fu il <span class="CS-evidence">primo computer della storia “secondo la concezione moderna”</span>.</div>
+		<div class="CS-dataSheet">
+			<div><div>Memoria</div><div><div>assente</div></div></div>
+			<div><div>RAM</div><div>176 Byte<div>64 “word” FP da 22 bit caduna</div></div></div>
+			<div><div>Frequenza Clock</div><div><span>da </span>0.3<span> a </span>1 Hz</div></div>
+			<div><div>Input</div><div>schede perforate</div></div>
+		</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Nello stesso anno egli realizzò anche</div>
+		<div class="CS-3_4">Lo <span class="CS-evidence">Z2</span></div>
+		<div class="CS-1_2">nel quale sostituì la parte aritmetica e di controllo con <span class="CS-evidence">relè</span> elettrici.</div>
+		<div class="CS-dataSheet">
+			<div><div>Memoria</div><div><div>assente</div></div></div>
+			<div><div>RAM</div><div>32 Byte<div>16 “word” non FP da 16 bit caduna</div></div></div>
+			<div><div>Frequenza Clock</div><div>3 Hz</div></div>
+			<div><div>Peso</div><div>300 kg</div></div>
+		</div>
+	</div>
+	<div>
+		<div class="CS-5_8">L'Atanasoff-Berry Computer</div>
+		<div class="CS-3_8">conosciuto maggiormente come</div>
+		<img alt="ABC" src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Atanasoff_Berry_Computer.gif" style="background:white;height:15rem;" />
+		<div class="CS-3_4 CS-evidence">ABC</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">fu realizzato nel novembre del 1939 dal Dr. John Vincent Atanasoff e Clifford E. Berry e fu</div>
+		<div class="CS-5_8">il <span class="CS-evidence">primo computer digitale totalmente elettronico</span>.</div>
+	</div>
+	<div>
+		<div class="CS-5_8">Novità introdotte:</div>
+		<ul class="CS-1_2">
+			<li>Numeri binari in un computer digitale <span class="CS-evidence">totalmente elettronico</span>,</li>
+			<li>il <span class="CS-evidence">calcolo parallelo</span>,</li>
+			<li><span class="CS-evidence">memorie rigenerative</span> basate su</li>
+			<li><span class="CS-evidence">valvole termoioniche</span> e <span class="CS-evidence">condensatori</span> e</li>
+			<li>separazione tra dati e istruzioni.</li>
+		</ul>
+	</div>
+	<div>
+		<div class="CS-1_2">Con 1.6 km di cavi, 1'600 condensatori, 280 valvole termoioniche e 31 thyratron l'ABC aveva</div>
+		<div class="CS-dataSheet">
+			<div><div>Memoria</div><div><div>assente</div></div></div>
+			<div><div>RAM</div><div>3'000 bit<div>30 numeri non FP da 50 bit,<br />più 2 bit per guasti, caduno</div></div></div>
+			<div><div>Frequenza Clock</div><div>60 Hz</div></div>
+			<div><div>Input</div><div>schede perforate<div>standard IBM 80-colonne</div></div></div>
+			<div><div>Output</div><div>numeri decimali</div></div>
+			<div><div>Peso</div><div>320 kg</div></div>
+		</div>
+	</div>
+	<div>
+		<img alt="John Vincent Atanasoff" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/ATANASOFF_Pic%5E2_-_Flickr_-_Eye_Steel_Film.jpg/800px-ATANASOFF_Pic%5E2_-_Flickr_-_Eye_Steel_Film.jpg" style="height:10rem;" />
+		<div class="CS-1_2">John Vincent Atanasoff nel 1942, montandole sull'ABC, fu il primo ad introdurre</div>
+		<div class="CS-3_4">Le <span class="CS-evidence">Memorie Rigenerative</span></div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-3_4">Lo <span class="CS-evidence">Z3</span></div>
+		<div class="CS-1_2">realizzato nel 1941</div>
+		<img alt="Ricostruzione dello Z3" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Z3_Deutsches_Museum.JPG/800px-Z3_Deutsches_Museum.JPG" style="height:15rem;" />
+		<div class="CS-1_4">Riproduzione dello Z3.</div>
+		<div class="CS-1_2">fu il primo computer <span class="CS-evidence">al contempo Turing-completo, binario e totalmente programmabile</span>.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Queste 3 innovative macchine che Konrad Zuse realizzò tra il 1937 e il 1941 riciclando materiali di scarto</div>
+		<div class="CS-1_2">vennero distrutte in quest'ultimo anno da un bombardamento.</div>
+	</div>
+	<div>
+		<div class="CS-3_4">L'<span class="CS-evidence">Harvard Mark I</span></div>
+		<div class="CS-3_8">o meglio <span class="CS-evidence">Aiken-IBM Automatic Sequence Controlled Calculator Mark I</span> comunemente abbreviato in <span class="CS-evidence">ASCC</span></div>
+		<img alt="Harvard Mark I" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Harvard_Mark_I_Computer_-_Left_Segment.jpg/1024px-Harvard_Mark_I_Computer_-_Left_Segment.jpg" style="height:15rem;" />
+		<div class="CS-1_2">fu ultimato nel gennaio del 1943.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-dataSheet">
+			<div><div>Memoria</div><div><span>~ </span>5'501 bit<div>72 numeri da 23 DP</div></div></div>
+			<div><div>Input</div><div>schede perforate</div></div>
+			<div><div>Dimensioni</div><div><span>circa </span>16<span> m × </span>2.4<span> m × </span>0.5<span> m</span></div></div>
+			<div><div>Peso</div><div><span>~ </span>4'500<span> kg</span></div></div>
+		</div>
+		<img alt="Input-output dell'Harvard Mark I" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Harvard_Mark_I_Computer_-_Input-Output_Details.jpg/800px-Harvard_Mark_I_Computer_-_Input-Output_Details.jpg" style="height:13rem;" />
+		<div class="CS-1_4">Controlleri di input e output dell'Harvard Mark I.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Sempre facente parte del programma top-secret del Regno Unito vi era</div>
+		<div class="CS-3_4">Il <span class="CS-evidence">Colossus</span></div>
+		<img alt="Replica del Colossus" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/ColossusRebuild_12.jpg/220px-ColossusRebuild_12.jpg" style="height:12rem;" />
+		<div class="CS-1_4">Replica funzionante del Colossus realizzata nel 2007.</div>
+		<div class="CS-1_2">Realizzato nel 1944 come successore della “Bomba” inglese di Alan Turing.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-3_4">Lo <span class="CS-evidence">Z4</span></div>
+		<div class="CS-3_8">realizzato nel 1944</div>
+		<img alt="Z4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Zuse-Z4-Totale_deutsches-museum.jpg/800px-Zuse-Z4-Totale_deutsches-museum.jpg" style="height:15rem;" />
+		<div class="CS-1_2">fu il <span class="CS-evidence">primo computer digitale commerciale</span> del mondo.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Simile allo Z3, lo Z4 aveva</div>
+		<div class="CS-dataSheet">
+			<div><div>RAM</div><div>2'048 bit<div>64 “word” FP da 32 bit caduna</div></div></div>
+			<div><div>Frequenza Clock</div><div><span>~ </span>40<span> Hz</span></div></div>
+			<div><div>Input</div><div><span>numeri decimali FP su </span>nastri perforati</div></div>
+			<div><div>Output</div><div><span>numeri decimali FP su </span>nastri perforati</div></div>
+		</div>
+	</div>
+	<div>
+		<div class="CS-3_4">L'<span class="CS-evidence">ENIAC</span></div>
+		<img alt="ENIAC" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Eniac.jpg/800px-Eniac.jpg" style="height:15rem;" />
+		<div class="CS-1_2">Realizzato nel 1945 per fini bellici da parte dell'<i>Esercito degli Stati Uniti</i>, il computer doveva essere capace di risolvere problemi di <span class="CS-evidence">calcolo balistico.</span></div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-dataSheet">
+			<div><div>Memoria</div><div><span>~ </span>664 bit<div>20 numeri da 10 DP</div></div></div>
+			<div><div>Input</div><div>schede perforate</div></div>
+			<div><div>Dimensioni</div><div>180<span> m² × ~ </span>2.74<span> m</span></div></div>
+			<div><div>Peso</div><div><span></span>30'000<span> kg</span></div></div>
+			<div><div>Spesa</div><div><span></span>486'804.22<span> $</span></div></div>
+		</div>
+		<div class="CS-3_8">Comprendeva ben 18'000 valvole termoioniche e 1'500 relè collegati da 500'000 contatti che portarono l'ambiente ad una temperatura superiore ai 50 °C.</div>
+		<div class="CS-3_8">Nonostante la sua esigua memoria processava le informazioni molto velocemente, circa 1'000 volte l'Harvard Mark I.</div>
+	</div>
+	<div>
+		<div class="CS-3_4">L'<span class="CS-evidence">EDSAC</span></div>
+		<img alt="EDSAC" src="https://upload.wikimedia.org/wikipedia/commons/2/22/EDSAC_%2819%29.jpg" style="height:15rem;" />
+		<div class="CS-1_2">Realizzato tra il 1947 e il 1949 fu uno dei primi dotato di <span class="CS-evidence">programma memorizzato</span></div>
+		<div class="CS-3_8">e aveva un sistema di memoria in parte basato su <span class="CS-evidence">linee di ritardo a ultrasuoni nel mercurio</span> che memorizzavano i dati per brevi intervalli di tempo.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-dataSheet">
+			<div><div>Memoria</div><div><span>~ </span>17'408 bit<div>1024 × 17 bit</div></div></div>
+			<div><div>Input</div><div>nastri perforati</div></div>
+			<div><div>Output</div><div>telescrivente</div></div>
+			<div><div>Frequenza</div><div>650<div> istruzioni al secondo</div></div></div>
+			<div><div>Dimensioni</div><div>20<span> m²</div></div>
+		</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Nel maggio 1949 venne sviluppato il primo linguaggio <span class="CS-evidence">linguaggio di programmazione</span> di seconda generazione (2GL) chiamato</div>
+		<div class="CS-3_4 CS-evidence">Assembly</div>
+		<style>
+			.ACBlue { color: #00F; }
+			.ACRed { color: #C00; }
+			.ACGray { color: gray; }
+			.ACBlack { color: var(--colorScheme-second,black); }
+			.ACLime { color: #687822; }
+		</style>
+		<pre><span class="ACBlue">MODEL</span> <span class="ACRed">SMALL</span>
+<span class="ACBlue">STACK</span> <span class="ACGray">100</span><span class="ACRed">H</span>
+<span class="ACLime">.DATA</span>
+	<span class="ACBlue">HW</span> <span class="ACRed">DB</span> <span class="ACBlack">"</span><span class="ACRed">hello</span><span class="ACBlack">,</span> <span class="ACRed">world</span><span class="ACBlack">"</span><span class="ACBlack">,</span> <span class="ACGray">13</span><span class="ACBlack">,</span> <span class="ACGray">10</span><span class="ACBlack">,</span> <span class="ACBlack">'</span><span class="ACRed">$</span><span class="ACBlack">'</span>
+<span class="ACLime">.CODE</span>
+<span class="ACLime">.STARTUP</span>
+	<span class="ACBlue">MOV</span> <span class="ACRed">AX</span><span class="ACBlack">,</span> <span class="ACBlack">@</span><span class="ACRed">data</span>
+	<span class="ACBlue">MOV</span> <span class="ACRed">DS</span><span class="ACBlack">,</span> <span class="ACRed">AX</span>
+	<span class="ACBlue">MOV</span> <span class="ACRed">DX</span><span class="ACBlack">,</span> <span class="ACRed">OFFSET</span> <span class="ACRed">HW</span>
+	<span class="ACBlue">MOV</span> <span class="ACRed">AH</span><span class="ACBlack">,</span> <span class="ACGray">09</span><span class="ACRed">H</span>
+	<span class="ACBlue">INT</span> <span class="ACGray">21</span><span class="ACRed">H</span>
+	<span class="ACBlue">MOV</span> <span class="ACRed">AX</span><span class="ACBlack">,</span> <span class="ACGray">4</span><span class="ACRed">C00H</span>
+	<span class="ACBlue">INT</span> <span class="ACGray">21</span><span class="ACRed">H</span>
+<span class="ACBlue">END</span></pre>
+		<div class="CS-1_4">“Hello Word” scritto in Assembly.</div>
+		<div class="CS-1_2">che si avvantaggiava della progettazione mnemonica dell'EDSAC.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<style> #AssemblyFibonacciEg { font-size: .05rem !important; } </style>
+		<pre id="AssemblyFibonacciEg">A small program that calculates and prints terms of the Fibonacci series 
+
+; fibo.asm
+; assemble using nasm:   
+; nasm -o fibo.com -f bin fibo.asm
+;
+;****************************************************************************
+; Alterable Constant
+;****************************************************************************
+; You can adjust this upward but the upper limit is around 150000 terms.
+; the limitation is due to the fact that we can only address 64K of memory
+; in a DOS com file, and the program is about 211 bytes long and the 
+; address space starts at 100h.  So that leaves roughly 65000 bytes to
+; be shared by the two terms (num1 and num2 at the end of this file).  Since
+; they're of equal size, that's about 32500 bytes each, and the 150000th
+; term of the Fibonacci sequence is 31349 digits long. 
+; 
+	maxTerms    equ 15000	; number of terms of the series to calculate
+
+;****************************************************************************
+; Number digits to use.  This is based on a little bit of tricky math.
+; One way to calculate F(n) (i.e. the nth term of the Fibonacci seeries)
+; is to use the equation int(phi^n/sqrt(5)) where ^ means exponentiation
+; and phi = (1 + sqrt(5))/2, the "golden number" which is a constant about 
+; equal to 1.618.  To get the number of decimal digits, we just take the 
+; base ten log of this number.  We can very easily see how to get the 
+; base phi log of F(n) -- it's just n*lp(phi)+lp(sqrt(5)), where lp means 
+; a base phi log.  To get the base ten log of this we just divide by the 
+; base ten log of phi.  If we work through all that math, we get:
+;
+; digits = terms * log(phi) + log(sqrt(5))/log(phi)
+;
+; the constants below are slightly high to assure that we always have 
+; enough room.  As mentioned above the 150000th term has 31349 digits,
+; but this formula gives 31351.  Not too much waste there, but I'd be
+; a little concerned about the stack!
+;
+        digits	    equ (maxTerms*209+1673)/1000	
+
+; this is just the number of digits for the term counter
+	cntDigits   equ 6	; number of digits for counter
+
+        org     100h            ; this is a DOS com file
+;****************************************************************************
+;****************************************************************************
+main:	
+; initializes the two numbers and the counter.  Note that this assumes
+; that the counter and num1 and num2 areas are contiguous!
+;
+	mov	ax,'00'		; initialize to all ASCII zeroes
+	mov	di,counter		; including the counter
+	mov	cx,digits+cntDigits/2	; two bytes at a time
+	cld			; initialize from low to high memory
+	rep	stosw		; write the data
+	inc	ax		; make sure ASCII zero is in al
+	mov	[num1 + digits - 1],al ; last digit is one
+	mov	[num2 + digits - 1],al ; 
+	mov	[counter + cntDigits - 1],al
+
+	jmp	.bottom		; done with initialization, so begin
+
+.top
+	; add num1 to num2
+	mov	di,num1+digits-1
+	mov	si,num2+digits-1
+	mov	cx,digits	; 
+	call	AddNumbers	; num2 += num1
+	mov	bp,num2		;
+	call	PrintLine	;
+	dec	dword [term]	; decrement loop counter
+	jz	.done		;
+
+	; add num2 to num1
+	mov	di,num2+digits-1
+	mov	si,num1+digits-1
+	mov	cx,digits	;
+	call	AddNumbers	; num1 += num2
+.bottom
+	mov	bp,num1		;
+	call	PrintLine	;
+	dec	dword [term]	; decrement loop counter
+	jnz	.top		;
+.done
+	call	CRLF		; finish off with CRLF
+	mov	ax,4c00h	; terminate
+	int	21h		;
+
+
+;****************************************************************************
+;
+; PrintLine
+; prints a single line of output containing one term of the 
+; Fibonacci sequence.  The first few lines look like this:
+;
+; Fibonacci(1): 1
+; Fibonacci(2): 1
+; Fibonacci(3): 2
+; Fibonacci(4): 3
+;
+; INPUT:     ds:bp ==> number string, cx = max string length
+; OUTPUT:    CF set on error, AX = error code if carry set
+; DESTROYED: ax, bx, cx, dx, di
+;
+;****************************************************************************
+PrintLine:
+	mov	dx,eol		; print combined CRLF and msg1
+	mov	cx,msg1len+eollen   ; 
+	call	PrintString	;
+
+	mov	di,counter	; print counter
+	mov	cx,cntDigits	;
+	call	PrintNumericString
+
+	call	IncrementCount	; also increment the counter
+
+	mov	dx,msg2		; print msg2
+	mov	cx,msg2len	;
+	call	PrintString	;
+	
+	mov	di,bp		; recall address of number
+	mov	cx,digits	;
+	; deliberately fall through to PrintNumericString
+
+;****************************************************************************
+;
+; PrintNumericString 
+; prints the numeric string at DS:DI, suppressing leading zeroes
+; max length is CX
+;
+; INPUT:     ds:di ==> number string, cx = max string length
+; OUTPUT:    CF set on error, AX = error code if carry set
+; DESTROYED: ax, bx, cx, dx, di
+;
+;****************************************************************************
+PrintNumericString:
+	; first scan for the first non-zero byte
+	mov	al,'0'		; look for ASCII zero
+	cld			; scan from MSD to LSD
+	repe	scasb		;
+	mov	dx,di		; points to one byte after
+	dec	dx		; back up one character
+	inc	cx		;
+	; deliberately fall through to PrintString
+
+;****************************************************************************
+; 
+; PrintString 
+; prints the string at DS:DX with length CX to stdout
+;
+; INPUT:     ds:dx ==> string, cx = string length
+; OUTPUT:    CF set on error, AX = error code if carry set
+; DESTROYED: ax, bx
+;
+;****************************************************************************
+PrintString:
+	mov	bx, 1		; write to stdout
+	mov     ah, 040h        ; write to file handle
+	int	21h		; ignore return value
+	ret			;
+
+;****************************************************************************
+;
+; AddNumbers
+; add number 2 at ds:si to number 1 at es:di of width cx
+; 
+;
+; INPUT:     es:di ==> number1, ds:si ==> number2, cx= max width
+; OUTPUT:    CF set on overflow
+; DESTROYED: ax, si, di
+;
+;****************************************************************************
+AddNumbers:
+	std			; go from LSB to MSB
+	clc			;
+	pushf			; save carry flag
+.top
+	mov	ax,0f0fh	; convert from ASCII BCD to BCD
+	and  	al,[si]		; get next digit of number2 in al
+	and	ah,[di]		; get next digit of number1 in ah
+	popf			; recall carry flag
+	adc	al,ah		; add these digits
+	aaa			; convert to BCD
+	pushf			;
+	add	al,'0'		; convert back to ASCII BCD digit
+	stosb			; save it and increment both counters
+	dec	si		;
+	loop	.top		; keep going until we've got them all
+	popf			; recall carry flag
+	ret			;
+
+;****************************************************************************
+; 
+; IncrementCount
+; increments a multidigit term counter by one
+;
+; INPUT:     none
+; OUTPUT:    CF set on overflow
+; DESTROYED: ax, cx, di
+;
+;****************************************************************************
+IncrementCount:
+	mov	cx,cntDigits	;
+	mov	di,counter+cntDigits-1
+	std			; go from LSB to MSB
+	stc			; this is our increment
+	pushf			; save carry flag
+.top
+	mov	ax,000fh	; convert from ASCII BCD to BCD
+	and	al,[di]		; get next digit of counter in al
+	popf			; recall carry flag
+	adc	al,ah		; add these digits
+	aaa			; convert to BCD
+	pushf			;
+	add	al,'0'		; convert back to ASCII BCD digit
+	stosb			; save and increment counter
+	loop	.top		;
+	popf			; recall carry flag
+	ret			;
+	
+;****************************************************************************
+;
+; CRLF
+; prints carriage return, line feed pair to stdout
+;
+; INPUT:     none
+; OUTPUT:    CF set on error, AX = error code if carry set
+; DESTROYED: ax, bx, cx, dx
+;
+;****************************************************************************
+CRLF:	mov	dx,eol		;
+	mov	cx,eollen	;
+	jmp	PrintString	;
+
+;****************************************************************************
+; static data
+;****************************************************************************
+eol	db  13,10		; DOS-style end of line
+eollen	equ $ - eol
+
+msg1	db  'Fibonacci('	;
+msg1len	equ $ - msg1
+
+msg2	db  '): '		;
+msg2len	equ $ - msg2
+;****************************************************************************
+; initialized data
+;****************************************************************************
+term dd maxTerms		;
+;****************************************************************************
+; unallocated data
+; 
+; A better way to do this would be to actually ask for a memory 
+; allocation and use that memory space, but this is a DOS COM file
+; and so we are given the entire 64K of space.   Technically, this 
+; could fail since we *might* be running on a machine which doesn't
+; have 64K free.  If you're running on such a memory poor machine,
+; my advice would be to not run this program.
+;
+;****************************************************************************
+; static data
+counter:			;
+num1 equ counter+cntDigits	;
+num2 equ num1+digits		;</pre>
+		<div class="CS-1_2">Codice in assembly che calcola la serie di Fibonacci.</div>
+		<div class="CS-ref">Assembly.HappyCodings.com</div>
+	</div>
+	<div>
+		<div class="CS-3_4">L'<span class="CS-evidence">EDVAC</span></div>
+		<img alt="EDVAC" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Edvac.jpg/800px-Edvac.jpg" style="height:14rem;" />
+		<div class="CS-1_2">Realizzato tra il 1949 ed il 1951 fu il primo dotato di <span class="CS-evidence">caratteri alfabetici</span>.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-dataSheet">
+			<div><div>Memoria</div><div>5.5 kB<div>1024 “word” da 44 bit</div></div></div>
+			<div><div>Input</div><div>nastro magnetico</div></div>
+			<div><div>Output</div><div>nastro magnetico</div></div>
+			<div><div>Dimensioni</div><div>45.5<span> m²</span></div></div>
+			<div><div>Peso</div><div><span></span>7'850<span> kg</span></div></div>
+			<div><div>Spesa</div><div><span></span>500'000<span> $</span></div></div>
+		</div>
+	</div>
+	<div>
+		<div class="CS-3_4">Il <span class="CS-evidence">tubo Williams-Kilburn</span></div>
+		<img alt="tubo Williams-Kilburn" src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Williams-tube.jpg" style="height:10rem;" />
+		<div class="CS-1_2">era un tipo di memoria informatica, elettronica, digitale e binaria sviluppata tra il 1946 e il 1947.</div>
+		<div class="CS-1_2">Sebbene attualmente superata, essa fu il <span class="CS-evidence">primo dispositivo RAM</span> utilizzato sui calcolatori elettronici.</div>
+		<div class="CS-3_8">Questa poteva contenere una memoria tra i 512 e 1024 bit.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Nel 1947 nasce il termine <span class="CS-3_4">“<span class="CS-evidence">computer</span>”</span> che però era un titolo professionale per designare le <span class="CS-evidence">persone</span> incaricate nello svolgimento di calcoli e/o gestione delle macchine dell'epoca, principalmente donne.</div>
+	</div>
+	<div>
+		<div><span class="CS-1_2">Lo </span><span class="CS-3_4 CS-evidence">Small Scale Experimental Machine</span><span class="CS-1_2"> (SSEM)</span></div>
+		<div class="CS-1_2">soprannominato <span class="CS-1_2">“<span class="CS-evidence">Manchester Baby</span>”</span></div>
+		<img alt="Riproduzione dello SSEM" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/SSEM_Manchester_museum.jpg/1024px-SSEM_Manchester_museum.jpg" style="height:9.2rem;" />
+		<div class="CS-1_4">Replica dello SSEM.</div>
+		<div class="CS-1_2">Realizzato nel 1948, fu il primo computer elettronico <span class="CS-evidence">a programma memorizzato</span> della storia.</div>
+		<div class="CS-3_8">Ciò rendeva estremamente più rapida la sua programmazione rispetto alle precedenti macchine nelle quali il programma si doveva inserire esternamente.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-dataSheet">
+			<div><div>Memoria</div><div><span>da </span>1'024<span> a </span>262'144 bit<div>da 32 a 8'192 “word” da 32 bit C2 little-endian</div></div></div>
+			<div><div>Frequenza Clock</div><div>100 kHz</div></div>
+			<div><div>Dimensioni</div><div>5.2<span> m × </span>2.2<span> m</span></div></div>
+			<div><div>Peso</div><div><span></span>1'000<span> kg</span></div></div>
+		</div>
+	</div>
+	<div>
+		<div class="CS-1_2">L'inventore austriaco Curt Herzstark nel 1948 introdusse</div>
+		<div class="CS-3_4">La <span class="CS-evidence">Curta</span></div>
+		<img alt="Curta" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Curta01.JPG/800px-Curta01.JPG" style="height:12rem;" />
+		<div class="CS-1_2">Era un piccolo calcolatore meccanico, diretto discendente della <i>Stepped Reckoner</i> e del <i>Thomas Arithmometer</i></div>
+		<div class="CS-3_8">Visivamente aveva un design elegante, ergonomico e compatto ma meccanicamente era in grado di svolgere le 4 operazioni di base, la radice quadrata, e alcune altre.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-dataSheet">
+			<div><div>Dimensioni</div><div>85<span> mm</span></div></div>
+			<div><div>Prezzo</div><div><span></span>125<span> $</span></div></div>
+		</div>
+		<div class="CS-1_2">Considerata la migliore calcolatrice, fino a quelle elettroniche il cui avvento avvenne negli anni '70, ne sono stati prodotti 140'000 pezzi.</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Nel 1949 il fisico tedesco Werner Jacobi realizzò il <span class="CS-evidence">primo “circuito integrato”</span> (IC),</div>
+		<img alt="Circuito Integrato di Robert Noyce" src="https://upload.wikimedia.org/wikipedia/commons/8/82/Robert_Noyce_with_Motherboard_1959.png" style="height:15rem;" />
+		<div class="CS-1_4"><i>Circuito Integrato</i> del 1959 di Robert Noyce, uno dei primi.</div>
+		<div class="CS-1_2">che nei decenni successivi farà nascere la <i>terza generazione</i> di computer.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-header CS-3_4">Anni '50:</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Molti computer della prima metà del '900 adoperavano mutevoli di fenomeni fisici, meccanici e idraulici.</div>
+		<div class="CS-1_2">Questa natura li faceva operare su scale continue e ciò li rendeva imprecisi su lunghi calcoli.</div>
+		<div class="CS-1_2">Sebbene l'immaginario dell'epoca era di vedere questi calcolatori analogici come il futuro, a metà del secolo si arrivò a concepire</div>
+		<div class="CS-3_4">La <span class="CS-evidence">Macchina di Turing</span></div>
+		<div class="CS-3_8">Concepita partendo dalle questioni poste dal matematico Hilbert si arrivò</div>
+		<div class="CS-1_2">all'idea di un computer che operando su scale di <span class="CS-evidence">valori discreti</span> potesse procedere correttamente per un intervallo di tempo infinito.</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Nel 1951 venne realizzato il primo computer commerciale degli Stati Uniti.</div>
+		<div class="CS-3_4">L'<span class="CS-evidence">UNIVAC I<br />UNIVersal Automatic Computer</span></div>
+		<img alt="UNIVAC I" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Museum_of_Science%2C_Boston%2C_MA_-_IMG_3163.JPG/800px-Museum_of_Science%2C_Boston%2C_MA_-_IMG_3163.JPG" style="height:14rem;" />
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Il suo prezzo si aggirava attorno ad 1'000'000 $ al pezzo,</div>
+		<div class="CS-1_2">ma l'IBM ebbe l'idea di metterli a noleggio a soli 15'000 $ al mese.</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Nel 1952 A.S. Douglas progettò</div>
+		<div class="CS-3_4 CS-evidence">OXO</div>
+		<img alt="OXO" src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Oxo.jpg" style="height:12rem;" />
+		<div class="CS-1_2">Sviluppato per l'EDSAC fu il <span class="CS-evidence">primo videogioco della storia</span></div>
+		<div class="CS-3_8">con un'uscita grafica su un tubo a raggi catodici.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Nel 1954 la Texas Instruments (TI) iniziò a produrre <span class="CS-evidence">in serie i transistor</span>.</div>
+		<img alt="TI" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/TI_signboard_Dallas.png/800px-TI_signboard_Dallas.png" style="height:14rem;" />
+		<div class="CS-1_2">Ciò permise una futura diffusione dei computer su larga scala.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-3_8">Negli anni '50 si iniziò a progredire verso una rappresentazione grafica dei risultati, realizzando i primi display.</div>
+		<div style="display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center;align-content:center;align-items:center;gap:1rem;column-gap:.8rem;">
+			<div>
+				<img alt="Whirlwind" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Museum_of_Science%2C_Boston%2C_MA_-_IMG_3168.JPG/800px-Museum_of_Science%2C_Boston%2C_MA_-_IMG_3168.JPG" style="height:13rem;" />
+				<div class="CS-1_4">Il <span class="CS-evidence">Whirlwind</span>, un simulatore di volo.</div>
+			</div>
+			<div>
+				<img alt="SAGE" src="https://upload.wikimedia.org/wikipedia/commons/f/ff/SAGE_control_room.png" style="height:13rem;" />
+				<div class="CS-1_4">Il <span class="CS-evidence">SAGE</span>.</div>
+			</div>
+		</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Nel 1955 ormai tutte le valvole termoioniche sono state rimpiazzate da una nuova tecnologia,</div>
+		<div class="CS-3_4">I <span class="CS-evidence">transistor bipolari</span></div>
+		<img alt="BJT" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Transistor-die-KSY34.jpg/800px-Transistor-die-KSY34.jpg" style="height:10rem;" />
+		<div class="CS-3_8">I quali erano più piccoli, richiedevano meno potenza, emettevano meno calore, erano più affidabili e avevano una durata maggiore.<br />Ciò riduceva costi e dimensioni e fece entrare nella “seconda generazione” dei computer.</div>
+		<div class="CS-1_4">Un transistor a giunzione bipolare (BJT).</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Konrad Zuse realizzò una lunga serie di computer denominata “<span class="CS-evidence">Serie Z</span>”.<br />Tra questi vi fu</div>
+		<div class="CS-3_4">Lo <span class="CS-evidence">Z22</span></div>
+		<img alt="Z22" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Zuse_Z22.jpg/800px-Zuse_Z22.jpg" style="height:10rem;" />
+		<div class="CS-1_2">Realizzato nel 1957 fu il primo computer basato su <span class="CS-evidence">memorie magnetiche</span>.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-dataSheet">
+			<div><div>Memoria</div><div>311 kb<div>8'192 “word” da 38 bit</div></div></div>
+			<div><div>RAM</div><div>532 bit<div>14 “word” da 38 bit</div></div></div>
+			<div><div>Frequenza Clock</div><div>3 kHz</div></div>
+			<div><div>Input</div><div>telescrivente<br />schede perforate</div></div>
+			<div><div>Output</div><div>telescrivente<br />schede perforate</div></div>
+		</div>
+	</div>
+	<div>
+		<div style="display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;align-content:center;align-items:center;gap:1rem;column-gap:.8rem;">
+			<div>
+				<img alt="Magnetic-Core Memory" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/KL_CoreMemory.jpg/800px-KL_CoreMemory.jpg" style="height:15rem;" />
+				<div class="CS-1_4">Magnetic-Core Memory 32×32 dalla capacità di 1024 bit.</div>
+			</div>
+			<div>
+				<img alt="Schema di cablatura delle Magnetic-Core Memory" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Coincident-current_magnetic_core.svg/800px-Coincident-current_magnetic_core.svg.png" style="height:15rem;" />
+				<div class="CS-1_4">Schema di cablatura delle Magnetic-Core Memory.</div>
+			</div>
+		</div>
+		<div class="CS-3_8">Tecnologia che, se pur in forma differente, sarà introdotta nelle future videocassette, musicassette, floppy disk e dischi rigidi.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Realizzata a Pisa nel 1957 fu</div>
+		<div class="CS-3_4">La <span class="CS-evidence">CEP</span></div>
+		<img alt="CEP" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/UniPi_Calcolatrice_Elettronica_Pisana2.jpg/1024px-UniPi_Calcolatrice_Elettronica_Pisana2.jpg" style="height:14rem;" />
+		<div class="CS-1_2">Idea appoggiata da Enrico Fermi e costata ben 150'000'000 ₤.</div>
+		<div class="CS-3_8">( odierni 750'000'000 € )</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-header CS-3_4">Anni '60:</div>
+	</div>
+	<div>
+		<div class="CS-1_2">A partire dagli anni '60 il progresso di una tecnologia chiamata SMT permise la diffusione, sopratutto dagli anni '80, delle</div>
+		<div class="CS-3_4 CS-evidence">PCB</div>
+		<div style="display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center;align-content:center;align-items:center;gap:1rem;column-gap:.8rem;">
+			<div>
+				<img alt="Prima delle PCB" src="https://cdn.sparkfun.com/assets/1/3/b/5/8/50cba0dcce395fb716000000.jpg" style="height:13rem;" />
+			</div>
+			<div>
+				<img alt="PCB" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/MOS6581_chtaube061229.jpg/800px-MOS6581_chtaube061229.jpg" style="height:13rem;" />
+			</div>
+		</div>
+		<div class="CS-1_4">Il prima rispetto al dopo l'uso delle <i>printed circuit board (PCB)</i>.</div>
+		<div class="CS-ref">Wikipedia, learn.SparkFun.com</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Al contrario le calcolatrici, non essendo Turing-complete, erano molto più compatte.</div>
+		<div style="display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center;align-content:center;align-items:center;gap:1rem;column-gap:.8rem;">
+			<div>
+				<img alt="ANITA Mark VIII" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/AnitaMk8-01.jpg/800px-AnitaMk8-01.jpg" style="height:13rem;" />
+			</div>
+			<div>
+				<img alt="Interno dell'ANITA Mark VIII" src="https://upload.wikimedia.org/wikipedia/commons/4/44/AnitaMk8Inside1.jpg" style="height:13rem;" />
+			</div>
+		</div>
+		<div class="CS-1_4"><span class="CS-evidence">ANITA Mark VIII</span>, prima calcolatrice da tavolo totalmente elettronica, realizzata alla fine del 1961.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Con essa si introdusse anche la RPN,</div>
+		<div class="CS-3_8">ovvero la <span class="CS-evidence">notazione polacca inversa</span>, inventata da Łukasiewicz,</div>
+		<div id="RPNeg">
+			<style>
+				#RPNeg { width: min-content; margin-right: auto; margin-left: auto; }
+				#RPNeg > pre { width: 100%; width: min-content; }
+				#RPNeg .RPNegN { color: #5B6; }
+				#RPNeg .RPNegO { color: #55D; }
+				#RPNeg .RPNegP { color: #B56; }
+			</style>
+			<pre><span class="RPNegN">5</span> <span class="RPNegO">+</span> <span class="RPNegP">(</span> <span class="RPNegN">10</span> <span class="RPNegO">×</span> <span class="RPNegN">2</span> <span class="RPNegP">)</span>   diventa   <span class="RPNegN">5</span> <span class="RPNegN">10</span> <span class="RPNegN">2</span> <span class="RPNegO">×</span> <span class="RPNegO">+</span>   o   <span class="RPNegN">10</span> <span class="RPNegN">2</span> <span class="RPNegO">×</span> <span class="RPNegN">5</span> <span class="RPNegO">+</span></pre>
+			<pre><span class="RPNegP">(</span> <span class="RPNegP">(</span> <span class="RPNegN">10</span> <span class="RPNegO">×</span> <span class="RPNegN">2</span> <span class="RPNegP">)</span> <span class="RPNegO">+</span> <span class="RPNegP">(</span> <span class="RPNegN">4</span> <span class="RPNegO">-</span> <span class="RPNegN">5</span> <span class="RPNegP">)</span> <span class="RPNegP">)</span> <span class="RPNegO">/</span> <span class="RPNegN">2</span>   diventa   <span class="RPNegN">10</span> <span class="RPNegN">2</span> <span class="RPNegO">×</span> <span class="RPNegN">4</span> <span class="RPNegN">5</span> <span class="RPNegO">-</span> <span class="RPNegO">+</span> <span class="RPNegN">2</span> <span class="RPNegO">/</span>   o   <span class="RPNegN">2</span> <span class="RPNegN">10</span> <span class="RPNegN">2</span> <span class="RPNegO">×</span> <span class="RPNegN">4</span> <span class="RPNegN">5</span> <span class="RPNegO">-</span> <span class="RPNegO">+</span> <span class="RPNegO">/</span></pre>
+			<pre><span class="RPNegP">(</span> <span class="RPNegN">7</span> <span class="RPNegO">/</span> <span class="RPNegN">3</span> <span class="RPNegP">)</span> <span class="RPNegO">/</span> <span class="RPNegP">(</span> <span class="RPNegP">(</span> <span class="RPNegN">1</span> <span class="RPNegO">-</span> <span class="RPNegN">4</span> <span class="RPNegP">)</span> <span class="RPNegO">×</span> <span class="RPNegN">2</span> <span class="RPNegP">)</span> <span class="RPNegO">+</span> <span class="RPNegN">1</span>   diventa   <span class="RPNegN">7</span> <span class="RPNegN">3</span> <span class="RPNegO">/</span> <span class="RPNegN">1</span> <span class="RPNegN">4</span> <span class="RPNegO">-</span> <span class="RPNegN">2</span> <span class="RPNegO">×</span> <span class="RPNegO">/</span> <span class="RPNegN">1</span> <span class="RPNegO">+</span>   o   <span class="RPNegN">1</span> <span class="RPNegN">7</span> <span class="RPNegN">3</span> <span class="RPNegO">/</span> <span class="RPNegN">1</span> <span class="RPNegN">4</span> <span class="RPNegO">-</span> <span class="RPNegN">2</span> <span class="RPNegO">×</span> <span class="RPNegO">/</span> <span class="RPNegO">+</span>   o   ( altre 2 )</pre>
+		</div>
+		<div class="CS-3_8">tramite la quale si potevano svolgere tutti calcoli senza la necessità dell'uso delle parentesi e risolvendo il problema di priorità degli operandi.</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Kenneth Olsen e Harlan Anderson, ispirati dal Whirlwind, nel 1957 costituirono la Digital Equipment Corporation (DEC) e nel 1960 realizzarono</div>
+		<div class="CS-3_4">Il <span class="CS-evidence">PDP-1</span></div>
+		<img alt="PDP-1" src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Steve_Russell_and_PDP-1.png" style="height:14rem;" />
+		<div class="CS-1_4">Il <i>Programmed Data Processor-1 (PDP-1)</i> con on Steve Russell, il creatore di <i>Spacewar!</i>.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Tuttavia il mercato rimase diffidente e vendettero solo 49 esemplari ad un prezzo tra i 120'000 e i 250'000 $.</div>
+		<div class="CS-dataSheet">
+			<div><div>Memoria</div><div><div>a nuclei magnetici da</div>9.2 kB<div>4'096 “word” da 18 bit</div><div>espandibile fino a</div>147 kB<div>65'536 “word” da 18 bit</div></div></div>
+			<div><div>Frequenza Clock</div><div>200 kHz</div></div>
+			<div><div>Input</div><div>telescrivente</div></div>
+			<div><div>Output</div><div>display a tubo catodico</div></div>
+			<div><div>Prezzo</div><div><span>da </span>120'000<span> $</span><br /><span>a </span>250'000<span> $</span></div></div>
+		</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Steve Russell nel 1962 pubblica</div>
+		<div class="CS-3_4 CS-evidence">Spacewar!</div>
+		<img alt="Spacewar!" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Spacewar%21-PDP-1-20070512.jpg/1024px-Spacewar%21-PDP-1-20070512.jpg" style="height:15rem;" />
+		<div class="CS-1_4">Secondo videogioco e nient'altro che primo videogioco <span class="CS-evidence">multiplayer</span>.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Ma la scomodità della telescrivente portò alla creazione del <span class="CS-evidence">primo <span class="CS-5_8 CS-evidence">joystick</span></span> della storia,</div>
+		<div class="CS-3_8">utilizzando scarti di materiale elettrico ricavati dal club di modellismo ferroviario dell'università.</div>
+		<img alt="Joystick" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Prototype_Gemini_Hand_Controller.jpg/800px-Prototype_Gemini_Hand_Controller.jpg" style="height:14rem;" />
+		<div class="CS-1_4">Esempio di joystick del 1962.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Ivan Sutherland nel 1963 come tesi per il suo dottorato scrisse</div>
+		<div class="CS-3_4 CS-evidence">Sketchpad</div>
+		<img alt="Lightpen per Sketchpad" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/SketchpadDissertation-Fig4-1.tif/lossy-page1-800px-SketchpadDissertation-Fig4-1.tif.jpg" style="height:14rem;" />
+		<div class="CS-1_2">Fu il <span class="CS-evidence">primo CAD</span> della storia.</div>
+		<div class="CS-1_4">Lightpen per Sketchpad del computer TX2.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">E nello stesso anno l'ANSI il primo <i>American Standard Code for Information Interchange</i>, meglio conosciuto come</div>
+		<div class="CS-3_4 CS-evidence">ASCII</div>
+		<img alt="Prima tabella ASCII" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/USASCII_code_chart.png/800px-USASCII_code_chart.png" style="height:13rem;" />
+		<div class="CS-1_4">Prima tabella ASCII,</div>
+		<div class="CS-1_2">originariamente a 7 bit.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Nel 1964 venne completato quello che molti definirono come</div>
+		<div class="CS-3_4">Il <span class="CS-evidence">primo SuperComputer</span></div>
+		<img alt="CDC-6600" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/CDC_6600.jc.jpg/1024px-CDC_6600.jc.jpg" style="height:13rem;" />
+		<div class="CS-1_2">Il <span class="CS-evidence">CDC-6600</span>.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div style="display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center;align-content:center;align-items:center;gap:1rem;column-gap:.8rem;">
+			<div>
+				<img alt="SCOPE 3.1 sul CDC-6600" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/CDC_6000_series_SCOPE_3.1_building_itself.PNG/1024px-CDC_6000_series_SCOPE_3.1_building_itself.PNG" style="height:10rem;" />
+				<div class="CS-1_4">L'OS <i>SCOPE 3.1</i> sul <i>CDC-6600</i>.</div>
+			</div>
+			<div>
+				<div class="CS-dataSheet">
+					<div><div>Memoria</div><div>982 kB<div>131'000 × 60 bit</div></div></div>
+					<div><div>Frequenza Clock</div><div>10 MHz</div></div>
+					<div><div>Sistema Operativo</div><div>SCOPE<span>, </span><br />KRONOS</div></div>
+					<div><div>Input</div><div>tastiera</div></div>
+					<div><div>Output</div><div>display a tubo catodico</div></div>
+					<div><div>Dimensioni</div><div><span>~ </span>16<span> m³</span></div></div>
+					<div><div>Peso</div><div>5'400<span> kg</span></div></div>
+					<div><div>Prezzo</div><div>2'370'000<span> $</span><br /><span>( odierni 22'800'000 $ )</span></div></div>
+					<div><div>Unità Vendute</div><div><span>più di </span>100</div></div>
+				</div>
+			</div>
+		</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-3_4">Il <span class="CS-evidence">PDP-8</span></div>
+		<div class="CS-1_2">a partire dal 1965 segnò l'inizio di due grandi corse:</div>
+		<img alt="PDP-8" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/PDP-8.jpg/800px-PDP-8.jpg" style="height:13rem;" />
+		<ul class="CS-3_8">
+			<li>L'avvento della <span class="CS-evidence">diffusione dei computer</span> su larga scala e</li>
+			<li>la corsa verso computer sempre più piccoli, verso i <span class="CS-evidence">minicomputer</span>.</li>
+		</ul>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-dataSheet">
+			<div><div>Memoria</div><div><div>a nuclei magnetici da</div>6.1 kB<div>4'096 “word” da 12 bit</div><div>espandibile fino a</div>49 kB<div>32'768 “word” da 12 bit</div></div></div>
+			<div><div>Frequenza Clock</div><div>667 kHz</div></div>
+			<div><div>Sistema Operativo</div><div>OS/8</div></div>
+			<div><div>PL</div><div>FOCAL<span>, </span>PAL-III<span>,</span><br />FORTRAN<span>,</span><br />BASIC<span> e </span>DIBOL</div></div>
+			<div><div>Peso</div><div>133<span> kg</span></div></div>
+			<div><div>Prezzo</div><div>18'000<span> $</span><div>( 170'000 $ nel 2022 )</div></div></div>
+			<div><div>Unità Vendute</div><div><span>più di </span>50'000</div></div>
+		</div>
+	</div>
+	<div>
+		<div class="CS-1_2">In quegli anni infatti si stavano diffondendo i primi <span class="CS-evidence">linguaggi di programmazione</span>, volti a semplificare la comprensione dei computer per i primi utenti.</div>
+		<div style="display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center;align-content:center;align-items:center;gap:1rem;column-gap:.8rem;">
+			<div>
+				<style>
+					#FORTRANeg { font-size: .376rem !important; }
+					.FORTRANegCmt { color: teal; }
+					.FORTRANegCmd { color: green; }
+					.FORTRANegNL { color: darkkhaki; }
+					.FORTRANegNP { color: var(--colorScheme-second,black); }
+					.FORTRANegVar { color: #44B; }
+					.FORTRANegOp { color: #D44; }
+					.FORTRANegN { color: dark-gray; }
+				</style>
+				<pre id="FORTRANeg"><span></span><span class="FORTRANegCmt">C AREA OF A TRIANGLE WITH A STANDARD SQUARE ROOT FUNCTION</span>
+<span class="FORTRANegCmt">C INPUT - TAPE READER UNIT 5, INTEGER INPUT</span>
+<span class="FORTRANegCmt">C OUTPUT - LINE PRINTER UNIT 6, REAL OUTPUT</span>
+<span class="FORTRANegCmt">C INPUT ERROR DISPLAY ERROR OUTPUT CODE 1 IN JOB CONTROL LISTING</span>
+<span class="FORTRANegNL">     </span> <span class="FORTRANegCmd">READ </span><span class="FORTRANegVar">INPUT</span> <span class="FORTRANegVar">TAPE</span> <span class="FORTRANegN">5</span><span class="FORTRANegP">,</span> <span class="FORTRANegN">501</span><span class="FORTRANegP">,</span> <span class="FORTRANegVar">IA</span><span class="FORTRANegP">,</span> <span class="FORTRANegVar">IB</span><span class="FORTRANegP">,</span> <span class="FORTRANegVar">IC</span>
+<span class="FORTRANegNL">  501</span> <span class="FORTRANegCmd">FORMAT</span> <span class="FORTRANegP">(</span><span class="FORTRANegN">3</span><span class="FORTRANegVar">I5</span><span class="FORTRANegP">)</span>
+<span class="FORTRANegCmt">C IA, IB, AND IC MAY NOT BE NEGATIVE OR ZERO</span>
+<span class="FORTRANegCmt">C FURTHERMORE, THE SUM OF TWO SIDES OF A TRIANGLE</span>
+<span class="FORTRANegCmt">C MUST BE GREATER THAN THE THIRD SIDE, SO WE CHECK FOR THAT, TOO</span>
+<span class="FORTRANegNL">     </span> <span class="FORTRANegCmd">IF</span> <span class="FORTRANegP">(</span><span class="FORTRANegVar">IA</span><span class="FORTRANegP">)</span> <span class="FORTRANegN">777</span><span class="FORTRANegP">,</span> <span class="FORTRANegN">777</span><span class="FORTRANegP">,</span> <span class="FORTRANegN">701</span>
+<span class="FORTRANegNL">  701</span> <span class="FORTRANegCmd">IF</span> <span class="FORTRANegP">(</span><span class="FORTRANegVar">IB</span><span class="FORTRANegP">)</span> <span class="FORTRANegN">777</span><span class="FORTRANegP">,</span> <span class="FORTRANegN">777</span><span class="FORTRANegP">,</span> <span class="FORTRANegN">702</span>
+<span class="FORTRANegNL">  702</span> <span class="FORTRANegCmd">IF</span> <span class="FORTRANegP">(</span><span class="FORTRANegVar">IC</span><span class="FORTRANegP">)</span> <span class="FORTRANegN">777</span><span class="FORTRANegP">,</span> <span class="FORTRANegN">777</span><span class="FORTRANegP">,</span> <span class="FORTRANegN">703</span>
+<span class="FORTRANegNL">  703</span> <span class="FORTRANegCmd">IF</span> <span class="FORTRANegP">(</span><span class="FORTRANegVar">IA</span><span class="FORTRANegOp">+</span><span class="FORTRANegVar">IB</span><span class="FORTRANegOp">-</span><span class="FORTRANegVar">IC</span><span class="FORTRANegP">)</span> <span class="FORTRANegN">777</span><span class="FORTRANegP">,</span> <span class="FORTRANegN">777</span><span class="FORTRANegP">,</span> <span class="FORTRANegN">704</span>
+<span class="FORTRANegNL">  704</span> <span class="FORTRANegCmd">IF</span> <span class="FORTRANegP">(</span><span class="FORTRANegVar">IA</span><span class="FORTRANegOp">+</span><span class="FORTRANegVar">IC</span><span class="FORTRANegOp">-</span><span class="FORTRANegVar">IB</span><span class="FORTRANegP">)</span> <span class="FORTRANegN">777</span><span class="FORTRANegP">,</span> <span class="FORTRANegN">777</span><span class="FORTRANegP">,</span> <span class="FORTRANegN">705</span>
+<span class="FORTRANegNL">  705</span> <span class="FORTRANegCmd">IF</span> <span class="FORTRANegP">(</span><span class="FORTRANegVar">IB</span><span class="FORTRANegOp">+</span><span class="FORTRANegVar">IC</span><span class="FORTRANegOp">-</span><span class="FORTRANegVar">IA</span><span class="FORTRANegP">)</span> <span class="FORTRANegN">777</span><span class="FORTRANegP">,</span> <span class="FORTRANegN">777</span><span class="FORTRANegP">,</span> <span class="FORTRANegN">799</span>
+<span class="FORTRANegNL">  777</span> <span class="FORTRANegCmd">STOP </span><span class="FORTRANegN">1</span>
+<span class="FORTRANegCmt">C USING HERON'S FORMULA WE CALCULATE THE</span>
+<span class="FORTRANegCmt">C AREA OF THE TRIANGLE</span>
+<span class="FORTRANegNL">  799</span> <span class="FORTRANegVar">S</span> <span class="FORTRANegOp">=</span> <span class="FORTRANegVar">FLOATF</span> <span class="FORTRANegP">(</span><span class="FORTRANegVar">IA</span> <span class="FORTRANegOp">+</span> <span class="FORTRANegVar">IB</span> <span class="FORTRANegOp">+</span> <span class="FORTRANegVar">IC</span><span class="FORTRANegP">)</span> <span class="FORTRANegOp">/</span> <span class="mf">2.0</span>
+<span class="FORTRANegNL">     </span> <span class="FORTRANegVar">AREA</span> <span class="FORTRANegOp">=</span> <span class="FORTRANegVar">SQRTF</span><span class="FORTRANegP">(</span> <span class="FORTRANegVar">S</span> <span class="FORTRANegOp">*</span> <span class="FORTRANegP">(</span><span class="FORTRANegVar">S</span> <span class="FORTRANegOp">-</span> <span class="FORTRANegVar">FLOATF</span><span class="FORTRANegP">(</span><span class="FORTRANegVar">IA</span><span class="FORTRANegP">))</span> <span class="FORTRANegOp">*</span> <span class="FORTRANegP">(</span><span class="FORTRANegVar">S</span> <span class="FORTRANegOp">-</span> <span class="FORTRANegVar">FLOATF</span><span class="FORTRANegP">(</span><span class="FORTRANegVar">IB</span><span class="FORTRANegP">))</span> <span class="FORTRANegOp">*</span>
+<span class="FORTRANegNL">     </span><span class="gs">+</span>     <span class="FORTRANegP">(</span><span class="FORTRANegVar">S</span> <span class="FORTRANegOp">-</span> <span class="FORTRANegVar">FLOATF</span><span class="FORTRANegP">(</span><span class="FORTRANegVar">IC</span><span class="FORTRANegP">)))</span>
+<span class="FORTRANegNL">     </span> <span class="FORTRANegCmd">WRITE </span><span class="FORTRANegVar">OUTPUT</span> <span class="FORTRANegVar">TAPE</span> <span class="FORTRANegN">6</span><span class="FORTRANegP">,</span> <span class="FORTRANegN">601</span><span class="FORTRANegP">,</span> <span class="FORTRANegVar">IA</span><span class="FORTRANegP">,</span> <span class="FORTRANegVar">IB</span><span class="FORTRANegP">,</span> <span class="FORTRANegVar">IC</span><span class="FORTRANegP">,</span> <span class="FORTRANegVar">AREA</span>
+<span class="FORTRANegNL">  601</span> <span class="FORTRANegCmd">FORMAT</span> <span class="FORTRANegP">(</span><span class="FORTRANegN">4</span><span class="FORTRANegVar">H</span> <span class="FORTRANegVar">A</span><span class="FORTRANegOp">=</span> <span class="FORTRANegP">,</span><span class="FORTRANegVar">I5</span><span class="FORTRANegP">,</span><span class="FORTRANegN">5</span><span class="FORTRANegVar">H</span>  <span class="FORTRANegVar">B</span><span class="FORTRANegOp">=</span> <span class="FORTRANegP">,</span><span class="FORTRANegVar">I5</span><span class="FORTRANegP">,</span><span class="FORTRANegN">5</span><span class="FORTRANegVar">H</span>  <span class="FORTRANegVar">C</span><span class="FORTRANegOp">=</span> <span class="FORTRANegP">,</span><span class="FORTRANegVar">I5</span><span class="FORTRANegP">,</span><span class="FORTRANegN">8</span><span class="FORTRANegVar">H</span>  <span class="FORTRANegVar">AREA</span><span class="FORTRANegOp">=</span> <span class="FORTRANegP">,</span><span class="FORTRANegVar">F10</span><span class="FORTRANegP">.</span><span class="FORTRANegN">2</span><span class="FORTRANegP">,</span>
+<span class="FORTRANegNL">     </span><span class="gs">+</span>        <span class="FORTRANegN">13</span><span class="FORTRANegVar">H</span> <span class="FORTRANegVar">SQUARE</span> <span class="FORTRANegVar">UNITS</span><span class="FORTRANegP">)</span>
+<span class="FORTRANegNL">     </span> <span class="FORTRANegCmd">STOP</span>
+<span class="FORTRANegNL">     </span> <span class="FORTRANegCmd">END</span></pre>
+				<div class="CS-1_4">Codice in </i>FORTRAN III</i>.</div>
+			</div>
+			<div>
+				<img alt="BASIC" src="https://upload.wikimedia.org/wikipedia/commons/7/7b/AtariBASIC.png" style="height:10rem;" />
+				<div class="CS-1_4"><i>Atari BASIC</i> nel 1979.</div>
+			</div>
+		</div>
+	</div>
+	<div>
+		<div class="CS-3_4">L'<span class="CS-evidence">AGC</span></div>
+		<div style="display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center;align-content:center;align-items:center;gap:1rem;column-gap:.8rem;">
+			<div>
+				<img alt="AGC" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Apollo_DSKY_interface.svg/1024px-Apollo_DSKY_interface.svg.png" style="height:11rem;background:white;" />
+			</div>
+			<div>
+				<img alt="AGC" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Dsky.jpg/800px-Dsky.jpg" style="height:11rem;" />
+			</div>
+		</div>
+		<div class="CS-1_2">Fu sviluppato nel 1966 per le <i>missioni Apollo</i> della <i>NASA</i><br />e fu il <span class="CS-evidence">primo circuito integrato a <i class="CS-evidence">silicio</i></span>.</div>
+		<div class="CS-1_4">L'<i>Apollo Guidance Computer</i>.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-dataSheet">
+			<div><div>Memoria</div><div><div>a nuclei magnetici da</div>74 kB<div>36'864 “word” da 15+1 bit</div></div></div>
+			<div><div>RAM</div><div>4.1 kB<div>2'048 “word” da 15+1 bit</div></div></div>
+			<div><div>Frequenza Clock</div><div>2<span>.048</span> GHz</div></div>
+			<div><div>Sistema Operativo</div><div>proprio</div></div>
+			<div><div>PL</div><div>Assembly</div></div>
+			<div><div>Dimensioni</div><div>61<span> cm × </span>32<span> cm × </span>17<span> cm</span></div></div>
+			<div><div>Peso</div><div>32<span> kg</span></div></div>
+		</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Alla fine degli anni '60 Douglas Engelbart sviluppò</div>
+		<div class="CS-3_4">L'<span class="CS-evidence">oN Line System</span> (NLS)</div>
+		<div class="CS-1_2">Un <i>ambiente software</i> per facilitare l'attività a <i>scienziati e professionisti</i> la cui attività comportava <i>cooperazioni di gruppo</i>.</div>
+		<div class="CS-1_2">Fu il più antico sistema di <span class="CS-evidence">groupware</span>.</div>
+	</div>
+	<div>
+		<div class="CS-1_2">L'<i>oN Line System</i> introduceva molteplici novità:</div>
+		<ul class="CS-3_8">
+			<li>il <span class="CS-evidence">mouse</span>,</li>
+			<li>un'<span class="CS-evidence">interfaccia grafica</span> a</li>
+			<li><span class="CS-evidence">“finestre” di dialogo</span>,</li>
+			<li>il più antico supporto per la <span class="CS-evidence">chiamata a procedura remota</span> (RPC),</li>
+			<li>il <span class="CS-evidence">journal</span>,</li>
+			<li>l'<span class="CS-evidence">ipertesto</span>,</li>
+			<li>un <span class="CS-evidence">sistema di aiuto</span> sensibile al contesto,</li>
+			<li>un sistema di <span class="CS-evidence">posta elettrnica</span> integrato,</li>
+			<li>e molto altro…</li>
+		</ul>
+	</div>
+	<div>
+		<div class="CS-1_2">Egli infatti inventò il <span class="CS-evidence">mouse</span>.</div>
+		<img alt="Progetto del primo mouse" src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Mouse-patents-englebart-rid.png" style="height:15rem;" />
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Nel 1968, durante la <i>guerra fredda</i>, gli <i>Stati Uniti</i> necessitavano l'instaurazione di uno stabile <i>sistema di difesa e di controspionaggio</i>.</div>
+		<div class="CS-3_8">E così, ispirandosi al progetto “<i>On-line man computer communication</i>”, pubblicato nell'agosto del 1962, che trattava di una <i>rete tra computer</i> denominata “<i>Intergalactic Computer Network</i>” (ICN), …</div>
+	</div>
+	<div>
+		<div class="CS-1_2">…nel 1969 gli Stati Uniti, tramite la <i>DARPA</i>, reallizzarono</div>
+		<div class="CS-3_4 CS-evidence">ARPAnet</div>
+		<img alt="ARPAnet" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Arpanet_1974.svg/1024px-Arpanet_1974.svg.png" style="height:13rem;" />
+		<div class="CS-1_2">La <span class="CS-evidence">prima rete a commutazione di pacchetto</span> del mondo, considerabile l'antenata progenitrice di <span class="CS-evidence">internet</span>.</div>
+		<div class="CS-1_4"><i>ARPAnet</i> nel 1974.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Sulla quale, in quegli anni, nacque<br />l'utilizzo del simbolo “<span class="CS-evidence">@</span>” nelle e-mail.</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Sviluppato negli anni '70 fu</div>
+		<div class="CS-3_4">Il <span class="CS-evidence">BBS</span></div>
+		<div class="CS-1_2">Il <i>Bulletin Board System</i> era un <i>sistema telematico</i> che consentiva a computer remoti di accedere a un elaboratore centrale per condividere o prelevare risorse.</div>
+		<div class="CS-1_2">Fù utilizzato per le comunicazioni nei primi 15 o 25 anni a partire dagli anni '70 e andò diradandosi con l'avvento di <i>internet</i>.</div>
+		<div class="CS-1_2">Al tempo la velocità di trasmissione dei pacchetti nella rete si misurava in <span class="CS-evidence">baud</span>.</div>
+	</div>
+	<div>
+		<img alt="C" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/The_C_Programming_Language_logo.svg/800px-The_C_Programming_Language_logo.svg.png" style="height:15rem;" />
+		<div class="CS-1_2">fu sviluppato da <i>Dennis Ritchie</i> nel 1972, con lo scopo di utilizzarlo per la stesura di UNIX.</div>
+		<div class="CS-3_8">( da non confondere con <i>C++</i> e <i>C#</i> )</div>
+		<div class="CS-3_8">Attualmente il suo stretto discendente, il <i>C++</i>, è tra i linguaggi più importanti e usati al mondo.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Nel 1972 venne realizzato lo</div>
+		<div class="CS-3_4 CS-evidence">Xerox Alto</div>
+		<img alt="Xerox Alto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Xerox_Alto.jpg/800px-Xerox_Alto.jpg" style="height:13rem;" />
+		<div class="CS-1_2">Fu il primo computer della storia ad essere dotato di <span class="CS-evidence">display bitmap</span> a <i>finestre</i> e con <i>capacità di sovrapposizione</i> e contenente il <span class="CS-evidence">primo linguaggio di programmazione ad oggetti</span>, lo <i>Smalltalk</i>.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-dataSheet">
+			<div><div>Memoria</div><div><span>da </span>96<span> a </span>512 kB<div>( 4'000 $ dell'epoca ogni 128 kB )</div></div></div>
+			<div><div>Frequenza Clock</div><div>5.88 MHz</div></div>
+			<div><div>Monitor</div><div>606 × 808<span> px</span></div></div>
+			<div><div>Sistema Operativo</div><div>proprio<div> (grafico)</div></div></div>
+			<div><div>PL</div><div>Smalltalk<span>,</span><br />BCPL<span> e </span>Mesa</div></div>
+			<div><div>Prezzo</div><div>32'000<span> $</span><div>( 131'000 $ nel 2022 )</div></div></div>
+		</div>
+	</div>
+	<div>
+		<img alt="Grafica bitmap" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Rgb-raster-image.svg/800px-Rgb-raster-image.svg.png" style="height:17rem;" />
+		<div class="CS-3_4">La <span class="CS-evidence">grafica raster</span> o <span class="CS-evidence">grafica bitmap</span></div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<!--div>
+		Smalltalk
+	</div-->
+	<div>
+		<div class="CS-1_2">Con l'inizio degli anni '70 vi fu l'inizio della creazione di blocchi unici di ciruiti integrati si arriva a creare gli odierni</div>
+		<div class="CS-3_4 CS-evidence">microprocessori</div>
+		<img alt="Intel 80486DX2 die" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/80486DX2_200x.png/800px-80486DX2_200x.png" style="height:12rem;" />
+		<div class="CS-1_4">Strati di interconnessioni superiori in un <i>Intel 80486DX2 die</i></div>
+		<div class="CS-1_2">Entrando così nella fase dei <span class="CS-evidence">computer di quarta generazione</span>, nonché l'odierna.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Realizzato nel 1973 fu</div>
+		<div class="CS-3_4">Il <span class="CS-evidence">Micral N</span></div>
+		<img alt="Micral N" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Micral_MGR_Lyon-IMG_9895.JPG/1024px-Micral_MGR_Lyon-IMG_9895.JPG" style="height:12rem;" />
+		<div class="CS-1_2">Fu il <span class="CS-evidence">primo computer a microprocessore</span>.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-3_4">Il <span class="CS-evidence">MITS Altair 8800</span></div>
+		<img alt="Micral N" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Altair_8800_computer.jpg/1280px-Altair_8800_computer.jpg" style="height:12rem;" />
+		<div class="CS-1_2">fu iniziato a vendere nel Marzo del 1975 e pur avendo basse capacità divenne sorprendentemente particolare e la domanda superò rapidamente l'offerta.</div>
+		<div class="CS-3_8">Furono infatti vendute centinaia di copie ad un prezzo iniziale dell'epoca di 439 $.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-dataSheet">
+			<div><div>Memoria</div><div>4 kB</div></div>
+			<div><div>RAM</div><div><span>da </span>256 B<span> a </span>64 kB</div></div>
+			<div><div>Frequenza Clock</div><div>2 MHz</div></div>
+			<div><div>PL</div><div>Altair BASIC</div></div>
+			<div><div>Prezzo</div><div>439<span> $</span><div>( 2'400 $ nel 2022 )</div></div></div>
+		</div>
+	</div>
+	<div>
+		<div class="CS-3_4">L'<span class="CS-evidence">Olivetti P6060</span></div>
+		<img alt="Olivetti P6060" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Computer_minipersonal_-_Museo_scienza_tecnologia_Milano_09298.jpg/1024px-Computer_minipersonal_-_Museo_scienza_tecnologia_Milano_09298.jpg" style="height:12rem;" />
+		<div class="CS-3_8">presentato alla Fiera di Hannover,</div>
+		<div class="CS-1_2">fu il primo sistema di <i>personal computer completo</i> e <span class="CS-evidence">preassemblato</span>.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-dataSheet">
+			<div><div>Memoria</div><div><span>da </span>32<span> a </span>64 kB</div></div>
+			<div><div>RAM</div><div><span>da </span>8<span> a </span>16 kB</div></div>
+			<div><div>Display</div><div>al plasma<br />32 caratteri</div></div>
+			<div><div>PL</div><div>BASIC</div></div>
+			<div><div>Accessori</div><div>stampante termica grafica<div>80 colonne</div></div></div>
+			<div><div>Dimensioni</div><div>60<span> cm × </span>60<span> cm × </span>25<span> cm</span></div></div>
+			<div><div>Peso</div><div>40<span> kg</span></div></div>
+			<div><div>Prezzo</div><div><span>da </span>7'950<span> a </span>10'000<span> $</span><div>( 44'000 e 55'000 $ nel 2022 )</div></div></div>
+		</div>
+	</div>
+	<div>
+		<img alt="Computer fatti in casa" src="https://live.staticflickr.com/805/26752218427_338e0379dd_b.jpg" style="height:15rem;" />
+		<div class="CS-1_2">Siccome all'epoca i computer costavano uno sproposito le persone se li realizzavano da soli prendendo i singoli componenti fisici, dando così via ai cosiddetti <span class="CS-evidence">computer fatti in casa</span>.</div>
+		<div class="CS-ref">Flickr.com</div>
+	</div>
+	<!--div>
+		???
+		Computer fatti in casa: i microcomputer (1975)
+		<br />Contemporaneamente, il fascino del "fai da te" dell'elettronica venne contagiato dalla febbre dei computer: il numero ormai storico di Popular Electronics del gennaio 1975 mostrava in copertina una scatola celeste con sopra interruttori e led e il nome in basso a sinistra: Altair 8800.
+		<br />Il kit, del costo di 495 dollari, poteva essere ordinato presso la MITS di Albuquerque, ed era basato sul processore Intel 8080. L'8080 aveva tutta l'unità centrale di elaborazione (Central Processing Unit, CPU) in un solo chip, ed era dunque il primo microcomputer a prezzi accessibili alle fasce popolari, nonché il primo che avesse avuto un successo commerciale di massa. Tuttavia, Altair era concepito come un minicomputer: ne aveva l'aspetto, usava le stesse periferiche e soprattutto ne aveva l'architettura aperta.
+		???
+	</div-->
+	<div>
+		<div class="CS-3_4">L'<span class="CS-evidence">MD 800</span></div>
+		<img alt="MD 800" src="https://upload.wikimedia.org/wikipedia/commons/2/26/DMD_MD800.JPG" style="height:13rem;" />
+		<div><span class="CS-1_2">fu realizzato nel 1975 a Torino dal CSELT</span><span class="CS-3_8">, uno dei più importanti istituti d'Europa di ricerca nel campo delle telecomunicazioni, </span><span class="CS-1_2">ed era un <i>microcomputer</i> con tutte le funzioni tipiche dei futuri personal computer.</span></div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-dataSheet">
+			<div><div>EPROM</div><div>4 kB</div></div>
+			<div><div>RAM</div><div>8 kB</div></div>
+			<div><div>Monitor</div><div>monocromatico<div>25 righe × 80 caratteri</div></div></div>
+			<div><div>Tastiera</div><div>estesa<div>52 alfanumerici</div><div>12 numerici</div><div>18 funzione</div></div></div>
+		</div>
+	</div>
+	<div>
+		<img alt="Microsoft" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Building92microsoft.jpg/1024px-Building92microsoft.jpg" style="height:12.5rem;" />
+		<div class="CS-1_2"><i>Paul Allen</i>, un programmatore, e il suo compagno delle superiori, <i>Bill Gates</i>, uno studente ad Harvard, 4 aprile 1975 fondarono la <span class="CS-1_2 CS-evidence">Microsoft</span>.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<img alt="Apple Computer Company" src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_first_logo.png" style="height:13.5rem;" />
+		<div class="CS-1_2">Allo stesso tempo <i>Steve Wozniak</i> e il suo amico <i>Steve Jobs</i> il 1º aprile 1976 fondarono l'<span class="CS-1_2 CS-evidence">Apple Computer Company</span>, odierna <span class="CS-evidence">Apple Computer Inc.</span>.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div>Il primo computer che produsse fu</div>
+		<div class="CS-3_4">L'<span class="CS-evidence">Apple I</span></div>
+		<img alt="Apple I" src="https://upload.wikimedia.org/wikipedia/commons/2/27/Apple_I.jpg" style="height:13rem;" />
+		<div>a cui il mondo rimase indifferente e fu completamente dimenticato.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-3_4">L'<span class="CS-evidence">Apple II</span></div>
+		<img alt="Apple II" src="https://upload.wikimedia.org/wikipedia/commons/2/26/DMD_MD800.JPG" style="height:13rem;" />
+		<div>Ma il suo successore, al contrario, fu un rivoluzionario modello di <span class="CS-evidence">Home Personal Computer</span>, tanto da aver dato origine al termine <span class="CS-evidence">Personal Computer</span> (<span class="CS-evidence">PC</span>) ed aver dato origine al mercato di <span class="CS-evidence">sistemi preassemblati</span>.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<img alt="Apple II plus" src="https://upload.wikimedia.org/wikipedia/commons/6/65/Apple_II_plus.jpg" style="height:18rem;" />
+		<div class="CS-1_4"><i>Apple II plus</i>.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_4">L'originario <i>Apple II</i> aveva:</div>
+		<div class="CS-dataSheet">
+			<div><div>Memoria</div><div>12 kB</div></div>
+			<div><div>RAM</div><div><span>da </span>4<span> a </span>48 kB</div></div>
+			<div><div>Frequenza Clock</div><div>1<span>.023 </span>MHz</div></div>
+			<div><div>Monitor</div><div>280 × 192 px<br />16 colori totali</div></div>
+			<div><div>PL</div><div>Integer BASIC<span>, </span>SWEET 16</div></div>
+			<div><div>Accessori</div><div>stampante termica grafica<div>80 colonne</div></div></div>
+			<div><div>\Dimensioni</div><div>60<span> cm × </span>60<span> cm × </span>25<span> cm</span></div></div>
+			<div><div>\Peso</div><div>40<span> kg</span></div></div>
+			<div><div>\Prezzo</div><div><span>da </span>7'950<span> a </span>10'000<span> $</span><div>( 44'000 e 55'000 $ nel 2022 )</div></div></div>
+		</div>
+	</div>
+	<div>
+		<div class="CS-1_2"></div>
+		<div class="CS-3_4">Il <span class="CS-evidence"></span></div>
+		<img alt="" src="" style="height:13rem;" />
+		dell'Apple II
+		https://upload.wikimedia.org/wikipedia/commons/6/65/Apple_II_plus.jpg
+		rivoluzionario modello di Home Personal Computer
+		I sistemi preassemblati non hanno guadagnato molto terreno fino al 1977
+	</div>
+	<div>
+		Tandy TRS-80
+	</div>
+	<div>
+		computer SWTPC
+	</div>
+	<div>
+		Commodore PET
+	</div>
+	<div>
+		Dal 1975 al 1977, la maggior parte dei microcomputer, come il MOS Technology KIM-1, l'Altair 8800 e alcune versioni dell'Apple I, furono venduti in kit per il fai-da-te. I sistemi preassemblati non hanno guadagnato molto terreno fino al 1977, con l'introduzione dell'Apple II, del Tandy TRS-80, dei primi computer SWTPC e del Commodore PET. L'informatica si è evoluta con le architetture dei microcomputer, con le caratteristiche aggiunte dai loro fratelli più grandi, ora dominanti nella maggior parte dei segmenti di mercato.
+	</div>
+	<div>
+		https://it.wikipedia.org/wiki/Xerox_Star
+		1981
+		il primo computer in assoluto sul mercato dotato di interfaccia GUI a icone, con mouse, i cui concetti e le cui soluzioni ispireranno tutto il mondo dell'informatica di là da venire. tutti i futuri computer gli sono debitori
+	</div>
+	<div>
+		HTML (1993)
+		ogni utente 1000*n€N-{0} di informazioni ma sotto forma di testo
+		necessità strutture su testi
+	</div>
+	<div>
+		Jerry Lawson, chi è/ Creò la prima console di videogiochi: l'antenata di PlayStation
+
+		nasce WWW
+		() CERN
+		## indirizzi IP
+		## IPv4, IPv6, MAC-Address
+		## DNS
+		## URL
+		## Browser
+		HTML
+		Mosaic Browser
+		CSS
+		JS
+		PHP
+		Maxton Browser
+		# topologia e tipologia di rete
+	</div>
+	<div>
+		4 settembre 1998, Menlo Park, California, Stati Uniti
+		nasce Google
+	</div>
+	<div>
+		YAML (2001)
+	</div>
+	<div>
+		CPU multicore
+		2003
+		I primi esemplari di CPU multi core vennero presentati da IBM con il suo PowerPC nel 2003, ma solo nel 2005 si hanno prodotti per il mercato consumer, con Intel alla fine del 2005, mediante i processori Pentium D basati su core Smithfield, mentre la rivale AMD lanciò i nuovi Athlon 64 X2 nel 2005.
+		https://it.wikipedia.org/wiki/Multi_core
+	</div>
+	https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Bangalore_India_Tech_books_for_sale_IMG_5261.jpg/800px-Bangalore_India_Tech_books_for_sale_IMG_5261.jpg
+	
+	
+	
+	// to continue by wiki
+
+		https://en.wikipedia.org/wiki/History_of_computing_hardware_(1960s–present)#Fourth_generation
+		https://it.wikipedia.org/wiki/Storia_del_computer
+		https://en.wikipedia.org/wiki/Programming_language#History
+		file:///run/user/1000/gvfs/mtp:host=Xiaomi_Redmi_Note_10_Pro_91938c4c/android/··/sch/Angaroni%20Leonardo%20-%20Storia%20dei%20computers.html
+		// “<span class="CS-evidence">Computing Scale</span>”
+		https://www.youtube.com/watch?v=JBPqBGoafPM
+
+
+	<div>
+		Grazie
+		Angaroni Leonardo
+	</div>
+</div>
+
+<div id="screen"><div id="screenBox"></div></div>
+
+<div id="colorModeBtn" onclick="changeColorModeLD();"><div id="colorModeBtnLetter">·</div></div>
+
+<div id="progressBar"><div></div></div>
+
+<div id="slideNumb"><div></div></div>
+
+</body>
+</html>
