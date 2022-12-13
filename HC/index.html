@@ -1620,6 +1620,9 @@ num2 equ num1+digits		;</pre>
 		<div class="CS-1_2">Sulla quale, in quegli anni, nacque<br />l'utilizzo del simbolo “<span class="CS-evidence">@</span>” nelle e-mail.</div>
 	</div>
 	<div>
+		<div class="CS-header CS-3_4">Anni '70:</div>
+	</div>
+	<div>
 		<div class="CS-1_2">Sviluppato negli anni '70 fu</div>
 		<div class="CS-3_4">Il <span class="CS-evidence">BBS</span></div>
 		<div class="CS-1_2">Il <i>Bulletin Board System</i> era un <i>sistema telematico</i> che consentiva a computer remoti di accedere a un elaboratore centrale per condividere o prelevare risorse.</div>
@@ -1632,6 +1635,53 @@ num2 equ num1+digits		;</pre>
 		<div class="CS-3_8">( da non confondere con <i>C++</i> e <i>C#</i> )</div>
 		<div class="CS-3_8">Attualmente il suo stretto discendente, il <i>C++</i>, è tra i linguaggi più importanti e usati al mondo.</div>
 		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<style>
+			#Ceg { font-size: 1.19rem !important; }
+			.CegCmplr { color: orange; }
+			.CegLib { color: teal; }
+			.CegDT { color: fuchsia; }
+			.CegFuncName { color: blue; }
+			.CegP { color: var(--colorScheme-second,black); }
+			.CegN { color: var(--colorScheme-second,black); }
+			.CegN { color: blue; }
+			.CegS { color: deeppink; }
+			.CegSC { color: goldenrod; }
+		</style>
+		<pre id="Ceg"><span class="CegCmplr">#include</span> <span class="CegLib">&lt;stdio.h&gt;</span><span class="CegCmplr"></span>
+
+<span class="CegDT">int</span> <span class="CegFuncName">main</span><span class="CegP">(</span> <span class="CegP">)</span> <span class="CegP">{</span>
+	<span class="CegN">printf</span><span class="CegP">(</span><span class="CegS">"hello, world</span><span class="CegSC">\n</span><span class="CegS">"</span><span class="CegP">);</span>
+<span class="CegP">}</span></pre>
+		<div class="CS-1_4">“<i>Hello Word</i>” scritto in <i>C</i>.</div>
+	</div>
+	<div>
+		<pre style="font-size:.63rem;">#include &lt;stdio.h&gt;
+
+int main() {
+	printf("\nBenvenuto,\nquesto programma ti calcola una potenza:\n");
+	int p=0;
+	double b=0, r=1;
+	do {
+		printf("\nInserisci la base, diversa da “0”: ");
+		scanf("%lf",&b);
+		if(b==0) printf("\nErrore!\nInserisci una base diversa da “0”, perfavore.\n") ;
+	} while(b==0);
+	do {
+		printf("\nInserisci un esponente, intero e diverso da “0”: ");
+		scanf("%i",&p);
+		if(p==0) printf("\nErrore!\nInserisci un esponente diverso da “0”, perfavore.\n") ;
+	} while(p==0);
+	printf("\n");
+	for(int i=1; i&lt;p+1; ) {
+		r *= b;
+		printf("\n%g^%i = %g",b,i++,r);
+	}
+	printf("\n\nPotenza calcolata: %g^%i fa %g\n\nArrivederci!\n\n",b,p,r);
+	return 0;
+}</pre>
+		<div class="CS-1_4">Programma per calcolare una potenza scritto in <i>C</i>.</div>
 	</div>
 	<div>
 		<div class="CS-1_2">Nel 1972 venne realizzato lo</div>
@@ -1748,13 +1798,13 @@ num2 equ num1+digits		;</pre>
 		<div>Il primo computer che produsse fu</div>
 		<div class="CS-3_4">L'<span class="CS-evidence">Apple I</span></div>
 		<img alt="Apple I" src="https://upload.wikimedia.org/wikipedia/commons/2/27/Apple_I.jpg" style="height:13rem;" />
-		<div>a cui il mondo rimase indifferente e fu completamente dimenticato.</div>
+		<div class="CS-1_2">a cui il mondo rimase indifferente e fu completamente dimenticato.</div>
 		<div class="CS-ref">Wikipedia</div>
 	</div>
 	<div>
 		<div class="CS-3_4">L'<span class="CS-evidence">Apple II</span></div>
 		<img alt="Apple II" src="https://upload.wikimedia.org/wikipedia/commons/2/26/DMD_MD800.JPG" style="height:13rem;" />
-		<div>Ma il suo successore, al contrario, fu un rivoluzionario modello di <span class="CS-evidence">Home Personal Computer</span>, tanto da aver dato origine al termine <span class="CS-evidence">Personal Computer</span> (<span class="CS-evidence">PC</span>) ed aver dato origine al mercato di <span class="CS-evidence">sistemi preassemblati</span>.</div>
+		<div class="CS-1_2">Ma il suo successore, al contrario, fu un rivoluzionario modello di <span class="CS-evidence">Home Personal Computer</span>, tanto da aver dato origine al termine <span class="CS-evidence">Personal Computer</span> (<span class="CS-evidence">PC</span>) ed aver dato origine al mercato di <span class="CS-evidence">sistemi preassemblati</span>.</div>
 		<div class="CS-ref">Wikipedia</div>
 	</div>
 	<div>
@@ -1774,55 +1824,169 @@ num2 equ num1+digits		;</pre>
 		</div>
 	</div>
 	<div>
-		<div class="CS-1_4">I “tre grandi” computer del 1977; Rispettivamente il <i>Commodore PET 2001</i> (design e nome ispirato da “2001: Odissea nello spazio”), l'<i>Apple II</i> e il <i>Radio Shack TRS-80</i>.</div>
+		<div class="CS-1_4">I “tre grandi” computer del 1977; Rispettivamente il <i>Commodore PET 2001</i>, l'<i>Apple II</i> e il <i>Radio Shack TRS-80</i>.</div>
 		<img alt="Apple II plus" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Trinity77.jpg/1280px-Trinity77.jpg" style="height:15rem;" />
-		<div class="CS-1_2">E per i computer, fino al 2003, non vi furono partisolari progressi se non un incremento delle capacità di calcolo.</div>
+		<div class="CS-1_2">E per i computer, fino al 2003, non vi furono particolari progressi se non un incremento delle capacità di calcolo.</div>
 		<div class="CS-3_8">Nelle slide seguenti vi sono riportati i più importanti…</div>
 		<div class="CS-ref">Wikipedia</div>
 	</div>
 	<div>
-		<div>
-			<div class="CS-3_4">Il <span class="CS-evidence">Radio Shack TRS-80</span></div>
-			<img alt="Olivetti P6060" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/TRS-80_Model_I_-_Rechnermuseum_Cropped.jpg/800px-TRS-80_Model_I_-_Rechnermuseum_Cropped.jpg" style="height:12rem;" />
-			<div class="CS-1_2">fu uno dei primi PC.</div>
-			<div class="CS-ref">Wikipedia</div>
-		</div>
-		<div>
+		<div style="display:flex;flex-direction:row;flex-wrap:nowrap;justify-content:space-around;align-content:center;align-items:center;gap:1rem;column-gap:.8rem;">
+			<div>
+				<div class="CS-1_2"><i>Uno dei primi PC</i>:</div>
+				<div class="CS-5_8">Il <span class="CS-evidence">Radio Shack TRS-80</span></div>
+				<img alt="Radio Shack TRS-80" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/TRS-80_Model_I_-_Rechnermuseum_Cropped.jpg/800px-TRS-80_Model_I_-_Rechnermuseum_Cropped.jpg" style="height:12rem;" />
+				<div class="CS-ref">Wikipedia</div>
+			</div>
 			<div class="CS-dataSheet">
-				<div><div>\Memoria</div><div><span>da </span>32<span> a </span>64 kB</div></div>
-				<div><div>\RAM</div><div><span>da </span>8<span> a </span>16 kB</div></div>
-				<div><div>CPU</div><div>1.78 MHz<br />8 bit</div></div>
-				<div><div>\Display</div><div>al plasma<br />32 caratteri</div></div>
-				<div><div>\PL</div><div>BASIC</div></div>
-				<div><div>\Accessori</div><div>stampante termica grafica<div>80 colonne</div></div></div>
-				<div><div>\Dimensioni</div><div>60<span> cm × </span>60<span> cm × </span>25<span> cm</span></div></div>
-				<div><div>\Peso</div><div>40<span> kg</span></div></div>
-				<div><div>Prezzo</div><div>399<span> $</span><div>( 1'440 $ nel 2022 )</div></div></div>
+				<div><div>Memoria</div><div><span>da </span>4<span> a </span>12 kB</div></div>
+				<div><div>RAM</div><div>4 kB<div>espandibile fino a 48 kB</div></div></div>
+				<div><div>CPU</div><div>Zilog Z80<span>:</span><br />1.78 MHz<span>, </span>8 bit</div></div>
+				<div><div>Monitor</div><div>32<span> o </span>64 × 16<br />caratteri</div></div>
+				<div><div>Prezzo</div><div>399<span> $</span><div>( 2'000 $ nel 2022 )</div></div></div>
+				<div><div>Inizio Vendita</div><div><span>Agosto </span>1977</div></div>
 			</div>
 		</div>
 	</div>
 	<div>
-		Radio Shack TRS-80
-		
+		<div style="display:flex;flex-direction:row;flex-wrap:nowrap;justify-content:space-around;align-content:center;align-items:center;gap:1rem;column-gap:.8rem;">
+			<div>
+				<div class="CS-1_2"><i>Uno dei primi PC</i>:</div>
+				<div class="CS-5_8">Il <span class="CS-evidence">Commodore PET 2001</span></div>
+				<img alt="Commodore PET 2001" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Commodore_PET2001.jpg/800px-Commodore_PET2001.jpg" style="height:12rem;" />
+				<div class="CS-3_8">Design e nome ispirati da “<i>2001: Odissea nello spazio</i>”.</div>
+				<div class="CS-ref">Wikipedia</div>
+			</div>
+			<div class="CS-dataSheet">
+				<div><div>ROM</div><div>14 kB</div></div>
+				<div><div>RAM</div><div>4 kB</div></div>
+				<div><div>CPU</div><div>MOS 6502<span>:</span><br />1 MHz<span>, </span>8 bit</div></div>
+				<div><div>OS</div><div>KERNAL</div></div>
+				<div><div>PL</div><div>Commodore BASIC</div></div>
+				<div><div>Monitor</div><div>40 × 25 caratteri<br />monocromatico</div></div>
+				<div><div>Tastiera</div><div>73 tasti</div></div>
+				<div><div>Prezzo</div><div>795<span> $</span><div>( 3'900 $ nel 2022 )</div></div></div>
+				<div><div>Inizio Vendita</div><div><span>Novembre </span>1977</div></div>
+			</div>
+		</div>
 	</div>
 	<div>
-		computer SWTPC
+		<div class="CS-header CS-3_4">Anni '80:</div>
+	</div>
+	<!--div>
+		Sinclair ZX80 (1980) 
+		https://it.wikipedia.org/wiki/Sinclair_ZX80
 	</div>
 	<div>
-		Commodore PET
+		Commodore VIC-20 (1980)
+		https://it.wikipedia.org/wiki/Commodore_VIC-20
+	</div-->
+	<div>
+		<div class="CS-3_4">Lo <span class="CS-evidence">Xerox Star</span></div>
+		<img alt="Xerox Star" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Xerox_Star_8010_%282%29.jpg/800px-Xerox_Star_8010_%282%29.jpg" style="height:13rem;" />
+		<div>Uscito nel 1981, fu il primo computer sul mercato dotato di <i>interfaccia</i> <span class="CS-evidence">GUI</span> a <span class="CS-evidence">icone</span>, con la <span class="CS-evidence">freccia del mouse</span> e <i>altro</i>, i cui concetti e soluzioni ispireranno tutta la futura informatica.</div>
+		<div class="CS-ref">Wikipedia</div>
 	</div>
 	<div>
-		Dal 1975 al 1977, la maggior parte dei microcomputer, come il MOS Technology KIM-1, l'Altair 8800 e alcune versioni dell'Apple I, furono venduti in kit per il fai-da-te. I sistemi preassemblati non hanno guadagnato molto terreno fino al 1977, con l'introduzione dell'Apple II, del Tandy TRS-80, dei primi computer SWTPC e del Commodore PET. L'informatica si è evoluta con le architetture dei microcomputer, con le caratteristiche aggiunte dai loro fratelli più grandi, ora dominanti nella maggior parte dei segmenti di mercato.
+		<div class="CS-dataSheet">
+			<div><div>Memoria</div><div>10 MB<div>disco rigido</div></div></div>
+			<div><div>RAM</div><div>384 kB<div>espandibile fino a</div>1.5 MB</div></div>
+			<div><div>CPU</div><div>AMD Am2900</div></div>
+			<div><div>OS</div><div>Pilot</div></div>
+			<div><div>PL</div><div>Lisp<span>, </span>Smalltalk</div></div>
+			<div><div>Monitor</div><div>17 inch<br />1024 × 808 px<br />38.7 Hz</div></div>
+			<div><div>Ingressi</div><div><span>cavo </span>Ethernet</div></div>
+			<div><div>Prezzo</div><div>75'000<span> $</span><div>( 246'000 $ nel 2022 )</div></div></div>
+			<div><div>Inizio Vendita</div><div><span>27 Aprile </span>1981</div></div>
+			<div><div>Unità Vendute</div><div><span>~ </span>25'000</div></div>
+		</div>
+	</div>
+	<!--div>
+		BBC Micro (1981)
+		https://it.wikipedia.org/wiki/BBC_Micro
 	</div>
 	<div>
-		https://it.wikipedia.org/wiki/Xerox_Star
-		1981
-		il primo computer in assoluto sul mercato dotato di interfaccia GUI a icone, con mouse, i cui concetti e le cui soluzioni ispireranno tutto il mondo dell'informatica di là da venire. tutti i futuri computer gli sono debitori
+		PC IBM (settembre 1981)
+		https://it.wikipedia.org/wiki/PC_IBM
 	</div>
 	<div>
-		HTML (1993)
-		ogni utente 1000*n€N-{0} di informazioni ma sotto forma di testo
-		necessità strutture su testi
+		Sinclair ZX Spectrum (aprile 1982)
+		https://it.wikipedia.org/wiki/Sinclair_ZX_Spectrum
+	</div-->
+	<div>
+		<div style="display:flex;flex-direction:row;flex-wrap:nowrap;justify-content:space-around;align-content:center;align-items:center;gap:1rem;column-gap:.8rem;">
+			<div>
+				<div class="CS-5_8">Il <span class="CS-evidence">Commodore 64</span></div>
+				<img alt="Commodore 64" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Commodore64.jpg/1024px-Commodore64.jpg" style="height:12rem;" />
+				<div class="CS-3_8">È il <i>modello di computer</i> tuttora<br /><span class="CS-evidence">più venduto al mondo</span>,<br />si parla di più di 17 milioni di unità.</div>
+				<div class="CS-ref">Wikipedia</div>
+			</div>
+			<div class="CS-dataSheet">
+				<div><div>ROM</div><div>20 kB</div></div>
+				<div><div>RAM</div><div>64 kB</div></div>
+				<div><div>CPU</div><div>MOS Technology 6510/8500<span>:</span><br />1 MHz<span>, </span>8 bit</div></div>
+				<div><div>OS</div><div>KERNAL</div></div>
+				<div><div>PL</div><div>Commodore BASIC 2.0</div></div>
+				<div><div>Tastiera</div><div>66 tasti</div></div>
+				<div><div>Prezzo</div><div>595<span> $</span><div>( 1'840 $ nel 2022 )</div></div></div>
+				<div><div>Inizio Vendita</div><div><span>Agosto </span>1982</div></div>
+				<div><div>Unità Vendute</div><div><span>più di </span>17'000'000</div></div>
+			</div>
+		</div>
+	</div>
+	<div>
+		<div style="display:flex;flex-direction:row;flex-wrap:nowrap;justify-content:space-around;align-content:center;align-items:center;gap:1rem;column-gap:.8rem;">
+			<div>
+				<div class="CS-5_8">L'<span class="CS-evidence">MSX Philips VG-8010</span></div>
+				<img alt="MSX Philips VG-8010" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Philips_VG-8010.jpg/761px-Philips_VG-8010.jpg?20160716124910" style="height:12rem;" />
+				<div class="CS-ref">Wikipedia</div>
+			</div>
+			<div class="CS-dataSheet">
+				<div><div>RAM</div><div>32 kB</div></div>
+				<div><div>VRAM</div><div>16 kB</div></div>
+				<div><div>PL</div><div>BASIC</div></div>
+				<div><div>Tastiera</div><div>QUERTY<br />72 tasti</div></div>
+				<div><div>Inizio Vendita</div><div>1985</div></div>
+			</div>
+		</div>
+	</div>
+	<div>
+		<div style="display:flex;flex-direction:row;flex-wrap:nowrap;justify-content:space-around;align-content:center;align-items:center;gap:1rem;column-gap:.8rem;">
+			<div>
+				<div class="CS-5_8">L'<span class="CS-evidence">Atari ST</span></div>
+				<img alt="Atari ST" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Atari_1040STf.jpg/1024px-Atari_1040STf.jpg" style="height:12rem;" />
+				<div class="CS-3_8">Fu il primo <i>PC</i> con <span class="CS-evidence">interfaccia MIDI</span><br />integrata, ovvero con l'entrata<br />per il <i>Jack</i> per <i>strumenti musicali</i>.</div>
+				<div class="CS-ref">Wikipedia</div>
+			</div>
+			<div class="CS-dataSheet">
+				<div><div>Memoria</div><div><span>da </span>512 kB<span> a </span>4 MB<div>ad un prezzo inferiore<br />a 2'000 $ al MB</div></div></div>
+				<div><div>CPU</div><div>Motorola 68000<span>:</span><br />8 MHz<span>, </span>16 bit</div></div>
+				<div><div>OS</div><div>GEM</div></div>
+				<div><div>Monitor</div><div>16 colori<br />320 × 200 px<br />71<span>.25 </span>Hz</div></div>
+				<div><div>Prezzo</div><div>999.99<span> $</span><div>( 2'800 $ nel 2022 )</div></div></div>
+				<div><div>Inizio Vendita</div><div><span>Giugno </span>1985</div></div>
+				<div><div>Unità Vendute</div><div>2'100'000</div></div>
+			</div>
+		</div>
+	</div>
+	<!--div>
+		Commodore Amiga (giugno 1985)
+		https://it.wikipedia.org/wiki/Amiga
+	</div-->
+	<div>
+		<div class="CS-header CS-3_4">Anni '90:</div>
+	</div>
+	<div>
+		<div class="CS-1_2">All'inizio degli anni '90 vi erano circa 3'000'000 di utenti connessi ad <i>internet</i>.</div>
+		<div class="CS-1_2">Questi si scambiavano migliaia di informazioni, ma esclusivamente in <i>formato testuale</i>, niente di più.</div>
+		<div class="CS-1_2">Vi era l'evidente necessità di sviluppare un <span class="CS-evidence">sistema di strutturazione</span> di questi testi per poter <i>comunicare in maniera più agevole</i>.</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Nasce così, nel Giugno 1993,</div>
+		<div class="CS-3_4">L'<span class="CS-evidence">HTML</span> 1.0</div>
+		<img alt="HTML" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Antu_text-x-dtd.svg/512px-Antu_text-x-dtd.svg.png?20160706132840" style="height:13rem;" />
+		<div>ddd <span class="CS-evidence">GUI</span></div>
+		<div class="CS-ref">Wikipedia</div>
 	</div>
 	<div>
 		Jerry Lawson, chi è/ Creò la prima console di videogiochi: l'antenata di PlayStation
@@ -1855,6 +2019,16 @@ num2 equ num1+digits		;</pre>
 		I primi esemplari di CPU multi core vennero presentati da IBM con il suo PowerPC nel 2003, ma solo nel 2005 si hanno prodotti per il mercato consumer, con Intel alla fine del 2005, mediante i processori Pentium D basati su core Smithfield, mentre la rivale AMD lanciò i nuovi Athlon 64 X2 nel 2005.
 		https://it.wikipedia.org/wiki/Multi_core
 	</div>
+	<div>
+		https://it.wikipedia.org/wiki/Telefono_cellulare
+	</div>
+	<!--div>
+		Legge di Moore
+		https://it.wikipedia.org/wiki/Legge_di_Moore
+	<div>
+	</div>
+		
+	</div-->
 	https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Bangalore_India_Tech_books_for_sale_IMG_5261.jpg/800px-Bangalore_India_Tech_books_for_sale_IMG_5261.jpg
 	
 	
