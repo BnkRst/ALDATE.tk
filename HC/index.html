@@ -38,6 +38,14 @@ body {
 	font-size: 1rem;
 }
 
+#loadingAdv {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%) scale(1.89);
+	z-index: 1600;
+}
+
 #slideSet {
 	display: none;
 }
@@ -421,6 +429,7 @@ window.onload = function() {
 	launchAndRestoreLS();
 	countSlides();
 	displaySlideN(slideIndex?slideIndex:slideIndex=0);
+	document.getElementById('loadingAdv').outerHTML = '';
 	setURLRefs();
 };
 
@@ -1580,6 +1589,18 @@ num2 equ num1+digits		;</pre>
 		</div>
 	</div>
 	<div>
+		<div class="CS-1_2">Il 18 luglio 1968 <i>Gordon Moore</i> e <i>Robert Noyce</i> fondano</div>
+		<img alt="Intel®" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Intel_logo_%282020%2C_dark_blue%29.svg/1920px-Intel_logo_%282020%2C_dark_blue%29.svg.png" style="height:8rem;" />
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2"><span class="CS-evidence">Gordon Moore</span> è famoso per la sua celebre <i>frase</i> che predisse l'avvenire delle <i>potenze di calcolo</i>:</div>
+		<img alt="Previsione di Moore" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Transistor_Count_and_Moore%27s_Law_-_2011.svg/800px-Transistor_Count_and_Moore%27s_Law_-_2011.svg.png" style="height:13rem;background:white;" />
+		<div class="CS-3_8">“<i>La complessità di un microcircuito, misurata ad esempio tramite il numero di transistor per chip, raddoppia ogni 18 mesi (e quadruplica quindi ogni 3 anni).</i>”</div>
+		<div class="CS-1_4">La previsione, o legge, di <i>Moore</i>.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
 		<div class="CS-1_2">Alla fine degli anni '60 Douglas Engelbart sviluppò</div>
 		<div class="CS-3_4">L'<span class="CS-evidence">oN Line System</span> (NLS)</div>
 		<div class="CS-1_2">Un <i>ambiente software</i> per facilitare l'attività a <i>scienziati e professionisti</i> la cui attività comportava <i>cooperazioni di gruppo</i>.</div>
@@ -1974,7 +1995,47 @@ int main() {
 		https://it.wikipedia.org/wiki/Amiga
 	</div-->
 	<div>
+		<img alt="Sfera di Bloch" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Bloch_Sphere.svg/800px-Bloch_Sphere.svg.png" style="height:15rem;background:rgba(255,255,255,.9);" />
+		<div class="CS-1_2">La <span class="CS-evidence">computazione quantistica</span> comincia all'inizio degli anni '80 quando il fisico <i>Paul Benioff</i> propone il <span class="CS-evidence">primo modello quantistico della macchina di Turing</span>.</div>
+		<div class="CS-1_4">La <i>sfera di Bloch</i>.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Il 20 Novembre 1985 esce</div>
+		<div class="CS-3_4">Microsoft<sub>®</sub> <span class="CS-evidence">Windows</span> 1.01</div>
+		<img alt="Windows 1" src="https://upload.wikimedia.org/wikipedia/it/7/71/Windows1.0_screenshot.gif" style="height:12rem;" />
+		<div class="CS-1_2">Un <i>sistema operativo</i> proprietario, della <i>Microsoft<sub>®</sub></i>,</div>
+		<div class="CS-3_8">consistente in un <i>kernel monolitico</i> per un'<i>architettura a 16 bit</i> basato sul, sempre proprietario della Microsoft<sub>®</sub>, <i>MS-DOS</i>.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">E seguito subito, nel 1987, da</div>
+		<div class="CS-3_4">Microsoft<sub>®</sub> <span class="CS-evidence">Windows</span> 2.0</div>
+		<img alt="Windows 2" src="https://upload.wikimedia.org/wikipedia/it/1/17/Windows_2.0_desktop.png" style="height:14.5rem;" />
+		<div class="CS-3_8">Che però <i>non</i> è una <i>vecchia versione</i> degli attuali Windows, è un sistema operativo differente.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
 		<div class="CS-header CS-3_4">Anni '90:</div>
+	</div>
+	<div>
+		<div class="CS-1_2">L'olandese <i>Guido van Rossum</i> il 20 Febbraio 1991 ideò</div>
+		<img alt="Python" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Python_logo_and_wordmark.svg/1920px-Python_logo_and_wordmark.svg.png" style="height:9rem;" />
+		<div class="CS-1_2">Un <i>linguaggio di programmazione</i> ad “<span class="CS-evidence">alto livello</span>”, <i>orientato ad oggetti</i>, adatto pressoché a ogni utilizzo e a ogni fine informatico, nonché considerato da molti <span class="CS-evidence">il linguaggio di programmazione più semplice al mondo</span>.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<img alt="Codice in Python" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Python_add5_syntax.svg/800px-Python_add5_syntax.svg.png" style="height:15rem;background:white;" />
+		<div class="CS-1_4">Esempio di codice scritto in <i>Python</i>.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Il 25 Agosto 1991 fu creato il <i>primo nucleo kernel</i> di</div>
+		<div class="CS-3_4">GNU/<span class="CS-evidence">Linux</span></div>
+		<img alt="Tux" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Tux.svg/800px-Tux.svg.png" style="height:11rem;" />
+		<div class="CS-1_2">Per distaccarsi dalla lunga attesa della riscrittura del <i>kernel UNIX</i>.</div>
+		<div class="CS-1_4"><i>Tux</i>, la mascotte di Linux.</div>
+		<div class="CS-ref">Wikipedia</div>
 	</div>
 	<div>
 		<div class="CS-1_2">All'inizio degli anni '90 vi erano circa 3'000'000 di utenti connessi ad <i>internet</i>.</div>
@@ -1984,15 +2045,109 @@ int main() {
 	<div>
 		<div class="CS-1_2">Nasce così, nel Giugno 1993,</div>
 		<div class="CS-3_4">L'<span class="CS-evidence">HTML</span> 1.0</div>
-		<img alt="HTML" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Antu_text-x-dtd.svg/512px-Antu_text-x-dtd.svg.png?20160706132840" style="height:13rem;" />
-		<div>ddd <span class="CS-evidence">GUI</span></div>
+		<img alt="HTML" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Antu_text-x-dtd.svg/512px-Antu_text-x-dtd.svg.png?20160706132840" style="height:11rem;margin-top:0px;margin-bottom:0px;" />
+		<div class="CS-1_2">Un <i>linguaggio di <span class="CS-evidence">formattazione</span> basato su <span class="CS-evidence">marcatori</span> <span class="CS-evidence">ipertestuali</span></i>, come da acronimo ( “<i>HyperText Markup Language</i>” ).</div>
 		<div class="CS-ref">Wikipedia</div>
 	</div>
 	<div>
+		<pre style="font-size:.48rem;">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+	&lt;head&gt;
+		&lt;title&gt;Lista della spesa&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;Ricordati di comprare questi alimenti !!!&lt;/p&gt;
+		&lt;div id=&quot;listaSpesa&quot; class=&quot;lista spesa&quot;&gt;
+			&lt;ul id=&quot;pranzo&quot;&gt;
+				Pranzo:
+				&lt;li&gt;Wurstel&lt;/li&gt;
+				&lt;li&gt;Pane&lt;/li&gt;
+				&lt;li&gt;Maionese&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;ul id=&quot;merenda&quot;&gt;
+				Merenda:
+				&lt;li&gt;Cioccolato&lt;/li&gt;
+				&lt;li&gt;Gelato&lt;/li&gt;
+				&lt;li&gt;Caramelle&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;ul id=&quot;cena&quot;&gt;
+				Cena:
+				&lt;li&gt;Carote&lt;/li&gt;
+				&lt;li&gt;Dado&lt;/li&gt;
+				&lt;li&gt;Insalata&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;data&quot;&gt;Martedì 13 Dicembre 2022&lt;/div&gt;
+		&lt;div class=&quot;firma&quot;&gt;Angaroni Leonardo&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</pre>
+		<div class="CS-1_4">Esempio di lista della spesa scritta in <i>HTML</i>.</div>
+	</div>
+	<div>
+		<div class="CS-1_2">E grazie ad esso il <span class="CS-evidence">primo sito web</span> della storia risultò così:</div>
+		<img alt="Prima versione di W3.org" src="https://upload.wikimedia.org/wikipedia/commons/1/10/The_World_Wide_Web_project_-_Conkeror.png" style="height:18rem;" />
+		<div class="CS-1_4">Prima versione di <span class="CS-evidence">W3.org</span>.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Per esempio una delle prime versioni del <i>sito-web</i> di <i>eBay</i> appariva così:</div>
+		<img alt="Vecchio sito-web di eBay" src="https://assets-global.website-files.com/6009ec8cda7f305645c9d91b/61ddb9ed9c079b50847458f3_ocv07keeB3tb_A34VzCc3ThDiZasv_PfD7qmgdZflHZTzGbS5H2L2AO_hf719SX5ESBCYoJ8n1EKsDLA74JMXPTZ-xKfpOjDd37QuwxRfbm50WhWK0uNBp3IZGz207q5mgcXCf9q.jpeg" style="height:18rem;" />
+		<div class="CS-ref">webflow.com, assets-global.WebSite-Files.com</div>
+	</div>
+	<div>
+		<img alt="Porte di connettori" src="http://en.shram.kiev.ua/img/hacker/computer-ports-connectors-logo.jpg" style="height:15rem;" />
+		<div class="CS-1_2">Una volta esistevano una marea di connettori e di loro rispettive porte differenti, non si aveva mai quello giusto che sarebbe servito a proposito, era una casino!</div>
+		<div class="CS-ref">en.shram.Kiev.ua</div>
+	</div>
+	<div>
+		<div class="CS-1_2">Ma nel 1996 sette società: <i>Compaq</i>, <i>Hewlett-Packard</i>, <i>IBM</i>, <i>Microsoft</i>, <i>NEC</i> e <i>Nortel</i>; Crearono lo standard</div>
+		<img alt="USB logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/USB_icon.svg/1280px-USB_icon.svg.png" style="height:12rem;" />
+		<div class="CS-3_4"><span class="CS-evidence">USB</span> 1.0</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-3_8">Sabato 1 Gennaio</div>
+		<div class="CS-header CS-3_4">2000:</div>
+	</div>
+	<div>
+		<div class="CS-3_4 CS-evidence">CPU Multi-Core</div>
+		<img alt="CPU Multi-Core" src="https://www.trustedreviews.com/wp-content/uploads/sites/54/2022/09/Intel-Core-i9-13th-gen-920x518.jpg" style="height:17rem;" />
+		<div class="CS-3_8">I primi esemplari vennero presentati dall'<i>IBM</i> nel 2003 con il suo progetto “<i>PowerPC</i>”.</div>
+		<div class="CS-ref">TrustedReviews.com</div>
+	</div>
+	<!--div>
+		Arduino (2005)
+		https://it.wikipedia.org/wiki/Arduino_(hardware)
+		https://en.wikipedia.org/wiki/Arduino
+		https://upload.wikimedia.org/wikipedia/commons/3/38/Arduino_Uno_-_R3.jpg
+	</div>
+	<div>
+		Mac mini (2005.1)
+		https://it.wikipedia.org/wiki/Mac_Mini
+		https://en.wikipedia.org/wiki/Mac_Mini
+		https://upload.wikimedia.org/wikipedia/commons/d/d0/Mac_Mini_2020_silver.png
+		
+	</div-->
+	<div>
+		<div class="CS-1_2">Il 29 Giugno 2007 l'<i>Apple Inc.</i> fa uscire</div>
+		<div class="CS-3_4">L'<span class="CS-evidence">iPhone 1</span></div>
+		<img alt="iPhone 1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/IPhone_1st_Gen.svg/320px-IPhone_1st_Gen.svg.png" style="height:12rem;" />
+		<div class="CS-3_8">“<i>This is only the beginning. Apple reinvents the phone.</i>”</div>
+		<div class="CS-1_8" style="align:right;"><i>Apple Inc.</i></div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<!--div>
+		iPad (2010)
+		https://en.wikipedia.org/wiki/IPad
+	</div>
+	<div>
+		raspberry (2012.2.29)
+		https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Raspberry_Pi_4_Model_B_-_Side.jpg/1024px-Raspberry_Pi_4_Model_B_-_Side.jpg
+	</div>
+	<div>
+		<span class="CS-evidence">GUI</span>
 		Jerry Lawson, chi è/ Creò la prima console di videogiochi: l'antenata di PlayStation
 
-		nasce WWW
-		() CERN
 		## indirizzi IP
 		## IPv4, IPv6, MAC-Address
 		## DNS
@@ -2014,21 +2169,10 @@ int main() {
 		YAML (2001)
 	</div>
 	<div>
-		CPU multicore
-		2003
-		I primi esemplari di CPU multi core vennero presentati da IBM con il suo PowerPC nel 2003, ma solo nel 2005 si hanno prodotti per il mercato consumer, con Intel alla fine del 2005, mediante i processori Pentium D basati su core Smithfield, mentre la rivale AMD lanciò i nuovi Athlon 64 X2 nel 2005.
-		https://it.wikipedia.org/wiki/Multi_core
-	</div>
-	<div>
 		https://it.wikipedia.org/wiki/Telefono_cellulare
-	</div>
-	<!--div>
-		Legge di Moore
-		https://it.wikipedia.org/wiki/Legge_di_Moore
-	<div>
-	</div>
-		
 	</div-->
+	<!--/div>
+		
 	https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Bangalore_India_Tech_books_for_sale_IMG_5261.jpg/800px-Bangalore_India_Tech_books_for_sale_IMG_5261.jpg
 	
 	
@@ -2047,10 +2191,31 @@ int main() {
 		<img alt="" src="" style="height:13rem;" />
 	</div>
 	
+	<div style="display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center;align-content:center;align-items:center;gap:1rem;column-gap:.8rem;">
+	</div>
+	
+	ALL OS https://eylenburg.github.io/os_familytree.htm
 
+	</div-->
 	<div>
-		Grazie
-		Angaroni Leonardo
+		<div class="CS-header CS-3_4">Futuro:</div>
+	</div>
+	<div>
+		<img alt="?" src="https://2wtnt.tk/piratical%20islands/Scope%20Script%20Unknown.png" style="height:20rem;" />
+	</div>
+	<div>
+		<div class="CS-3_4 CS-evidence">Computer Quantistici?</div>
+		<img alt="IBM Q System One" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/IBM_Q_system_%28Fraunhofer_2%29.jpg/1024px-IBM_Q_system_%28Fraunhofer_2%29.jpg" style="height:20rem;" />
+		<div class="CS-1_4"><span class="CS-evidence">IBM Q System One</span> del 2019.</div>
+		<div class="CS-ref">Wikipedia</div>
+	</div>
+	<div>
+		<div class="CS-3_4">“<i>Sono dei computer normali,<br />solo che il programmatore è bendato.</i>”</div>
+		<div class="CS-1_8" style="align:right;"><i>Angaroni Leonardo</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4 CS-header">Grazie dell'attenzione,</div>
+		<div class="CS-7_8 CS-evidence">Angaroni Leonardo</div>
 	</div>
 </div>
 
@@ -2061,6 +2226,8 @@ int main() {
 <div id="progressBar"><div></div></div>
 
 <div id="slideNumb"><div></div></div>
+
+<div id="loadingAdv">Loading…</div>
 
 </body>
 </html>
