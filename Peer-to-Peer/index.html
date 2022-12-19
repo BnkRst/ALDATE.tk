@@ -399,7 +399,7 @@ function displaySlideN(n) {
 	document.querySelector('#screenBox').innerHTML = document.querySelectorAll('#slideSet > div')[n].innerHTML;
 	document.querySelector('#progressBar > div').style.width = n/(slideLength-1)*99.9+.1+'%';
 	document.querySelector('#slideNumb > div').innerHTML = n;
-	localStorage.slideIndex = slideIndex;
+	localStorage.slideIndex202212192102 = slideIndex;
 	console.log('Displayed slide: "'+n+'"');
 };
 
@@ -422,7 +422,7 @@ function launchAndRestoreLS() {
 	if (!localStorage||typeof(Storage)=="undefined") return ;
 	writeinLS = true;
 	colorMode = localStorage.colorMode;
-	slideIndex = localStorage.slideIndex;
+	slideIndex = localStorage.slideIndex202212192102;
 };
 
 function keyDown(e) {
