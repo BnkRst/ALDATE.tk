@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Angaroni Leonardo - Storia dei Computers</title>
-	<link rel="icon" href="me.png">
+	<link rel="icon" href="../logo.png">
 	<script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script> <!-- under ( URL https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@master/LICENSE ) ( date 202211232243 ) -->
 <style>
 
@@ -390,7 +390,7 @@ function displaySlideN(n) {
 	document.querySelector('#screenBox').innerHTML = document.querySelectorAll('#slideSet > div')[n].innerHTML;
 	document.querySelector('#progressBar > div').style.width = n/(slideLength-1)*99.9+.1+'%';
 	document.querySelector('#slideNumb > div').innerHTML = n;
-	localStorage.slideIndex = slideIndex;
+	localStorage.slideIndex202211 = slideIndex;
 	console.log('Displayed slide: "'+n+'"');
 };
 
@@ -413,7 +413,7 @@ function launchAndRestoreLS() {
 	if (!localStorage||typeof(Storage)=="undefined") return ;
 	writeinLS = true;
 	colorMode = localStorage.colorMode;
-	slideIndex = localStorage.slideIndex;
+	slideIndex = localStorage.slideIndex202211;
 };
 
 function keyDown(e) {

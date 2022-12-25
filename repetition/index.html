@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Angaroni Leonardo - Peer to Peer</title>
+	<title>Angaroni Leonardo - Ripetizioni</title>
 	<link rel="icon" href="../logo.png">
 	<script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script> <!-- under ( URL https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@master/LICENSE ) ( date 202211232243 ) -->
 <style>
@@ -11,6 +11,7 @@
 :root {
 	--colorScheme-main: white;
 	--colorScheme-second: black;
+	--colorScheme-second-opacity: rgba(0,0,0,.37);
 	--colorScheme-title: red;
 	--colorScheme-evidence: teal;
 	--colorScheme-bkg: lightgray;
@@ -79,7 +80,7 @@ body {
 	margin: inherit;
 	border-radius: .6rem;
 } #screenBox ul {
-	list-style-type: "⚙️"; /*⎆, ⚙️, ✲, ❂, ❃*/
+	list-style-type: "📚"; /*⎆, ⚙️, ✲, ❂, ❃*/
 	padding-left: 1rem;
 } #screenBox ul > li {
 	padding-left: .716rem;
@@ -162,6 +163,36 @@ body {
 	background: var(--colorScheme-evidence,teal);
 }
 
+#swipeAnim {
+	position: fixed;
+	top: 50%;
+	left: 100%;
+	width: 2.4rem;
+	height: 2.4rem;
+	background: rgba(230,230,230,.37);
+	border-radius: 47.7%;
+	transform: translate(-50%,-50%);
+	-webkit-animation:
+		all 1400ms,
+		switchAnim 5000ms cubic-bezier(0.75, 0.03, 0.72, 1.2) infinite;
+} #swipeAnim > div {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	font-size: 2.4rem;
+	transform: translate(-50%,-50%);
+} @-webkit-keyframes switchAnim {
+	0% {
+		left: calc( 100% - 1.5rem );
+	}
+	50% {
+		left: calc( 100% + 1.5rem );
+	}
+	100% {
+		left: calc( 100% - 1.5rem );
+	}
+}
+
 #URL-QRCode {
 	margin: auto;
 	margin-bottom: 1.42rem;
@@ -235,6 +266,10 @@ body {
 	cursor: pointer;
 } .CS-link::before {
 	content: '👉';
+} .CS-btn {
+	border: .1rem solid var(--colorScheme-second-opacity,rgba(0,0,0,.37));
+	padding: 0rem .4rem;
+	border-radius: .689rem;
 }
 
 /* font-size: math( (((2e)^v)-.5)/1.832 math); */
@@ -276,6 +311,7 @@ function setURLRefs() {
 		colorLight: 'rgba(235,256,245,.96)',
 		correctLevel: QRCode.CorrectLevel.H,
 	});
+	document.querySelector('#URL-share').href = 'https://wa.me/?text=*Leonardo%20Angaroni*%20%C2%B7%20_*Ripetizioni*_%0A'+encodeURIComponent(URL)+'&app_absent=0';
 };
 
 document.addEventListener('touchstart',touchStart,false);
@@ -343,6 +379,7 @@ function setColorScheme() {
 		"dark": {
 			"main": 'rgba(37,33,33,.98)',
 			"second": 'rgba(230,247,247,.965)',
+			"second-opacity": 'rgba(230,247,247,.37)',
 			"title": 'rgba(250,38,38,.97)',
 			"evidence": 'rgba(5,215,165,.96)',
 			"bkg": 'rgba(75,69,69,.77)',
@@ -352,6 +389,7 @@ function setColorScheme() {
 		"light": {
 			"main": 'rgba(230,247,247,.98)',
 			"second": 'rgba(37,33,33,.965)',
+			"second-opacity": 'rgba(37,33,33,.37)',
 			"title": 'rgba(249,15,15,.97)',
 			"evidence": 'rgba(3,175,126,.96)',
 			"bkg": 'rgba(180,176,176,.77)',
@@ -401,6 +439,7 @@ function displaySlideN(n) {
 	document.querySelector('#slideNumb > div').innerHTML = n;
 	localStorage.slideIndex202212192102 = slideIndex;
 	console.log('Displayed slide: "'+n+'"');
+	if(typeof SwipeAnim!=='undefined') rmvSwipeAnim() ;
 };
 
 function slideNext() {
@@ -423,6 +462,17 @@ function launchAndRestoreLS() {
 	writeinLS = true;
 	colorMode = localStorage.colorMode;
 	slideIndex = localStorage.slideIndex202212192102;
+};typeof elem !== 'undefined'
+
+function setSwipeAnim() {
+	SwipeAnim = true;
+	document.body.innerHTML += '<div id="swipeAnim"><div>⇠</div></div>';
+};
+
+function rmvSwipeAnim() {
+	delete SwipeAnim;
+	document.querySelector('#swipeAnim').style.transform += 'scale(0)';
+	setTimeout(function() { document.querySelector('#swipeAnim').outerHTML='' },1400);
 };
 
 function keyDown(e) {
@@ -439,6 +489,7 @@ window.onload = function() {
 	countSlides();
 	displaySlideN(slideIndex?slideIndex:slideIndex=0);
 	document.getElementById('loadingAdv').outerHTML = '';
+	if(slideIndex!=slideLength-1) setSwipeAnim() ;
 	setURLRefs();
 };
 
@@ -450,18 +501,33 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', eve
 
 <div id="slideSet">
 	<div>
-		<div class="CS-1_2">Materie: <span class="CS-header">INFORMATICA</span>, <span class="CS-header">MATEMATICA</span>, <span class="CS-header">SCIENZE</span> o <span class="CS-header">FISICA</span>.</div>
-		<div class="CS-3_8">Di queste va bene qualsiasi argomento di Liceo o Tecnici.</div>
-		<div class="CS-3_8">Se sei il primo a segnarti scegli pure la materia che vuoi.</div>
-		<div class="CS-5_8"><u style="text-decoration:underline wavy;">Se balzi avvisami prima</u>.</div>
-		<br />
-		<div class="CS-1_2"><span class="CS-evidence">Se avete dubbi chiedetemi pure</span>: <a class="CS-link" href="https://wa.me/393881183102?text=Ciao%2C%20ti%20scrivo%20per%20Peer-to-Peer.%0A%0A&app_absent=0">+39 388 118 3102 <img alt="WhatsApp" class="CS-imgText" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/800px-WhatsApp.svg.png" /></a></div>
-		<div class="CS-3_4"><span class="CS-evidence">Angaroni Leonardo</span><span class="CS-1_4"> 5Ds</span></div>
-		<div class="CS-1_4"><img alt="👉" class="CS-imgText" src="https://static-00.iconduck.com/assets.00/swipe-left-emoji-409x512-i68ih6wb.png" />Swipe for SHARE<img alt="👉" class="CS-imgText" src="https://static-00.iconduck.com/assets.00/swipe-left-emoji-409x512-i68ih6wb.png" /></div>
+		<div class="CS-3_4 CS-evidence">Impartisco ripetizioni</div>
+		<div class="CS-1_8">di</div>
+		<div><span class="CS-3_4 CS-header">INFORMATICA</span>, <span class="CS-3_4 CS-header">MATEMATICA</span>, <span class="CS-3_4 CS-header">SCIENZE</span> e <span class="CS-3_4 CS-header">FISICA</span></div>
+		<div class="CS-3_8">per <span class="CS-evidence">LICEI</span> e <span class="CS-evidence">ISTITUTI TECNICI</span>.</div>
+		<div class="CS-1_2">Se siete interessati o avete dubbi scrivetemi pure:<br /><a class="CS-link CS-btn" href="https://wa.me/393881183102?text=%2A_Ciao_%2A%2C%20ho%20visto%20il%20tuo%20annuncio%20di%20%2Aripetizioni%2A%20e%20volevo%20sapere%3A%0A%0A&app_absent=0&app_absent=0"><span class="CS-evidence" style="text-decoration:underline;">+39 388 118 3102</span> <img alt="WhatsApp" class="CS-imgText" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/800px-WhatsApp.svg.png" style="transform:translateY(16.13%);" /></a></div>
+		<div class="CS-3_4 CS-evidence">Leonardo Angaroni</div>
+		<div class="CS-1_8">⇠ <img alt="👉" class="CS-imgText" src="https://static-00.iconduck.com/assets.00/swipe-left-emoji-409x512-i68ih6wb.png" /> Swipe for MORE <img alt="👉" class="CS-imgText" src="https://static-00.iconduck.com/assets.00/swipe-left-emoji-409x512-i68ih6wb.png" /> ⇠</div>
 	</div>
 	<div>
-		<div id="URL-QRCode"></div>
+		<div class="CS-1_2">Frequento la classe <span class="CS-evidence">5Ds</span> del <span class="CS-evidence">Liceo Scientifico</span> al <span class="CS-evidence">Marie Curie</span>;</div>
+		<div class="CS-1_2">Da sempre ho una grande <span class="CS-evidence">passione</span> per le <span class="CS-evidence">materie scientifiche</span> e la loro <i><span class="CS-evidence">spiegazione</span> in maniera chiara e comprensibile</i>.</div>
+		<div class="CS-1_2">Se avete difficoltà in queste materie e siete ai primi anni delle superiore posso comprendervi:</div>
+		<ul class="CS-1_2">
+			<li>Da un lato i <i>professori</i> molto spesso non possono soffermarsi sui singoli alievi per qiutarli quanto questi ne necessiterebbero, pur sempre non considerando l'eventuale <i>astio</i> nei loro confronti;</li>
+			<li>Talvolta vi sono i <i>libri</i> poco chiari che non possono comprendervi e aiutarvi nelle vostre singole difficoltà poiché scritti per un gran numero di studenti.</li>
+		</ul>
+	</div>
+	<div>
+		<div class="CS-1_2">Posso aiutarvi in <i style="text-decoration:underline dotted;">qualsiasi argomento</i> di <span class="CS-evidence">matematica</span> e <span class="CS-evidence">fisica</span>;</div>
+		<div class="CS-1_2">Qualsiasi argomento di <span class="CS-evidence">scienze</span>, <span class="CS-evidence">scienze naturali</span>, <span class="CS-evidence">scienze della terra</span>, <span class="CS-evidence">chimica</span>, <span class="CS-evidence">mineralogia</span>, <span class="CS-evidence">biologia</span> del <span class="CS-evidence">liceo</span> e</div>
+		<div class="CS-1_2">sono particolarmente bravo in <span class="CS-evidence">informatica</span>.</div>
+		<div class="CS-1_2">Oltre a poter spiegare tutti gli argomenti: dai <i>numeri binari, ottali ed esadecimali</i> al funzionamento delle <i>reti</i> passando per <i>algebra Booleana</i>, <i>porte logiche</i> e <i>composizione del computer</i>;<br />programmo da quando sono piccolo e conosco svariati linguaggi di programmazione: <i>JavaScript</i>, <i>CSS</i>, <i>HTML</i>, <i>Python</i>, <i>C</i>, <i>C++</i>, <i>SQL</i>, <i>LaTeX</i>, <i>Flowgorithm</i>, <i>BASIC</i>, <i>Logo Turtle</i>, <i>Bash</i>, <i>Java</i>, …</div>
+	</div>
+	<div>
 		<div id="URL-link" class="CS-evidence CS-1_2"></div>
+		<div id="URL-QRCode"></div>
+		<a class="CS-link CS-btn" href="https://wa.me/393881183102?text=Mi%20mandi%20il%20_link_%20per%20condividere%20la%20_pagina%20delle%20*ripetizioni*_%3F%0A%0A&app_absent=0" id="URL-share"><span class="CS-evidence" style="text-decoration:underline;">SHARE</span> <img alt="WhatsApp" class="CS-imgText" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/800px-WhatsApp.svg.png" style="transform:translateY(16.13%);" /></a>
 	</div>
 </div>
 
