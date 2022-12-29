@@ -2,7 +2,7 @@
 <html>
 <head>
 	<!-- '( og ') ( ref lot ) : URL https://ogp.me -->
-	<meta property="og:url" content="https://AL2023.tk/misc2022/index.html" /> <!-- URL link of this page, in 2020 for WhatsApp -->
+	<meta property="og:url" content="https://AL2023.tk/misc2022/Slides/index.html" /> <!-- URL link of this page, in 2020 for WhatsApp -->
 	<!--meta property="og:site_name" content="AL2023.tk" /--> <!-- site name -->
 	<meta property="og:type" content="website" /> <!-- type : in according with https://ogp.me/#types, in 2020 for WhatsApp -->
 	<meta property="og:title" content="Slides - Angaroni Leonardo" /> <!-- title short : max 35 char, in 2020 for WhatsApp -->
@@ -10,7 +10,7 @@
 	<meta property="og:description" content="These are Slides, Angaroni Leonardo." /> <!-- description short : max 65 char, in 2020 for WhatsApp -->
 	<meta name="description" content="These are Slides, Angaroni Leonardo." /> <!-- description ( tag lot ) : max 155 char, in 2020 for WhatsApp -->
 	<link rel="icon" href="../../logo.png">
-	<meta property="og:image" content="https://AL2023.tk/AL.png" itemprop="image" /> <!-- image : < 300 KB and min 300×200 and ? png and “valid non-self-signed certificate„, in 2020 for WhatsApp -->
+	<meta property="og:image" content="https://AL2023.tk/AL 300KB.png" itemprop="image" /> <!-- image : < 300 KB and min 300×200 and ? png and “valid non-self-signed certificate„, in 2020 for WhatsApp -->
 	<meta property="og:image:url" content="https://AL2023.tk/AL 300KB.png" itemprop="image" /> <!-- image URL link, for WhatsApp -->
 	<meta property="og:image:type" content="image/png" /> <!-- image type, for WhatsApp and Facebook -->
 	<!--meta property="og:image:width" content="" /--> <!-- image width : in px -->
@@ -115,7 +115,7 @@ body {
 	border-radius: .4rem;
 	text-align: right;
 } #screenBox ul {
-	list-style-type: "✬"; /*⎆, ⚙️, ✲, ❂, ❃, 📚*/
+	list-style-type: ""; /*⎆, ⚙️, ✲, ❂, ❃, 📚, ✬*/
 	padding-left: 1rem;
 } #screenBox ul > li {
 	padding-left: .716rem;
@@ -362,7 +362,6 @@ function setURLRefs() {
 	let i = document.getElementsByClassName('URL-link').length;
 	for( ; i>0; ) document.getElementsByClassName('URL-link')[--i].innerHTML=URL ;
 	for(i=document.getElementsByClassName('URL-share').length; i>0; ) document.getElementsByClassName('URL-share')[--i].href='https://wa.me/?text=*Leonardo%20Angaroni*%20%C2%B7%20_*Slides*_%0A'+encodeURIComponent(URL)+'%0AThis%20*Slides*%20are%20%60%60%60amazing%60%60%60%21%0A%0A&app_absent=0' ;
-		[i].href = 'https://wa.me/?text=*Leonardo%20Angaroni*%20%C2%B7%20_*Ripetizioni*_%0A'+encodeURIComponent(URL)+'&app_absent=0';
 	let URLQRCode = [];
 	let URLQRCodeLength = document.getElementsByClassName('URL-QRCode').length;
 	for(i=0; i<URLQRCodeLength; ) {
@@ -376,7 +375,7 @@ function setURLRefs() {
 		});
 	};
 	document.querySelector('meta[property="og:url"]').content = URL;
-	document.querySelector('meta[property="og:image"]').content=document.querySelector('meta[property="og:image:url"]').content=document.getElementById('URL-link-href-ALpng-1').href=document.getElementById('URL-link-href-ALpng-2').href = URLALpng = URL.slice(0,17)+'/AL.png';
+	document.querySelector('meta[property="og:image"]').content=document.querySelector('meta[property="og:image:url"]').content=document.getElementById('URL-link-href-ALpng-1').href=document.getElementById('URL-link-href-ALpng-2').href = URLALpng = URL.slice(0,17)+'/AL 300KB.png';
 };
 
 document.addEventListener('touchstart',touchStart,false);
