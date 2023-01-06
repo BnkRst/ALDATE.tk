@@ -28,7 +28,6 @@
 	--colorScheme-bkg: lightgray;
 	--colorScheme-selection: teal;
 	--colorScheme-selectionFont: white;
-	--CS-sizeScale: 1.35914091423; /* math( e/2 math) */
 }
 
 ::selection {
@@ -678,10 +677,10 @@ function rmvSwipeAnim() {
 };
 
 function mobileEnlargedFont() {
-	let fontSizeUMeasure = Math.E/2;
-	alert(isDevice.mobile());
-	if(isDevice.mobile()) CSSRoot.style.setProperty('--CS-sizeScale',fontSizeUMeasure*1) ;
+	let fontSizeUMeasure=Math.E/2, device=isDevice.mobile();
+	if(device) CSSRoot.style.setProperty('--CS-sizeScale',fontSizeUMeasure*1.7) ;
 	else CSSRoot.style.setProperty('--CS-sizeScale',fontSizeUMeasure) ;
+	console.log('Font-size adpted to “'+device+'„\nFont-size now is “'+CSSRoot.style.getPropertyValue('--CS-sizeScale')+'„, “'+getComputedStyle(CSSRoot).getPropertyValue('--CS-sizeScale')+'„');
 };
 
 function keyDown(e) {
@@ -697,6 +696,7 @@ window.onload = function() {
 	launchAndRestoreLS();
 	countSlides();
 	displaySlideN(slideIndex?slideIndex:slideIndex=0);
+	mobileEnlargedFont();
 	document.getElementById('loadingAdv').outerHTML = '';
 	if(slideIndex!=slideLength-1) setSwipeAnim() ;
 	setURLRefs();
