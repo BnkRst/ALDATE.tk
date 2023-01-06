@@ -1,0 +1,1633 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<meta property="og:url" content="https://AL2023.tk/computer-programming-naming-conventions/index.html" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Naming-Convention Angaroni Leonardo" />
+	<title>Angaroni Leonardo - Computer-Programming: Naming-Conventions</title>
+	<meta property="og:description" content="And you, what naming-convention do you use?, Angaroni Leonardo." />
+	<meta name="description" content="List of existing computer-programming's naming-conventions, Angaroni Leonardo." />
+	<link rel="icon" href="../logo.png">
+	<meta property="og:image" content="https://AL2023.tk/AL 300KB.png" itemprop="image" />
+	<meta property="og:image:url" content="https://AL2023.tk/AL 300KB.png" itemprop="image" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:alt" content="Angaroni Leonardo's web-site logo" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:locale:alternate" content="en_GB" />
+	<meta property="og:locale:alternate" content="it_IT" />
+	<script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script> <!-- under ( URL https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@master/LICENSE ) ( date 202211232243 ) -->
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap'); // under ( URL https://fonts.google.com/specimen/Syne+Mono/about?query=syne ) ( date 202211232245 )
+
+:root {
+	--colorScheme-main: white;
+	--colorScheme-second: black;
+	--colorScheme-second-opacity: rgba(0,0,0,.37);
+	--colorScheme-title: red;
+	--colorScheme-evidence: teal;
+	--colorScheme-bkg: lightgray;
+	--colorScheme-selection: teal;
+	--colorScheme-selectionFont: white;
+	--CS-sizeScale: 1.35914091423; /* math( e/2 math) */
+}
+
+::selection {
+	color: var(--colorScheme-selectionFont,white);
+	background: var(--colorScheme-selection,teal);
+} ::-moz-selection {
+	color: var(--colorScheme-selectionFont,white);
+	background: var(--colorScheme-selection,teal);
+}
+
+* {
+	color: var(--colorScheme-second,black);
+	transition-duration: 1400ms;
+	tab-size: 4;
+}
+
+body {
+	background: var(--colorScheme-main,white);
+	font-size: 1rem;
+}
+
+#displayNoneDiv {
+	display: none;
+}
+
+#loadingAdv {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%) scale(1.89);
+	z-index: 1600;
+}
+
+#slideSet {
+	display: none;
+}
+
+#screen {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	z-index: 128;
+}
+
+#screenBox {
+	--scale: 1.33;
+	position: absolute;
+	right: 50%;
+	top: 50%;
+	transform: translate(+50%,-50%) scale(var(--scale));
+	align-items: center;
+	text-align: center;
+	max-width: calc( 96% / var(--scale) );
+	/* for height I'll have to insert scroll-bar if height>100% */
+	transform-origin: center;
+} #screenBox * {
+} #screenBox > * {
+	margin: .82rem .53rem;
+	/*margin-left: auto;
+	margin-right: auto;*/
+} #screenBox img {
+	max-width: 80vw;
+	max-height: 50vh;
+	margin: inherit;
+	border-radius: .6rem;
+} #screenBox ol {
+	padding-left: 1rem;
+} #screenBox ol > li {
+	padding-left: .716rem;
+	padding-right: .176rem;
+	margin: 1.2rem 0px;
+	border-top: 1.38px solid var(--colorScheme-bkg,lightgray) !important;
+	border-right: 1.38px solid var(--colorScheme-bkg,lightgray) !important;
+	border-radius: .4rem;
+	text-align: right;
+} #screenBox ul {
+	list-style-type: ""; /*⎆, ⚙️, ✲, ❂, ❃, 📚, ✬*/
+	padding-left: 1rem;
+} #screenBox ul > li {
+	padding-left: .716rem;
+	padding-right: .176rem;
+	margin: 1.2rem 0px;
+	border-top: 1.38px solid var(--colorScheme-bkg,lightgray) !important;
+	border-right: 1.38px solid var(--colorScheme-bkg,lightgray) !important;
+	border-radius: .4rem;
+	text-align: right;
+} #screenBox pre {
+	width: max-content;
+	text-align: left;
+	font-size: .5rem;
+	border: 1.38px solid var(--colorScheme-bkg,lightgray);
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-radius: .4rem;
+	margin-right: auto;
+	margin-left: auto;
+	padding: .5rem .6rem;
+}
+
+#colorModeBtn {
+	position: fixed;
+	height: 1rem;
+	width: 1rem;
+	right: .78rem;
+	top: .78rem;
+	border: 1px solid var(--colorScheme-second,black);
+	border-radius: .27rem;
+	z-index: 192;
+	-webkit-touch-callout: none; /* iOS Safari */
+	  -webkit-user-select: none; /* Safari */
+	   -khtml-user-select: none; /* Konqueror HTML */
+	     -moz-user-select: none; /* Old versions of Firefox */
+	      -ms-user-select: none; /* Internet Explorer/Edge */
+	          user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+} #colorModeBtn:active {
+	transform: rotate(1turn);
+}
+
+#colorModeBtnLetter {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+}
+
+#slideNumb {
+	position: fixed;
+	bottom: .34rem;
+	right: .34rem;
+	background: var(--colorScheme-bkg);
+	z-index: 256;
+	-webkit-touch-callout: none; /* iOS Safari */
+	  -webkit-user-select: none; /* Safari */
+	   -khtml-user-select: none; /* Konqueror HTML */
+	     -moz-user-select: none; /* Old versions of Firefox */
+	      -ms-user-select: none; /* Internet Explorer/Edge */
+	          user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+} #slideNumb > div {
+	position: relative;
+	margin: .12rem;
+	font-family: 'Syne Mono', monospace;
+}
+
+#progressBar {
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	height: .2rem;
+	width: 100%;
+	z-index: 128;
+} #progressBar > div {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 100%;
+	background: var(--colorScheme-evidence,teal);
+}
+
+#swipeAnim {
+	position: fixed;
+	top: 50%;
+	left: 100%;
+	width: 4.8vh;
+	height: 4.8vh;
+	background: rgba(230,230,230,.37);
+	border-radius: 47.7%;
+	transform: translate(-50%,-50%);
+	-webkit-animation:
+		all 1400ms,
+		switchAnim 5000ms cubic-bezier(0.75, 0.03, 0.72, 1.2) infinite;
+} #swipeAnim > div {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	font-size: 4.8vh;
+	transform: translate(-50%,-50%);
+} @-webkit-keyframes switchAnim {
+	0% {
+		left: calc( 100% - 1.5rem );
+	}
+	50% {
+		left: calc( 100% + 1.5rem );
+	}
+	100% {
+		left: calc( 100% - 1.5rem );
+	}
+}
+
+.URL-QRCode {
+	margin: auto !important;
+	margin-bottom: 1.42rem !important;
+	width: max-content;
+	height: max-content;
+	background: rgba(235,256,245,.96);
+	border: .8rem solid rgba(235,256,245,.96);
+	border-radius: .5rem;
+	aspect-ratio: 1;
+	color: black;
+} .URL-QRCode > * {
+	width: max-content;
+	height: max-content;
+	aspect-ratio: 1;
+} .URL-QRCode img {
+	margin: unset !important;
+	border-radius: 0px;
+	height: 14rem;
+}
+
+.CS-header {
+	color: var(--colorScheme-title,red);
+	font-size: 2.62rem;
+} .CS-evidence {
+	color: var(--colorScheme-evidence,red);
+} .CS-ref {
+	color: var(--colorScheme-bkg);
+	font-size: calc( 27.2925764192% * var(--CS-sizeScale,1.35914091423) );
+} .CS-sep {
+	visibility: hidden;
+    display: inline-block;
+    overflow: hidden;
+    text-indent: -1e9rem;
+} .CS-sep::after {
+	visibility: visible;
+    float: left;
+	content: '·•·';
+    text-indent: 0;
+} .CS-dataSheet {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	align-content: center;
+	justify-content: space-around;
+	align-items: center;
+	gap: .4rem;
+	padding: .7rem .9rem;
+	border: 1.6px solid var(--colorScheme-bkg,lightgray);
+	border-radius: .67rem;
+	font-size: calc( 75.7036254451% * var(--CS-sizeScale,1.35914091423) ); /* CS-3_8 */
+	width: max-content;
+	margin: 1.22rem !important;
+	margin-right: auto !important;
+	margin-left: auto !important;
+} .CS-dataSheet > div {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-content: center;
+	align-items: center;
+	justify-content: space-between;
+	gap: .78rem;
+	width: 100%;
+} .CS-dataSheet > div > div:nth-child(1):after {
+	content: ":";
+	font-size: 86%;
+	opacity: 92%;
+} .CS-dataSheet > div > div:nth-child(n+2) {
+	font-size: 86%;
+	text-align: right;
+} .CS-dataSheet > div > div:nth-child(n+2) > div, .CS-dataSheet > div > div:nth-child(n+2) > span {
+	font-size: 62%;
+	opacity: 62%;
+} .CS-imgText {
+	bottom: 0px;
+	align-items: center;
+	height: 1em;
+	margin: unset !important;
+} .CS-link {
+	cursor: pointer;
+} .CS-link::before {
+	content: '👉';
+} .CS-btn {
+	width: min-content;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	border: .1rem solid var(--colorScheme-second-opacity,rgba(0,0,0,.37));
+	padding: 0rem .4rem;
+	border-radius: .689rem;
+} .CS-q::before, .CS-qt::before {
+	content: '“';
+} .CS-q::after {
+	content: '„';
+} .CS-qt::after, .CS-qtm::after {
+	content: '”';
+} .CS-qtm::before {
+	content: '‟';
+}
+
+/* font-size: math( (((2e)^v)-.5)/1.832 math); */
+.CS-1 {
+	font-size: calc( 269.46308171% * var(--CS-sizeScale,1.35914091423) );
+} .CS-7_8 {
+	font-size: calc( 212.857897785% * var(--CS-sizeScale,1.35914091423) );
+} .CS-3_4 {
+	font-size: calc( 167.049969985% * var(--CS-sizeScale,1.35914091423) );
+} .CS-5_8 {
+	font-size: calc( 129.979756554% * var(--CS-sizeScale,1.35914091423) );
+} .CS-1_2 {
+	font-size: calc( 99.980566681% * var(--CS-sizeScale,1.35914091423) );
+} .CS-3_8 {
+	font-size: calc( 75.7036254451% * var(--CS-sizeScale,1.35914091423) );
+} .CS-1_4 {
+	font-size: calc( 56.0574323892% * var(--CS-sizeScale,1.35914091423) );
+} .CS-1_8 {
+	font-size: calc( 40.1586872449% * var(--CS-sizeScale,1.35914091423) );
+} .CS-0 {
+	font-size: calc( 27.2925764192% * var(--CS-sizeScale,1.35914091423) );
+}
+
+.cmt {
+	opacity: .73;
+} .cmt::before {
+	content: '( ';
+} .cmt::after {
+	content: ' )';
+}
+
+fieldset {
+	display: inline-block;
+	padding-left: 3rem;
+	padding-right: 3rem;
+}
+
+</style>
+<script>
+
+var CSSRoot = document.querySelector(':root');
+let colorMode = undefined;
+let slideIndex = undefined;
+let slideLength = undefined;
+let URL = undefined;
+
+function setURLRefs() {
+	URL = window.location.href;
+	let i = document.getElementsByClassName('URL-link').length;
+	for( ; i>0; ) document.getElementsByClassName('URL-link')[--i].innerHTML=URL ;
+	for(i=document.getElementsByClassName('URL-share').length; i>0; ) document.getElementsByClassName('URL-share')[--i].href='https://wa.me/?text=*Leonardo%20Angaroni*%20%C2%B7%20_Computer-Programming%27s%20*Naming-Conventions*_%0A'+encodeURIComponent(URL)+'%0A_Look%20at%20it!_%0A%0A&app_absent=0' ;
+	let URLQRCode = [];
+	let URLQRCodeLength = document.getElementsByClassName('URL-QRCode').length;
+	for(i=0; i<URLQRCodeLength; ) {
+		URLQRCode[i] = new QRCode(document.getElementsByClassName('URL-QRCode')[i++], {
+			text: URL,
+			width: 1024,
+			height: 1024,
+			colorDark: 'black',
+			colorLight: 'rgba(235,256,245,.96)',
+			correctLevel: QRCode.CorrectLevel.M,
+		});
+	};
+	document.querySelector('meta[property="og:url"]').content = URL;
+	document.querySelector('meta[property="og:image"]').content=document.querySelector('meta[property="og:image:url"]').content=document.getElementById('URL-link-href-ALpng-1').href=document.getElementById('URL-link-href-ALpng-2').href = URLALpng = URL.slice(0,17)+'/AL 300KB.png';
+};
+
+document.addEventListener('touchstart',touchStart,false);
+document.addEventListener('touchmove',touchMove,false);
+document.addEventListener('touchend',touchEnd,false); 
+
+const mt=1000/10, mS=.4, MS=10;
+let Px=Py=Δx=Δy=Pt = null;
+
+function targetContainsArrayE(t,arrayE) {
+	for(let i=arrayE.length-1; i>=0; i--) if(t.classList.contains(arrayE[i])) return true ;
+	return false;
+};
+
+function touchStart(e) {
+	let touchStartTarget = e.target;
+	if(targetContainsArrayE(touchStartTarget,['swipBlock','handle','drag-ruble'])) return ;
+	Pt = Date.now();
+	Px = e.touches[0].clientX;
+	Py = e.touches[0].clientY;
+	Δx=Δy = 0;
+};
+
+function touchMove(e) {
+	if(!Px||!Py) return ;
+	Δx = e.touches[0].clientX;
+	Δy = e.touches[0].clientY;
+};
+
+function touchEnd() {
+	Δx -= Px;
+	Δy -= Py;
+	let Δt=Math.abs(Date.now()-Pt), Δs=Math.sqrt(Δx**2+Δy**2), S=Δs/Δt;
+	if(S>=mS&&S<=MS&&mt<=Δt) // speed check
+		if(0==Δx&&0==Δy) console.log('swipe Δx=Δy=null trashhold') // resultant 0
+		else if(Math.abs(Δx)>Math.abs(Δy)*2) // Horizontal
+			if(Δx>0) slidePrev() ; // Right
+			else slideNext() ; // Left
+		else if(Math.abs(Δy)>Math.abs(Δx)*2) // Vertical
+			if(Δy>0) console.log('DOWN') ; // Down
+			else console.log('UP') ; // Up
+		else // Diagonal
+			if(Δx>0)
+				if(Δy>0) console.log('DOWN-RIGHT') ; // Down-Right
+				else console.log('UP-RIGHT') ; // Up-Right
+			else
+				if(Δy>0) console.log('DOWN-LEFT') ; // Down-Left
+				else console.log('UP-LEFT') ; // Up-Left
+	else console.log('swipe speed trashhold') ; // too fast, too slow or too quick
+	Px=Py=Pt = null;
+};
+
+function setColorScheme() {
+	switch(colorMode) {
+		case 'light':
+			document.querySelector('#colorModeBtnLetter').innerHTML = 'L';
+			break;
+		case 'dark':
+			document.querySelector('#colorModeBtnLetter').innerHTML = 'D';
+			break;
+		default:
+			document.querySelector('#colorModeBtnLetter').innerHTML = '·';
+	};
+	let schemeSet = {
+		"dark": {
+			"main": 'rgba(37,33,33,.98)',
+			"second": 'rgba(230,247,247,.965)',
+			"second-opacity": 'rgba(230,247,247,.37)',
+			"title": 'rgba(250,38,38,.97)',
+			"evidence": 'rgba(5,215,165,.96)',
+			"bkg": 'rgba(75,69,69,.77)',
+			"selection": 'rgba(2,115,85,.68)',
+			"selectionFont": 'rgba(256,144,144,.92)',
+		},
+		"light": {
+			"main": 'rgba(230,247,247,.98)',
+			"second": 'rgba(37,33,33,.965)',
+			"second-opacity": 'rgba(37,33,33,.37)',
+			"title": 'rgba(249,15,15,.97)',
+			"evidence": 'rgba(3,175,126,.96)',
+			"bkg": 'rgba(180,176,176,.77)',
+			"selection": 'rgba(53,245,176,.68)',
+			"selectionFont": 'rgba(157,3,11,.92)',
+		},
+	};
+	let scheme = schemeSet[colorMode];
+	for(let j in scheme) {
+		CSSRoot.style.setProperty('--colorScheme-'+j,scheme[j]);
+	};
+	localStorage.colorMode = colorMode;
+	console.log("Setted color scheme: "+colorMode);
+};
+
+function checkColorMode(e) {
+	if(!window.matchMedia) {
+		console.log("ERROR: \"window.matchMedia\" not found !");
+		return;
+	};
+	if(!e) e=window.matchMedia('(prefers-color-scheme: dark)') ;
+	colorMode = e.matches?"dark":"light";
+	setColorScheme();
+};
+
+function changeColorModeLD() {
+	switch(colorMode) {
+		case 'light':
+			colorMode = 'dark';
+			break;
+		case 'dark':
+			colorMode = 'light';
+			break;
+		default:
+			colorMode = prompt('Please, insert n for:\n\t0 →\tLight Mode\n\t1 →\tDark Mode',0)==0?'light':'dark';
+	}
+	setColorScheme();
+};
+
+function displaySlideN(n) {
+	if(0>n||n>slideLength) {
+		console.log('Err: slide index out of range!');
+		return 'Err: slide index out of range!';
+	};
+	document.querySelector('#screenBox').innerHTML = document.querySelectorAll('#slideSet > div')[n].innerHTML;
+	document.querySelector('#progressBar > div').style.width = n/(slideLength-1)*99.9+.1+'%';
+	document.querySelector('#slideNumb > div').innerHTML = n;
+	localStorage.slideIndex202301051600 = slideIndex;
+	console.log('Displayed slide: "'+n+'"');
+	if(typeof SwipeAnim!=='undefined') rmvSwipeAnim() ;
+};
+
+function slideNext() {
+	if(slideIndex==undefined) displaySlideN(slideIndex=0) ;
+	else if(slideIndex<slideLength-1) displaySlideN(++slideIndex) ;
+};
+
+function slidePrev() {
+	if(slideIndex==undefined) displaySlideN(slideIndex=0) ;
+	else if(0<slideIndex) displaySlideN(--slideIndex) ;
+};
+
+function countSlides() {
+	slideLength = document.querySelectorAll('#slideSet > div').length;
+};
+
+let writeinLS = false;
+function launchAndRestoreLS() {
+	if(!localStorage||typeof(Storage)=="undefined"||typeof Storage=='undefined') return ;
+	writeinLS = true;
+	colorMode = localStorage.colorMode;
+	slideIndex = localStorage.slideIndex202301051600;
+};
+
+function setSwipeAnim() {
+	SwipeAnim = true;
+	document.body.innerHTML += '<div id="swipeAnim"><div>⇠</div></div>';
+};
+
+function rmvSwipeAnim() {
+	delete SwipeAnim;
+	document.querySelector('#swipeAnim').style.transform += 'scale(0)';
+	setTimeout(function() { document.querySelector('#swipeAnim').outerHTML='' },1400);
+};
+
+function keyDown(e) {
+	e = e.which||e.keyCode;
+	if(e==37||e==80||e==65||e==66) slidePrev();
+	if(e==39||e==32||e==68||e==78) slideNext();
+	if(e==36) displaySlideN(slideIndex=0) ;
+	if(e==35) displaySlideN(slideIndex=slideLength-1) ;
+};
+
+window.onload = function() {
+	checkColorMode();
+	launchAndRestoreLS();
+	countSlides();
+	displaySlideN(slideIndex?slideIndex:slideIndex=0);
+	document.getElementById('loadingAdv').outerHTML = '';
+	if(slideIndex!=slideLength-1) setSwipeAnim() ;
+	setURLRefs();
+};
+
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => { checkColorMode(event); });
+
+</script>
+</head>
+<body onkeydown="keyDown(event)">
+
+<div id="displayNoneDiv">
+	<link id="URL-link-href-ALpng-1" itemprop="thumbnailUrl" href="https://AL2023.tk/AL.png">
+	<span itemprop="thumbnail" itemscope itemtype="http://schema.org/ImageObject"><link id="URL-link-href-ALpng-2" itemprop="url" href="https://AL2023.tk/AL.png"></span>
+</div>
+
+<div id="slideSet">
+	<div>
+		<div class="CS-evidence CS-3_4">Angaroni Leonardo</div>
+		<div><span class="CS-7_8">List of existing </span><span class="CS-header CS-1">computer-programming's naming-conventions</span></div>
+	</div>
+	<div>
+		<div class="CS-3_4">In <span class="CS-evidence">computer programming</span>, a <span class="CS-evidence">naming convention</span> is a <i>set of rules</i> for choosing the <i>character sequence</i>.</div>
+	</div>
+	<div>
+		<div class="CS-3_4"><span class="CS-header">Primitive Cases</span> :</span></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">None Case</span> :
+		</div>
+		<fieldset class="CS-3_8"><legend>E.g.</legend>
+			<div>This is an example</div>
+			<div>None case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>No changes applied.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<div class="CS-1_4">
+				<span class="CS-evidence">Separate Worlds Case</span>,
+			</div>
+			<span class="CS-header">Normal Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This is an example</div>
+			<div>Normal case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Spaces between words.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">Sentence Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This is an example</div>
+			<div>Sentence case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>First letter is uppercased.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">Final-Letter CasE</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This is an examplE</div>
+			<div>Final-letter casE</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Last letter is uppercased.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<div class="CS-1_4">
+				<span class="CS-evidence">Start Case</span>,
+			</div>
+			<span class="CS-header">Proper Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This Is An Example</div>
+			<div>Proper Case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Initial letters of words are uppercased.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<div class="CS-1_4">
+				<span class="CS-evidence">Capitalize Case</span>,
+				<span class="CS-evidence">Headline Style Case</span>,
+			</div>
+			<span class="CS-header">Title Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This Is an Example</div>
+			<div>Title Case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Words's initial letters uppercased but conjunctions, articles, propositions, ... lowercased.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">UNIFORM CASE</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>THIS IS AN EXAMPLE</div>
+			<div>uniform case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>First letter either uppercased or lowercased.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<div class="CS-1_4">
+				<span class="CS-evidence">SCREAMING CASE</span>,
+				<span class="CS-evidence">UPPER FLAT CASE</span>,
+				<span class="CS-evidence">ALL UPPERCASE</span>,
+				<span class="CS-evidence">CAPSCASE</span>,
+				<span class="CS-evidence">ALL CAPS CASE</span>,
+				<span class="CS-evidence">YELLING CASE</span>,
+				<span class="CS-evidence">TROLL CASE</span>,
+			</div>
+			<span class="CS-header">UPPERCASE</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>THIS IS AN EXAMPLE</div>
+			<div>UPPERCASE</div>
+		</fieldset>
+		<div class="CS-1_2"><i>All letters uppercased.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<div class="CS-1_4">
+				<span class="CS-evidence">flat case</span>,
+				<span class="CS-evidence">all lowercase</span>,
+				<span class="CS-evidence">unicase</span>,
+				<span class="CS-evidence">lazy case</span>,
+			</div>
+			<span class="CS-header">lowercase</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>this is an example</div>
+			<div>lowercase</div>
+		</fieldset>
+		<div class="CS-1_2"><i>All letters lowercased.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">MiXeD cAsE</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>ThIs Is An ExAmPlE</div>
+			<div>MiXeD CaSe</div>
+			<div>ClOuDs iN ThE SkY</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Uppercase and Lowercase alternated, first letter uppercase.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<div class="CS-1_4">
+				<span class="CS-evidence">rANDoMizEd caPs CaSE</span>,
+			</div>
+			<span class="CS-header">StUDlY CApS CasE</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>ThIS Is an EXaMPLe</div>
+			<div>StuDLy CApS caSE</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Uppercase and lowercase letters randomized.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">rEVERSE cASE</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>tHIS IS AN EXAMPLE</div>
+			<div>rEVERSE CASE</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Uppercase and lowercase letters interchanged.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">UPPER lower CASE</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>THIS is AN example</div>
+			<div>UPPER lower CASE</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Uppercase and lowercase words altrernate, first word uppercase.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<div class="CS-1_4">
+				<span class="CS-evidence">31337 C453</span>,
+				<span class="CS-evidence">13375p34k C453</span>,
+			</div>
+			<span class="CS-header">“1337„ C453</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>7h15 15 4n 3x4mp13</div>
+			<div>“1337„ C453</div>
+			<div>53nd 4 d3v 70 n3p41</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Letters look similar to numbers are replaced by these.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">BrokenSpacebarCase</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>Thisisanexample</div>
+			<div>Brokenspacebarcase</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Without spaces.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<div class="CS-1_4">
+				<span class="CS-evidence">Dash-Case</span>,
+				<span class="CS-evidence">Lisp-Case</span>,
+			</div>
+			<span class="CS-header">kebab-case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This-is-an-example</div>
+			<div>Kebab-case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Dashes between words.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">Snake_Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This_is_an_example</div>
+			<div>Snake_case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Underscores between words.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<div class="CS-1_4">
+				<span class="CS-evidence">Dot.Case</span>,
+			</div>
+			<span class="CS-header">Period.Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This.is.an.example</div>
+			<div>Period.case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Dots between words.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">Plus+Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This+is+an+example</div>
+			<div>Plus+case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Pluses between words.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">Slash/Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This/is/an/example</div>
+			<div>Slash/case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Slashes between words.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">Asterisk*Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This*is*an*example</div>
+			<div>Asterisk*case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Slashes between words.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<div class="CS-1_4">
+				<span class="CS-evidence">Doubly=Dashed=Case</span>,
+			</div>
+			<span class="CS-header">Equal=Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This=is=an=example</div>
+			<div>Equal=case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Equals between words.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<div class="CS-1_4">
+				<span class="CS-evidence">Vertical|Bar|Case</span>,
+			</div>
+			<span class="CS-header">Pipe|Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This|is|an|example</div>
+			<div>Pipe|case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Pipes between words.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">Ampersand&amp;Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This&amp;is&amp;an&amp;example</div>
+			<div>Ampersand&amp;case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Ampersand between words.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">Question?Marks?Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This?is?an?example</div>
+			<div>Question?marks?case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Question marks between words.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">Semicolon:Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This:is:an:example</div>
+			<div>Semicolon:case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Semicolons between words.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<div class="CS-1_4">
+				<span class="CS-evidence">Major>Sign>Case</span>,
+			</div>
+			<span class="CS-header">Inner>Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This>is>an>example</div>
+			<div>Inner>case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Major signs between words.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">Eight8Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This8is8an8example</div>
+			<div>Eight8case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>“8„s between words.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">Middle·Dot·Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This·is·an·example</div>
+			<div>Middle·dot·case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Middle dots between words.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">At@Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This@is@an@example</div>
+			<div>At@case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Ats between words.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">Dollar$Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This$is$an$example</div>
+			<div>Dollar$case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Dollar signs between words.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">Four4Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This4is4an4example</div>
+			<div>Four4case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>“4„s between words.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<div class="CS-1_4">
+				<span class="CS-evidence">Middle#Hashtag#Case</span>,
+			</div>
+			<span class="CS-header">Sharp#Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This#is#an#example</div>
+			<div>Sharp#case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Sharp signs between words.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">Percentage%Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This%is%an%example</div>
+			<div>Percentage%case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Percentages between words.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">Paragraph§Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This§is§an§example</div>
+			<div>Paragraph§case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>“§„s between words.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">P_a_r_s_e_d_C_a_s_e</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>T_h_i_s_i_s_a_n_e_x_a_m_p_l_e</div>
+			<div>P_a_r_s_e_d_ _c_a_s_e</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Underscore between each letter.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">esaC sdrawkcaB</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>elpmaxe na si sihT</div>
+			<div>esac sdrawkcaB</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Sequence of each letter is reversed.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">Mi_si__ Ca_e</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>T__s_i_ a__ex_m_le</div>
+			<div>_is__ng c_se</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Some random letters replaced by underscores.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">Alllower Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This is an examplle</div>
+			<div>Alllower case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>An “l„ is added after each set of “l„s.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<div class="CS-1_4">
+				<span class="CS-evidence">Line<br />Feed<br />Case</span>,
+				<span class="CS-evidence">Carriage<br />Return<br />Case</span>,
+			</div>
+			<span class="CS-header">New<br />Line<br />Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This<br />is<br />an<br />example</div>
+			<div>New<br />line<br />case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>“<br />„s between words.</i></div>
+	</div>
+	<div>
+		<div class="CS-5_8"><i>And <i><span class="CS-evidence">other</span> <span class="CS-evidence">primitive cases</span></i>…</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4"><span class="CS-header">Composite Cases</span> :</span></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">human readable case</span> :
+		</div>
+		<div class="CS-3_8 cmt">normal case + lowercase</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>this is an example</div>
+			<div>human readable case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Spaces between words, all letters lowercased.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">sWAP cASE</span> :
+		</div>
+		<div class="CS-3_8 cmt">proper case + reverse case</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>tHIS iS aN eXAMPLE</div>
+			<div>sWAP cASE</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Initial word's letters uppercased, uppercase and lowercase letters interchanged.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">nocase</span> :
+		</div>
+		<div class="CS-3_8 cmt">lowercase + broken spacebar case</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>thisisanexample</div>
+			<div>nocase</div>
+		</fieldset>
+		<div class="CS-1_2"><i>All letters lowercased, without spaces.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<div class="CS-1_4">
+				<span class="CS-evidence">rEvErSeD mIxEd CaSe</span>,
+			</div>
+			<span class="CS-header">fUcKt He CaSe</span> :
+		</div>
+		<div class="CS-3_8 cmt">mixed case + reverse case</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>tHiS iS aN eXaMpLe</div>
+			<div>fUcKt hE cAsE</div>
+			<div>cLoUdS In tHe sKy</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Uppercase and Lowercase alternated, first letter lowercase.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">lower UPPER case</span> :
+		</div>
+		<div class="CS-3_8 cmt">upper lower case + reverse case</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>this IS an EXAMPLE</div>
+			<div>lower UPPER case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Uppercase and lowercase words altrernate, first word lowercase.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">ducklingcasE</span> :
+		</div>
+		<div class="CS-3_8 cmt">lowercase + final-letter case + broken spacebar case</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>thisisanexamplE</div>
+			<div>ducklingcasE</div>
+		</fieldset>
+		<div class="CS-1_2"><i>All letters lowercased, last letter uppercased, without spaces.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">Self:=Defined:=Case</span> :
+		</div>
+		<div class="CS-3_8 cmt">semicolon case + equal case</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This:=is:=an:=example</div>
+			<div>Self:=defined:=case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Semicolons signs and equals symbols between words.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<div class="CS-1_4">
+				<span class="CS-evidence">Pascal-Kebab-Case</span>,
+			</div>
+			<span class="CS-header">Train-Case</span> :
+		</div>
+		<div class="CS-3_8 cmt">proper case + kebab case</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This-Is-An-Example</div>
+			<div>Train-Case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Initial word's letters uppercased, dashes between words.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<div class="CS-1_4">
+				<span class="CS-evidence">Pascal_Snake_Case</span>,
+			</div>
+			<span class="CS-header">Cobra_Case</span> :
+		</div>
+		<div class="CS-3_8 cmt">proper case + snake case</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This_Is_An_Example</div>
+			<div>Cobra_Case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Initial word's letters uppercased, underscores between words.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<div class="CS-1_4">
+				<span class="CS-evidence">UPPERCASE_SNAKE_CASE</span>,
+				<span class="CS-evidence">SCREAMING_SNAKE_CASE</span>,
+			</div>
+			<span class="CS-header">YELLING_SNAKE_CASE</span> :
+		</div>
+		<div class="CS-3_8 cmt">uppercase + snake case</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>THIS_IS_AN_EXAMPLE</div>
+			<div>YELLING_SNAKE_CASE</div>
+		</fieldset>
+		<div class="CS-1_2"><i>All letters uppercased, underscores between words.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<div class="CS-1_4">
+				<span class="CS-evidence">YELLING-KEBAB-CASE</span>,
+				<span class="CS-evidence">UPPERCASE-KEBAB-CASE</span>,
+				<span class="CS-evidence">SCREAMING-KEBAB-CASE</span>,
+			</div>
+			<span class="CS-header">COBOL-CASE</span> :
+		</div>
+		<div class="CS-3_8 cmt">uppercase + kebab case</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>THIS-IS-AN-EXAMPLE</div>
+			<div>COBOL-CASE</div>
+		</fieldset>
+		<div class="CS-1_2"><i>All letters uppercased, dashes between words.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<div class="CS-1_4">
+				<span class="CS-evidence">lowercase-kebab-case</span>,
+			</div>
+			<span class="CS-header">skewer-case</span> :
+		</div>
+		<div class="CS-3_8 cmt">lowercase + kebab case</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>this-is-an-example</div>
+			<div>skewer-case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>All letters lowercased, dashes between words.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">PascalCase</span> :
+		</div>
+		<div class="CS-3_8 cmt">proper case + broken spacebar case</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>ThisIsAnExample</div>
+			<div>PascalCase</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Initial word's letters uppercased, without spaces.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">camelCase</span> :
+		</div>
+		<div class="CS-3_8 cmt">proper case + ( sentence case + reverse case ) + broken spacebar case</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>thisIsAnExample</div>
+			<div>camelCase</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Initial word's letters uppercased except the first of the sentence, without spaces.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">Double&nbsp;&nbsp;Space&nbsp;&nbsp;Case</span> :
+		</div>
+		<div class="CS-3_8 cmt">normal case × 2</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This&nbsp;&nbsp;is&nbsp;&nbsp;an&nbsp;&nbsp;example</div>
+			<div>Double&nbsp;&nbsp;space&nbsp;&nbsp;case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Double spaces between words.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<div class="CS-1_4">
+				<span class="CS-evidence">esac_ekans_esacrewol_sdrawkcab</span>,
+			</div>
+			<span class="CS-header">esac_retsbol</span> :
+		</div>
+		<div class="CS-3_8 cmt">lowercase + sneak case + backwards case</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>elpmaxe_na_si_siht</div>
+			<div>esac_retsbol</div>
+		</fieldset>
+		<div class="CS-1_2"><i>All letters lowercased, underscores between words, sequence of each letter is reversed.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<div class="CS-1_4">
+				<span class="CS-evidence">U_P__C_SE _NAKE_MIS_I_G CA_E</span>,
+			</div>
+			<span class="CS-header">SH__K_CA_E</span> :
+		</div>
+		<div class="CS-3_8 cmt">uppercase + missing case</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>TH_S I__AN __AMP_E</div>
+			<div>_NA__ C_SE</div>
+		</fieldset>
+		<div class="CS-1_2"><i>All letters uppercased, some random letters replaced by underscores.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">#HashtagCase</span> :
+		</div>
+		<div class="CS-3_8 cmt">proper case + broken spacebar case + other case</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>#ThisIsAnExample</div>
+			<div>#HashtagCase</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Initial word's letters uppercased, without spaces, with sharp symbol at the beginning.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">@NekoCase</span> :
+		</div>
+		<div class="CS-3_8 cmt">proper case + broken spacebar case + other case</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>@ThisIsAnExample</div>
+			<div>@NekoCase</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Initial word's letters uppercased, without spaces, with “@„ symbol at the beginning.</i></div>
+	</div>
+	<div>
+		<div class="CS-5_8"><i>And <i><span class="CS-evidence">other</span> <span class="CS-evidence">composite cases</span></i>…</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4"><span class="CS-header">Other non-ASCII Cases</span> :</span></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header" style="color:orange;">Color Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div style="color:blue;">This is an example</div>
+			<div style="color:brown;">Color case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Colored text.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<i class="CS-header">Italic Case</i> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div><i>This is an example</i></div>
+			<div><i>Italic case</i></div>
+		</fieldset>
+		<div class="CS-1_2"><i>Text formatted in italic.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<b class="CS-header">Bold Case</b> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div><b>This is an example</b></div>
+			<div><b>Bold case</b></div>
+		</fieldset>
+		<div class="CS-1_2"><i>Text formatted in bold.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header" style="font-family: monospace;">𝙼𝚘𝚗𝚘 𝙲𝚊𝚜𝚎</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div style="font-family: monospace;">This is an example</div>
+			<div style="font-family: monospace;">Mono case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Text's font monospaced.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<u class="CS-header">Underlined Case</u> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div><u>This is an example</u></div>
+			<div><u>Underlined case</u></div>
+		</fieldset>
+		<div class="CS-1_2"><i>Text underlined.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<del class="CS-header">Strikethrougt Case</del> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div><del>This is an example</del></div>
+			<div><del>Strikethrougt case</del></div>
+		</fieldset>
+		<div class="CS-1_2"><i>Text strikethrougted.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header" style="text-decoration:overline;">Overlined Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div style="text-decoration:overline;">This is an example</div>
+			<div style="text-decoration:overline;">Overlined case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Text overlined.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header" style="text-decoration:underline wavy;">Wavy Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div style="text-decoration:underline wavy;">This is an example</div>
+			<div style="text-decoration:underline wavy;">Wavy case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Text wavied.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header" style="text-decoration:underline dashed;">Dashed Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div style="text-decoration:underline dashed;">This is an example</div>
+			<div style="text-decoration:underline dashed;">Dashed case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Text underlined dashed.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header" style="text-decoration:underline dotted;">Dotted Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div style="text-decoration:underline dotted;">This is an example</div>
+			<div style="text-decoration:underline dotted;">Dotted case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Text underlined dotted.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header" style="text-decoration:underline double;">Doubly Underlined Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div style="text-decoration:underline double;">This is an example</div>
+			<div style="text-decoration:underline double;">Doubly underlined case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Text doubly underlined.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header" style="text-decoration:underline overline;">Under and Overlined Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div style="text-decoration:underline overline;">This is an example</div>
+			<div style="text-decoration:underline overline;">Under and overlined case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Text underlined and overlined.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header" style="font-size:.81em">Small Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div><small>This is an example</small></div>
+			<div><small>Small case</small></div>
+		</fieldset>
+		<div class="CS-1_2"><i>Text shrunked.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header" style="font-size:1.19em">Big Case</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div><big>This is an example</big></div>
+			<div><big>Big case</big></div>
+		</fieldset>
+		<div class="CS-1_2"><i>Text enlarged.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<sup class="CS-header">Superscript Case</sup> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div><sup>This is an example</sup></div>
+			<div><sup>Superscript case</sup></div>
+		</fieldset>
+		<div class="CS-1_2"><i>Text superscripted.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<sub class="CS-header">Subscript Case</sub> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div><sub>This is an example</sub></div>
+			<div><sub>Subscript case</sub></div>
+		</fieldset>
+		<div class="CS-1_2"><i>Text subscripted.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<div class="CS-header" style="display:inline-block;-moz-transform:scale(-1);-webkit-transform:scale(-1);-o-transform:scale(-1);-ms-transform:scale(-1);transform:scale(-1);">Upside-Down Case</div> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div style="-moz-transform:scale(-1);-webkit-transform:scale(-1);-o-transform:scale(-1);-ms-transform:scale(-1);transform:scale(-1);">This is an example</div>
+			<div style="-moz-transform:scale(-1);-webkit-transform:scale(-1);-o-transform:scale(-1);-ms-transform:scale(-1);transform:scale(-1);">Upside-down case</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Text flipped upside-down.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">𝔹𝕝𝕒𝕔𝕜𝕓𝕠𝕒𝕣𝕕 ℂ𝕒𝕤𝕖</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>𝕋𝕙𝕚𝕤 𝕚𝕤 𝕒𝕟 𝕖𝕩𝕒𝕞𝕡𝕝𝕖</div>
+			<div>𝔹𝕝𝕒𝕔𝕜𝕓𝕠𝕒𝕣𝕕 𝕔𝕒𝕤𝕖</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Text's font blackboarded.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">🅂🅀🅄🄰🅁🄴 🄲🄰🅂🄴</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>🅃🄷🄸🅂 🄸🅂 🄰🄽 🄴🅇🄰🄼🄿🄻🄴</div>
+			<div>🅂🅀🅄🄰🅁🄴 🄲🄰🅂🄴</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Text's font squared.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">Ⓒⓘⓡⓒⓛⓔ Ⓒⓐⓢⓔ</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>Ⓣⓗⓘⓢ ⓘⓢ ⓐⓝ ⓔⓧⓐⓜⓟⓛⓔ</div>
+			<div>Ⓒⓘⓡⓒⓛⓔ ⓒⓐⓢⓔ</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Text's font circumscribed.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">🅑🅛🅐🅒🅚 🅒🅘🅡🅒🅛🅔 🅒🅐🅢🅔</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>🅣🅗🅘🅢 🅘🅢 🅐🅝 🅔🅧🅐🅜🅟🅛🅔</div>
+			<div>🅑🅛🅐🅒🅚 🅒🅘🅡🅒🅛🅔 🅒🅐🅢🅔</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Text's font circumscribed and blackened.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">𝔊𝔬𝔱𝔥𝔦𝔠 ℭ𝔞𝔰𝔢 </span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>𝔗𝔥𝔦𝔰 𝔦𝔰 𝔞𝔫 𝔢𝔵𝔞𝔪𝔭𝔩𝔢</div>
+			<div>𝔊𝔬𝔱𝔥𝔦𝔠 𝔠𝔞𝔰𝔢</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Text's font gothicized.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">𝒞𝓊𝓇𝓈𝒾𝓋𝑒 𝒞𝒶𝓈𝑒</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>𝒯𝒽𝒾𝓈 𝒾𝓈 𝒶𝓃 𝑒𝓍𝒶𝓂𝓅𝓁𝑒</div>
+			<div>𝒞𝓊𝓇𝓈𝒾𝓋𝑒 𝒸𝒶𝓈𝑒</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Text's font italicized.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">Briefcase 💼</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>This is an example 🧪</div>
+			<div>Briefcase 💼</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Add a space and a representative emo-ji at the end.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<div class="CS-1_4">
+				<span class="CS-evidence">G̶̭̱͍̗̭͎̜͇̳̋̔̾̕l̴̨̦̍̽̄́̈́́̈́̕͜͜͝i̴̡̨̛͍̰͎̫̜͚̳͍̺̮̳̲͓͛͗̋͒̐̃̍̅̀͂̀͛̚͝t̶̡̧̫͚̩̺̥̳̞̠̉̔c̸͈̝̜̘̲̝͈͔̜̖̟̳͚͗ḣ̸͙̳̖̱̗͌͒̚ ̷̢͍̭̖͉͚͆͆́͊̆͌̀͠͝C̴̢̡͔̱̗͇̙̣̜͉̥̲̱̼̒͑̀͋̆͠ą̶̡͌̈́̒̐̈́s̴̨̠̹͠e̷̡̡͉̬͍̱͉͓͚͔͎̍͌</span>,
+				<span class="CS-evidence">Ć̷͉ü̸͔r̴͇͌ş̴͋e̴̝̐d̸̠̀ ̶̰̍C̷͍͗a̸̛͉s̶̬͆e̴̮̾</span>,
+			</div>
+			<span class="CS-header">C̸̬͈̹̯͍̺̖̔̔͐͋͑̿͂͘͜l̵̛̙̭͎̣̦̤͇̝̔̊̈́ḩ̵̫̠̮̊̓u̸̫̘̺̮̞͐́͊ḷ̸̨̬̥̗͙͉͎̎u̴͇͓̥̓̂͂͛̀ ̴̣͖̭̥̳̝̂͊̔C̶͈͙̽̊̂͋́͐͝a̸̛̳̬̪̠͌̆̆͆̓͛s̶͖̟̻̬̯͊͌́̊̑e̶͚̲͌̉͒̾̉̍̓̓</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>T̶̢͇͎̤̦̲͔͓̮̺͎͕͔͕̘͔̫̮̤̟͖̫̺͍͔̙̠̺̠̱͚͔͓͓͆͊̇͊̇h̵̡̛͙͓̖̜̬̫̲̤̭̺̜͖̣͖̺̭̫̫͙͉̭̦͙̦̩̫͖͎̯̘͙͉͈̣̮̋̓͐́̆̅̅̐̈́͆͑̅̾̋̀̀̀̚͠ͅį̷̢̨̧̹͔̻̞̼̫̠͉̺̼͓̪̘̇̑́̏͊͒͂̏̄̐̒̾͜͝͠ͅş̵̢̢̞̘͙̝̥̮̗̘̘̭̜͙̯̞͕̹̘̜̝̣̖̫̖̋̊͑̓͆͗̐̿̏̍͐̋̽̂̽͑̏̄̀͌̽͂͂̋̚͝͝ͅ ̸̨̭̠̰̯̌̌̅̎̂͌̓͂̄̇̈́͌̈́̈́̈͗̽̎͋̓̊͂̂̃̔̂͛̈́̿͛̋̈́͑͐̆̾̕̚̚͝͝͝͝͝i̵̧̛̛̬̯͕͕̣̣̻̭̽̊̔́̒͐͆̌͐̽͒́̅̔̌̈̀̓͛̌͒̓̽̋̈́͂̎͘͝s̵̢̧̛̖̪̞̤̜̹̰͇͉̖̣͈̺̝̦̘̱͙̯̆̽́͊̓̌̔̉͒̓ ̶̡̢̨̼̤̱͖̭̞̮̹͇̦͈͙͓͕̮̠̭̖͈̜͍̭͚͇̼̱̬̱̫̳̯̙̪̮͍̠͕̾́͑͒ͅa̸̢̢̟͔̭̮͓͓̺̻͇̖͇͈̗̯͍͕̮̳̳͓͔̳̯̰̰̻̹͖̹̩͈͚͚̳͒̍̆̐̃̉̈́͛́̍̏͐̿̎̃̈̎͒͑́̕͘͝͝͠ͅͅͅͅn̶̨̛͎͓̥̼̭̳͍̳̲̯̳̙̭̟̼͍͔͙̝͗̍͋̓̇̕͠ͅ ̸̢̢̛̙̱͔̹̱̼͕͖͎͍̬̬̼̣̖͙͉̙̮̼͇̬͓̳̭̟͛̆͐̊̄̓̔̈́̐̈́́̿̅̏̾̌͗̎́͗́́̈́͐͗̓́̍̋̌̆́́̍͛̉͑̌̔͐̚͘̚ͅe̵̛̛̛̙̳̰͎̅̿́͑͐͒͗͋̓̃̃̈́̽͑͌̒͠͠x̵̨̡̧̧̛̪̻͎̙̫̠̺̘̦̗̞̙̜̻̙̞̺̗̜̻̺̬̗͔̠̿͒̈́͂̊͐͜͝ͅǎ̷̧̢̡̨̡̛̗͍̦̭̖͔͙͕̣̼̩̙̭͓̯̣͔̳̮̝̣̫͕̮̳̪̈́̒͂̈́̐͊̿̍̒̒͐̄́̈́̆̏̔̈̀̂̓̎̈́̾̌̃̓̽̓̆̉̒͛́͒̇͊̈́̿͒͆̿͘͘̕͜͝m̵̧̢̬̜̜̫͇̩̗̼̗͕̥̗̼̺͚̺̟̺̲̖̪̰̺̭̞̳̯͓̹͇̯̗̖͋͜ͅͅp̶̼̤̯̣̮̈́̄̂̊̃̏͒̔̏̓͑͐́̕͝l̶̡̨̨̨̢̧̧̛̻͎̥͕̱̲̱̮̱̲̗̝̹̠͓͍̗̦̘̳̼͇͉͕͉̘͖̇͐͑̋̎̏̎̐̿̈́̓͋͂͗̇́̅̇̆̄̊͐̽͆̀͌͊̀̇̆͑̚̚̚͠͝͠͝͠ë̴̡̧̧̧̨̛̙͔̹̘͉̫̩͈͓̻̰̞͉̻̳̺̫̤̦͈̳̺̤̹͈̜̻̭͔̦̣̰̺͇̺̦͓̱̳̦̺̩̰͌͛̀̄͐̐̔̀̎̀̍̄́̀̓̿̅̔̊͋̅̒͒͗̉̅̅̌̔͛͛̽̈̅̋̇͊̓̀̚͝</div>
+			<div>Ĉ̵͚̬̫̩̙͚̞̬͕̄͊̾̓̓̍̃͛͂͛͝ų̸̢̣͇̱̭̭̳̍̄̉̈́̈́̉̔͒͂̉̔̈̾ŗ̵̲̗͈̖̬̩̗̥̙͇͖͇͎̬̇͊̿͑̊̃̕͝s̵̡̳̲͖̙͔̖̖̹̳̪̼͉͙̪͐́̀̃̂̃͗̀̇͜͝ͅë̷̢̢̢͍͖̺̹̫̺̘̜͕́̃͒̒̏̐̔͘͝ͅd̷̨̧̡̨̨̬̜̜̠͓͈̞͔̼̩̍̋̅̍̈́̾͐͂͜͝͝ ̵̥̭̬̪̖̟̆́͒͛͆̚͠ç̷̡̢̝͕̟͓̤̲̮̲̮̋͘a̸̢̨̨̘̳̯̣̣̱̱͕͙͔͖͗ś̶̡̞̀̉̓͆͂̋̓͒͠͝ȇ̶̙̜͓̿͛̐̿̿͛͌͒̚̚</div>
+		</fieldset>
+		<div class="CS-1_2"><i>With random letter modifiers to each character.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">漢字ケ一ス</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>これは一例です</div>
+			<div>漢字ケ一ス</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Translated into Japanese.</i></div>
+	</div>
+	<div>
+		<div class="CS-5_8"><i>And <i><span class="CS-evidence">other</span> <span class="CS-evidence">non-ASCII cases</span></i>…</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4"><span class="CS-header">Composite non-ASCII Case</span> :</span></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<div class="CS-header" style="display:inline-block;-moz-transform:scale(-1);-webkit-transform:scale(-1);-o-transform:scale(-1);-ms-transform:scale(-1);transform:scale(-1);">batCase</div> :
+		</div>
+		<div>
+			<span class="CS-3_8 cmt">upside-down case + proper case + ( sentence case + reverse case ) + broken spacebar case</span><br />
+			<span class="CS-3_8 cmt">upside-down case + camel case</span>
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div style="-moz-transform:scale(-1);-webkit-transform:scale(-1);-o-transform:scale(-1);-ms-transform:scale(-1);transform:scale(-1);">thisIsAnExample</div>
+			<div style="-moz-transform:scale(-1);-webkit-transform:scale(-1);-o-transform:scale(-1);-ms-transform:scale(-1);transform:scale(-1);">batCase</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Text flipped upside-down, initial word's letters uppercased except the first of the sentence, without spaces.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">𝕭𝖔𝖑𝖉 𝕲𝖔𝖙𝖍𝖎𝖈 𝕮𝖆𝖘𝖊</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>𝕿𝖍𝖎𝖘 𝖎𝖘 𝖆𝖓 𝖊𝖝𝖆𝖒𝖕𝖑𝖊</div>
+			<div>𝕭𝖔𝖑𝖉 𝖌𝖔𝖙𝖍𝖎𝖈 𝖈𝖆𝖘𝖊</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Text's font bold gothicized.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span class="CS-header">𝓑𝓸𝓵𝓭 𝓒𝓾𝓻𝓼𝓲𝓿𝓮 𝓒𝓪𝓼𝓮</span> :
+		</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>𝓣𝓱𝓲𝓼 𝓲𝓼 𝓪𝓷 𝓮𝔁𝓪𝓶𝓹𝓵𝓮</div>
+			<div>𝓑𝓸𝓵𝓭 𝓬𝓾𝓻𝓼𝓲𝓿𝓮 𝓬𝓪𝓼𝓮</div>
+		</fieldset>
+		<div class="CS-1_2"><i>Text's font bold italicized.</i></div>
+	</div>
+	<div>
+		<div class="CS-3_4">
+			<span><span class="CS-header">S</span><small class="CS-header" style="font-size:.81em">MALL CAPS CASE</small></span> :
+		</div>
+		<div class="CS-3_8 cmt">uppercase + ( small case + other )</div>
+		<fieldset class="CS-1_2"><legend>E.g.</legend>
+			<div>T<small>HIS IS AN EXAMPLE</small></div>
+			<div>S<small>MALL CAPS CASE</small></div>
+		</fieldset>
+		<div class="CS-1_2"><i>All letters uppercased, text shrunked except for the first letter.</i></div>
+	</div>
+	<div>
+		<div class="CS-5_8"><i>And <i><span class="CS-evidence">other</span> <span class="CS-evidence">composite non-ASCII cases</span></i>…</i></div>
+	</div>
+	<div>
+		<div class="URL-link" class="CS-evidence CS-1_2"></div>
+		<div class="URL-QRCode"></div>
+		<div><a class="CS-link URL-share CS-btn" href="https://wa.me/393881183102?text=Will%20you%20send%20me%20the%20_link_%20to%20share%20the%20_*naming-conventions*%20page_%3F%0A%0A&app_absent=0"><span class="CS-evidence" style="text-decoration:underline;">SHARE</span> <img alt="WhatsApp" class="CS-imgText" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/800px-WhatsApp.svg.png" style="transform:translateY(16.13%);" /></a></div>
+		<div><a class="CS-link CS-btn" href="mailto:Q.Leo.Anga@Proton.me?subject=Questions&body=*_Hello_*%2C%20I%20found%20your%20_*naming-conventions*%27s%20slides_%3B%20I%20wanted%20to%20know%3A%0A%0A"><span class="CS-evidence" style="text-decoration:underline;">WRITE ME</span> <img alt="WhatsApp" class="CS-imgText" src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Email_icon.png" style="transform:translateY(16.13%);filter:hue-rotate(.815turn) contrast(160%);" /></a></div>
+		<div class="CS-5_8 CS-header">Angaroni Leonardo</div>
+	</div>
+</div>
+
+<div id="screen"><div id="screenBox"></div></div>
+
+<div id="colorModeBtn" onclick="changeColorModeLD();"><div id="colorModeBtnLetter">·</div></div>
+
+<div id="progressBar"><div></div></div>
+
+<div id="slideNumb"><div></div></div>
+
+<div id="loadingAdv">Loading…</div>
+
+</body>
+</html>

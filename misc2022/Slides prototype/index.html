@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
 	<!-- '( og ') ( ref lot ) : URL https://ogp.me -->
@@ -36,7 +36,6 @@
 	--colorScheme-bkg: lightgray;
 	--colorScheme-selection: teal;
 	--colorScheme-selectionFont: white;
-	--CS-sizeScale: 1.35914091423; /* math( e/2 math) */
 }
 
 ::selection {
@@ -51,6 +50,10 @@
 	color: var(--colorScheme-second,black);
 	transition-duration: 1400ms;
 	tab-size: 4;
+}
+
+html {
+	--CS-sizeScale: 1.35914091423; /* math( e/2 math) */
 }
 
 body {
@@ -352,10 +355,158 @@ body {
 <script>
 
 var CSSRoot = document.querySelector(':root');
+//~ var CSSAll = document.querySelector('*');
+var CSSHTML = document.querySelector('html');
 let colorMode = undefined;
 let slideIndex = undefined;
 let slideLength = undefined;
 let URL = undefined;
+
+const isDevice = {
+	AdblockBrowser: function() { return navigator.userAgent.match(/Adblock/i); },
+	Android: function() { return navigator.userAgent.match(/Android/i); },
+	AppleSafari: function() { return isDevice.Safari() },
+	AvantBrowser: function() { return navigator.userAgent.match(/Avant\//i); },
+	AvantGo: function() { return navigator.userAgent.match(/AvantGo/i); },
+	BeOS: function() { return navigator.userAgent.match(/BeOS/i); },
+	Bada: function() { return navigator.userAgent.match(/Bada\//i); },
+	BlackBerry: function() { return navigator.userAgent.match(/BlackBerry/i); },
+	BlackBerryPlayBook: function() { return navigator.userAgent.match(/PlayBook/i); },
+	BlackBerry10: function() { return navigator.userAgent.match(/BB10/i); },
+	BlackHawk: function() { return navigator.userAgent.match(/BlackHawk/i); },
+	Blazer: function() { return navigator.userAgent.match(/Blazer/i); },
+	Blink: function() { return (isDevice.Chrome()||isDevice.Opera())&&!!window.CSS; },
+	Brave: function() { return navigator.userAgent.match(/Brave/i); },
+	Canaima: function() { return navigator.userAgent.match(/Canaima/i); },
+	Camino: function() { return navigator.userAgent.match(/Camino/i); },
+	Chrome: function() { return navigator.userAgent.match(/Chrome/i)||(!!window.chrome&&!!window.chrome.webstore); },
+	CMSecure: function() { return navigator.userAgent.match(/CM( |)Secure/i); },
+	Compal: function() { return navigator.userAgent.match(/Compal/i); },
+	Cubicle: function() { return navigator.userAgent.match(/Cubicle/i); },
+	Debian: function() { return navigator.userAgent.match(/Debian/i); },
+	DeepnetExplorer: function() { return navigator.userAgent.match(/Deepnet/i); },
+	Dolphin: function() { return navigator.userAgent.match(/Dolphin/i); },
+	Edge: function() { return navigator.userAgent.match(/Edge/i)||(!isDevice.InternetExplorer()&&!!window.StyleMedia); },
+	Elaine: function() { return navigator.userAgent.match(/Elaine/i); },
+	Epic: function() { return navigator.userAgent.match(/Epic\//i); },
+	Falcon: function() { return navigator.userAgent.match(/Falcon/i); },
+	Fedora: function() { return navigator.userAgent.match(/Fedora/i); },
+	FireFox: function() { return navigator.userAgent.match(/Firefox|FXIOS/i)||typeof InstallTrigger!=='undefined'; },
+	FireFoxMobile: function() { return navigator.userAgent.match(/Fennec/i)||typeof InstallTrigger!=='undefined'; },
+	FireMonkey: function() { return navigator.userAgent.match(/FireMonkey/i); },
+	GoogleChrome: function() { return navigator.userAgent.match(/Chrome|Chromium|CRIOS/i); },
+	Guava: function() { return navigator.userAgent.match(/Guava/i); },
+	Haiku: function() { return navigator.userAgent.match(/Haiku/i); },
+	Hiptop: function() { return navigator.userAgent.match(/Hiptop/i); },
+	HPUX: function() { return navigator.userAgent.match(/HP-UX/i); },
+	InternetExplorer: function() { return navigator.userAgent.match(/MSIE|trident/i)||!!document.documentMode; },
+	iOS: function() { return isDevice.iPhone()||isDevice.iPad()||isDevice.iPod()||(window.navigator?.userAgentData?.platform||window.navigator.platform).match(/iPhone|iPad|iPod/i); },
+	iPad: function() { return navigator.userAgent.match(/iPad/i); },
+	iPhone: function() { return navigator.userAgent.match(/iPhone/i); },
+	iPod: function() { return navigator.userAgent.match(/iPod/i); },
+	Iris: function() { return navigator.userAgent.match(/Iris/i); },
+	KaiOS: function() { return navigator.userAgent.match(/KaiOS/i); },
+	KFAPWI: function() { return navigator.userAgent.match(/KFAPWI/i); },
+	Kindle: function() { return navigator.userAgent.match(/Kindle/i); },
+	KindleFire: function() { return navigator.userAgent.match(/Kindle Fire/i); },
+	LGE: function() { return navigator.userAgent.match(/LGE /i); },
+	Lineage: function() { return navigator.userAgent.match(/Lineage/i); },
+	LinkBubble: function() { return navigator.userAgent.match(/Link( |)Bubble/i); },
+	Linux: function() { return (window.navigator?.userAgentData?.platform||window.navigator.platform).match(/Linux/i); },
+	MacOS: function() { return (window.navigator?.userAgentData?.platform||window.navigator.platform).match(/Macintosh|MacIntel|MacPPC|Mac68K/i); },
+	Maemo: function() { return navigator.userAgent.match(/Maemo/i); },
+	Maxthon: function() { return navigator.userAgent.match(/Maxthon/i); },
+	MeeGo: function() { return navigator.userAgent.match(/MeeGo/i); },
+	MIDP: function() { return navigator.userAgent.match(/MIDP/i); },
+	MSDOS: function() { return navigator.userAgent.match(/MS-DOS/i); },
+	NCBrowserFree: function() { return navigator.userAgent.match(/NC( |)Browser( |)Free/i); },
+	NetFront: function() { return navigator.userAgent.match(/NetFront/i); },
+	NetGroove: function() { return navigator.userAgent.match(/NetGroove/i); },
+	NetViewerLite: function() { return navigator.userAgent.match(/Net( |)Viewer( |)Lite/i); },
+	Nexus: function() { return navigator.userAgent.match(/Nexus/i); },
+	Nexus7: function() { return navigator.userAgent.match(/Nexus 7/i); },
+	Nexus10: function() { return navigator.userAgent.match(/Nexus 10/i); },
+	Nokia: function() { return navigator.userAgent.match(/Nokia/i); },
+	Oneweb: function() { return navigator.userAgent.match(/Oneweb/i); },
+	Opera: function() { return navigator.userAgent.match(/Opera Mini|OPR\//i)||(!!window.opr && !!opr.addons)||!!window.opera||navigator.userAgent.indexOf(' OPR/')>=0; },
+	OperaMini: function() { return navigator.userAgent.match(/Opera Mini/i); },
+	Palm: function() { return navigator.userAgent.match(/PalmSource|Palm/i); },
+	Pixi: function() { return navigator.userAgent.match(/Pixi\//i); },
+	Plan9: function() { return navigator.userAgent.match(/Plan(\/|9)/i); },
+	Plasma: function() { return navigator.userAgent.match(/Plasma/i); },
+	Plucker: function() { return navigator.userAgent.match(/Plucker/i); },
+	Pocket: function() { return navigator.userAgent.match(/Pocket/i); },
+	Polarity: function() { return navigator.userAgent.match(/Polarity/i); },
+	Postmarket: function() { return navigator.userAgent.match(/Postmarket/i); },
+	Pre: function() { return navigator.userAgent.match(/Pre\//i); },
+	ProtectedPornBrowser: function() { return navigator.userAgent.match(/Protected( |)Porn/i); },
+	PSP: function() { return navigator.userAgent.match(/PSP/i); },
+	Pure: function() { return navigator.userAgent.match(/Pure/i); },
+	QNX: function() { return navigator.userAgent.match(/QNX/i); },
+	QupZilla: function() { return navigator.userAgent.match(/QupZilla/i); },
+	RockMelt: function() { return navigator.userAgent.match(/RockMelt/i); },
+	Sabayon: function() { return navigator.userAgent.match(/Sabayon/i); },
+	Safari: function() { return navigator.userAgent.match(/Safari/i)||/constructor/i.test(window.HTMLElement)||function(p) {return p.toString()==="[object SafariRemoteNotification]";}(!window['safari']||safari.pushNotification); },
+	Sailfish: function() { return navigator.userAgent.match(/Sailfish/i); },
+	SamsungBrowser: function() { return navigator.userAgent.match(/SamsungBrowser/i); },
+	SeaMonkey: function() { return navigator.userAgent.match(/SeaMonkey/i); },
+	Silk: function() { return navigator.userAgent.match(/Silk/i); },
+	Skyfire: function() { return navigator.userAgent.match(/Skyfire/i); },
+	SlimBrowser: function() { return navigator.userAgent.match(/SlimBrowser/i); },
+	Solaris: function() { return navigator.userAgent.match(/Solaris/i); },
+	Steel: function() { return navigator.userAgent.match(/Steel/i); },
+	Superbird: function() { return navigator.userAgent.match(/Superbird/i); },
+	Symbian: function() { return navigator.userAgent.match(/Symbian/i); },
+	Tizen: function() { return navigator.userAgent.match(/Tizen/i); },
+	Torch: function() { return navigator.userAgent.match(/Torch/i); },
+	Tuquito: function() { return navigator.userAgent.match(/Tuquito/i); },
+	Ubuntu: function() { return navigator.userAgent.match(/Ubuntu/i); },
+	UbuntuTouch: function() { return navigator.userAgent.match(/UbuntuTouch|Ubuntu-Touch|Ubuntu Touch/i); },
+	UCBrowser: function() { return navigator.userAgent.match(/UCBrowser/i); },
+	UNIXOS: function() { return (window.navigator?.userAgentData?.platform||window.navigator.platform).match(/X11/i); },
+	Vodafone: function() { return navigator.userAgent.match(/Vodafone/i); },
+	WAP: function() { return navigator.userAgent.match(/WAP/i); },
+	Wave: function() { return navigator.userAgent.match(/Wave/i); },
+	webOS: function() { return navigator.userAgent.match(/webOS/i); },
+	Windows: function() { return isDevice.WindowsDesktop()||isDevice.WindowsMobile()||(window.navigator?.userAgentData?.platform||window.navigator.platform).match(/Macintosh|MacIntel|MacPPC|Mac68K/i); },
+	WindowsDesktop: function() { return navigator.userAgent.match(/WPDesktop/i); },
+	WindowsMobile: function() { return navigator.userAgent.match(/IEMobile|Windows Mobile/i); },
+	WindowsPhone: function() { return navigator.userAgent.match(/Windows Phone/i); },
+	Wyzo: function() { return navigator.userAgent.match(/Wyzo\//i); },
+	XDA: function() { return navigator.userAgent.match(/XDA/i); },
+	Xiino: function() { return navigator.userAgent.match(/Xiino/i); },
+	Yandex: function() { return navigator.userAgent.match(/Yandex/i); },
+	detect: function() { return navigator.userAgent; },
+	mobile: function() { return window.orientation||navigator.userAgent.match(/Mobile/i)||isDevice.Android()||isDevice.BlackBerry()||isDevice.iPhone()||isDevice.iPod()||isDevice.OperaMini()||isDevice.WindowsMobile()||isDevice.WindowsPhone()||isDevice.FireFoxMobile()||isDevice.Sailfish()||isDevice.Tizen()||isDevice.UbuntuTouch()||isDevice.KaiOS()||isDevice.Postmarket()||isDevice.Pure()||isDevice.Lineage()||isDevice.Symbian()||isDevice.Palm(); },
+	tablet: function() { return navigator.userAgent.match(/Tablet/i)||isDevice.iPad()||isDevice.Nexus()||isDevice.KFAPWI()||isDevice.OperaMini()||isDevice.WindowsMobile()||isDevice.WindowsPhone()||isDevice.FireFoxMobile(); },
+	geoLocation: function() {
+		if(!navigator.geolocation) return 'not supported' ;
+		function findGeoPosition(p) { console.log('geoLocation: '+(geoPosition='Latitude: '+p.coords.latitude+'; Longitude: '+p.coords.longitude)) ; }
+		var allowPosition = navigator.geolocation.getCurrentPosition(findGeoPosition);
+		sleep(5000);
+		findGeoPosition();
+		setTimeout(function() { if(geoPosition!=='undefined') delete geoPosition ; },10);
+		setTimeout(function() { if(allowPosition!=='undefined') delete allowPosition ; },10);
+		return geoPosition;
+	},
+	language: function() { return navigator.language||navigator.userLanguage; },
+	screenBrightness: function() { return window.screen.mozBrightness; },
+	screenOrientation: function() { return window.orientation/360 },
+	screenOrientationNormal: function() { return -45<window.orientation&&window.orientation<45||315<window.orientation },
+	screenOrientationRevert: function() { return 135<window.orientation&&window.orientation<225 },
+	screenOrientationSideClockWise: function() { return 45<window.orientation&&window.orientation<135 },
+	screenOrientationSideCounterClockWise: function() { return 225<window.orientation&&window.orientation<315 },
+	screenOrientationSide: function() { return isDevice.screenOrientationSideClockWise()||isDevice.screenOrientationSideCounterClockWise() },
+	screenOrientationProtrait: function() { return isDevice.screenOrientationNormal()||isDevice.screenOrientationRevert() },
+	screenOrientationLandscape: function() { return isDevice.screenOrientationSide() },
+	touchscreen: function() { return 'ontouchstart'in window; },
+	battery: function() { return navigator.getBattery(); },
+}; /** Angaroni Leonardo - date 202301061655 */
+
+function sleep(t) {
+	let d = new Date().getTime();
+	while(new Date().getTime()<d+t) { };
+}; /** Angaroni Leonardo - date 202301061804 */
 
 function setURLRefs() {
 	URL = window.location.href;
@@ -522,11 +673,11 @@ function countSlides() {
 
 let writeinLS = false;
 function launchAndRestoreLS() {
-	if (!localStorage||typeof(Storage)=="undefined") return ;
+	if(!localStorage||typeof(Storage)=="undefined"||typeof Storage=='undefined') return ;
 	writeinLS = true;
 	colorMode = localStorage.colorMode;
 	slideIndex = localStorage.slideIndex202212192102;
-};typeof elem !== 'undefined'
+};
 
 function setSwipeAnim() {
 	SwipeAnim = true;
@@ -537,6 +688,12 @@ function rmvSwipeAnim() {
 	delete SwipeAnim;
 	document.querySelector('#swipeAnim').style.transform += 'scale(0)';
 	setTimeout(function() { document.querySelector('#swipeAnim').outerHTML='' },1400);
+};
+
+function mobileEnlargedFont() {
+	let fontSizeUMeasure = Math.E/2;
+	if(isDevice.mobile()) CSSRoot.style.setProperty('--CS-sizeScale',fontSizeUMeasure*1.5) ;
+	else CSSRoot.style.setProperty('--CS-sizeScale',fontSizeUMeasure) ;
 };
 
 function keyDown(e) {
@@ -552,12 +709,15 @@ window.onload = function() {
 	launchAndRestoreLS();
 	countSlides();
 	displaySlideN(slideIndex?slideIndex:slideIndex=0);
+	mobileEnlargedFont();
 	document.getElementById('loadingAdv').outerHTML = '';
 	if(slideIndex!=slideLength-1) setSwipeAnim() ;
 	setURLRefs();
 };
 
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => { checkColorMode(event); });
+
+window.addEventListener('resize',mobileEnlargedFont);
 
 </script>
 </head>
@@ -1082,3 +1242,5 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', eve
 
 </body>
 </html>
+
+<!-- Angaroni Leonardo - date 20221225033413 -->
