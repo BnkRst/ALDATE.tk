@@ -364,6 +364,7 @@ let slideLength = undefined;
 let URL = undefined;
 let QRCodeSrc = undefined;
 let QRCodeImg = undefined;
+let isMobile = undefined;
 
 const isDevice = {
 	AdblockBrowser: function() { return navigator.userAgent.match(/Adblock/i); },
@@ -539,9 +540,9 @@ function setURLRefs() {
 	});
 	setTimeout(function(URLQRCodeLength,tempDiv) {
 		QRCodeImg = new Image();
-		QRCodeImg.src = QRCodeSrc = tempDiv.getElementsByTagName('img')[0].src.slice(22);
-		for(let i=0; i<URLQRCodeLength; ) {
-			console.log(document.getElementsByClassName('URL-QRCode')[i],QRCodeImg);
+		QRCodeImg.src = QRCodeSrc = tempDiv.getElementsByTagName('img')[0].src;
+		if(isMobile) for(let i=0; i<URLQRCodeLength; ) document.getElementsByClassName('URL-QRCode')[i++].innerHTML += '<i style="font-align:center;">QR-Code is not generated for mobile devices :(<br />Try on your desktop PC!</i>' ;
+		else for(let i=0; i<URLQRCodeLength; ) {
 			document.getElementsByClassName('URL-QRCode')[i].innerHTML += QRCodeImg.outerHTML;
 			document.getElementsByClassName('URL-QRCode')[i].getElementsByTagName('img')[0].src = QRCodeSrc;
 			document.getElementsByClassName('URL-QRCode')[i++].getElementsByTagName('img')[0].style.display = 'block';
@@ -576,7 +577,7 @@ document.addEventListener('touchstart',touchStart,false);
 document.addEventListener('touchmove',touchMove,false);
 document.addEventListener('touchend',touchEnd,false); 
 
-const mt=1000/10, mS=.38, MS=12.7;
+const mt=1000/10, mS=.38, MS=13.1;
 let Px=Py=Δx=Δy=Pt = null;
 
 function targetContainsArrayE(t,arrayE) {
@@ -734,10 +735,11 @@ function rmvSwipeAnim() {
 };
 
 function mobileEnlargedFont() {
-	let fontSizeUMeasure=Math.E/2, device=isDevice.mobile();
-	if(device) CSSRoot.style.setProperty('--CS-sizeScale',fontSizeUMeasure*1.5) ;
+	isMobile = isDevice.mobile();
+	let fontSizeUMeasure = Math.E/2;
+	if(isMobile) CSSRoot.style.setProperty('--CS-sizeScale',fontSizeUMeasure*1.5) ;
 	else CSSRoot.style.setProperty('--CS-sizeScale',fontSizeUMeasure) ;
-	console.log('Font-size adpted to “'+device+'„\nFont-size now is “'+CSSRoot.style.getPropertyValue('--CS-sizeScale')+'„, “'+getComputedStyle(CSSRoot).getPropertyValue('--CS-sizeScale')+'„');
+	console.log('Font-size adpted to “'+isMobile+'„\nFont-size now is “'+CSSRoot.style.getPropertyValue('--CS-sizeScale')+'„, “'+getComputedStyle(CSSRoot).getPropertyValue('--CS-sizeScale')+'„');
 };
 
 function keyDown(e) {
