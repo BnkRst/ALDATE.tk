@@ -24,6 +24,7 @@
 	<!-- favicon best web-site support : https://stackoverflow.com/a/43154399/6086226 -->
 	<script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script> <!-- under ( URL https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@master/LICENSE ) ( date 202211232243 ) -->
 	<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
 <style>
 
 @import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap'); // under ( URL https://fonts.google.com/specimen/Syne+Mono/about?query=syne ) ( date 202211232245 )
@@ -525,13 +526,25 @@ function setURLRefs() {
 			//~ colorLight: 'rgba(235,256,245,.96)',
 			//~ correctLevel: QRCode.CorrectLevel.M,
 		//~ });
-		URLQRCode[i] = new QRCode(document.getElementsByClassName('URL-QRCode')[i++], {
-			text: URL,
-			width: 128,
-			height: 128,
-			colorDark : "black",
-			colorLight : "rgba(235,256,245,.96)",
-			correctLevel : QRCode.CorrectLevel.M
+		//~ URLQRCode[i] = new QRCode(document.getElementsByClassName('URL-QRCode')[i++], {
+			//~ text: URL,
+			//~ width: 128,
+			//~ height: 128,
+			//~ colorDark : "black",
+			//~ colorLight : "rgba(235,256,245,.96)",
+			//~ correctLevel : QRCode.CorrectLevel.M,
+		//~ });
+		document.getElementsByClassName('URL-QRCode')[i++].innerHTML += '<canvas></canvas>';
+		URLQRCode[i] = new QRious({
+			element: document.getElementsByClassName('URL-QRCode')[i++].getElementsByTagName('canvas')[0],
+			background: 'rgba(235,256,245,.96)',
+			backgroundAlpha: 1,
+			foreground: 'black',
+			foregroundAlpha: 1,
+			level: 'M',
+			padding: 0,
+			size: 128,
+			value: URL,
 		});
 	};
 	document.querySelector('meta[property="og:url"]').content = URL;
