@@ -362,6 +362,7 @@ let colorMode = undefined;
 let slideIndex = undefined;
 let slideLength = undefined;
 let URL = undefined;
+let QRCodeSrc = undefined;
 
 const isDevice = {
 	AdblockBrowser: function() { return navigator.userAgent.match(/Adblock/i); },
@@ -534,6 +535,13 @@ function setURLRefs() {
 			correctLevel : QRCode.CorrectLevel.M,
 		});
 	};
+	setTimeout(function(URLQRCodeLength) {
+		QRCodeSrc = document.getElementsByClassName('URL-QRCode')[0].getElementsByTagName('img')[0].src;
+		for(let i=0; i<URLQRCodeLength; ) {
+			document.getElementsByClassName('URL-QRCode')[i].getElementsByTagName('img')[0].src = QRCodeSrc;
+			document.getElementsByClassName('URL-QRCode')[i++].getElementsByTagName('img')[0].style.display = 'block';
+		};
+	},10,URLQRCodeLength);
 	document.querySelector('meta[property="og:url"]').content = URL;
 	document.querySelector('meta[property="og:image"]').content=document.querySelector('meta[property="og:image:url"]').content=document.getElementById('URL-link-href-ALpng-1').href=document.getElementById('URL-link-href-ALpng-2').href = URLALpng = URL.slice(0,17)+'/AL 300KB.png';
 };
