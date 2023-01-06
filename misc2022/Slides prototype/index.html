@@ -23,6 +23,7 @@
 	<!-- Facebook best web-site support : https://developers.facebook.com/docs/sharing/webmasters -->
 	<!-- favicon best web-site support : https://stackoverflow.com/a/43154399/6086226 -->
 	<script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script> <!-- under ( URL https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@master/LICENSE ) ( date 202211232243 ) -->
+	<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 <style>
 
 @import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap'); // under ( URL https://fonts.google.com/specimen/Syne+Mono/about?query=syne ) ( date 202211232245 )
@@ -516,13 +517,21 @@ function setURLRefs() {
 	let URLQRCode = [];
 	let URLQRCodeLength = document.getElementsByClassName('URL-QRCode').length;
 	for(i=0; i<URLQRCodeLength; ) {
+		//~ URLQRCode[i] = new QRCode(document.getElementsByClassName('URL-QRCode')[i++], {
+			//~ text: URL,
+			//~ width: 1024,
+			//~ height: 1024,
+			//~ colorDark: 'black',
+			//~ colorLight: 'rgba(235,256,245,.96)',
+			//~ correctLevel: QRCode.CorrectLevel.M,
+		//~ });
 		URLQRCode[i] = new QRCode(document.getElementsByClassName('URL-QRCode')[i++], {
 			text: URL,
-			width: 1024,
-			height: 1024,
-			colorDark: 'black',
-			colorLight: 'rgba(235,256,245,.96)',
-			correctLevel: QRCode.CorrectLevel.M,
+			width: 128,
+			height: 128,
+			colorDark : "black",
+			colorLight : "rgba(235,256,245,.96)",
+			correctLevel : QRCode.CorrectLevel.M
 		});
 	};
 	document.querySelector('meta[property="og:url"]').content = URL;
@@ -692,7 +701,7 @@ function rmvSwipeAnim() {
 
 function mobileEnlargedFont() {
 	let fontSizeUMeasure=Math.E/2, device=isDevice.mobile();
-	if(device) CSSRoot.style.setProperty('--CS-sizeScale',fontSizeUMeasure*1.7) ;
+	if(device) CSSRoot.style.setProperty('--CS-sizeScale',fontSizeUMeasure*1.5) ;
 	else CSSRoot.style.setProperty('--CS-sizeScale',fontSizeUMeasure) ;
 	console.log('Font-size adpted to “'+device+'„\nFont-size now is “'+CSSRoot.style.getPropertyValue('--CS-sizeScale')+'„, “'+getComputedStyle(CSSRoot).getPropertyValue('--CS-sizeScale')+'„');
 };
