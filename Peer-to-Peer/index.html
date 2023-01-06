@@ -352,6 +352,9 @@ let colorMode = undefined;
 let slideIndex = undefined;
 let slideLength = undefined;
 let URL = undefined;
+let QRCodeSrc = undefined;
+let QRCodeImg = undefined;
+let isMobile = undefined;
 
 const isDevice = {
 	AdblockBrowser: function() { return navigator.userAgent.match(/Adblock/i); },
@@ -499,18 +502,26 @@ function setURLRefs() {
 	let i = document.getElementsByClassName('URL-link').length;
 	for( ; i>0; ) document.getElementsByClassName('URL-link')[--i].innerHTML=URL ;
 	for(i=document.getElementsByClassName('URL-share').length; i>0; ) document.getElementsByClassName('URL-share')[--i].href='https://wa.me/?text=*Leonardo%20Angaroni*%20%C2%B7%20_*Tutor*%20*Peer%20to%20Peer*_%0A'+encodeURIComponent(URL)+'%0A%0A&app_absent=0' ;
-	let URLQRCode = [];
 	let URLQRCodeLength = document.getElementsByClassName('URL-QRCode').length;
-	for(i=0; i<URLQRCodeLength; ) {
-		URLQRCode[i] = new QRCode(document.getElementsByClassName('URL-QRCode')[i++], {
-			text: URL,
-			width: 1024,
-			height: 1024,
-			colorDark: 'black',
-			colorLight: 'rgba(235,256,245,.96)',
-			correctLevel: QRCode.CorrectLevel.M,
-		});
-	};
+	let tempDiv = document.createElement('div');
+	let URLQRCode = new QRCode(tempDiv, {
+		text: URL,
+		width: 128,
+		height: 128,
+		colorDark : "black",
+		colorLight : "rgba(235,256,245,.96)",
+		correctLevel : QRCode.CorrectLevel.M,
+	});
+	setTimeout(function(URLQRCodeLength,tempDiv) {
+		QRCodeImg = new Image();
+		QRCodeImg.src = QRCodeSrc = tempDiv.getElementsByTagName('img')[0].src;
+		if(isMobile) for(let i=0; i<URLQRCodeLength; ) document.getElementsByClassName('URL-QRCode')[i++].innerHTML += '<i style="font-align:center;color:black;">QR-Code is not generated for mobile devices :(<br />Try on your desktop PC!</i>' ;
+		else for(let i=0; i<URLQRCodeLength; ) {
+			document.getElementsByClassName('URL-QRCode')[i].innerHTML += QRCodeImg.outerHTML;
+			document.getElementsByClassName('URL-QRCode')[i].getElementsByTagName('img')[0].src = QRCodeSrc;
+			document.getElementsByClassName('URL-QRCode')[i++].getElementsByTagName('img')[0].style.display = 'block';
+		};
+	},10,URLQRCodeLength,tempDiv);
 	document.querySelector('meta[property="og:url"]').content = URL;
 	document.querySelector('meta[property="og:image"]').content=document.querySelector('meta[property="og:image:url"]').content=document.getElementById('URL-link-href-ALpng-1').href=document.getElementById('URL-link-href-ALpng-2').href = URLALpng = URL.slice(0,17)+'/AL 300KB.png';
 };
@@ -519,7 +530,7 @@ document.addEventListener('touchstart',touchStart,false);
 document.addEventListener('touchmove',touchMove,false);
 document.addEventListener('touchend',touchEnd,false); 
 
-const mt=1000/10, mS=.4, MS=10;
+const mt=1000/10, mS=.38, MS=14;
 let Px=Py=Δx=Δy=Pt = null;
 
 function targetContainsArrayE(t,arrayE) {
@@ -677,10 +688,11 @@ function rmvSwipeAnim() {
 };
 
 function mobileEnlargedFont() {
-	let fontSizeUMeasure=Math.E/2, device=isDevice.mobile();
-	if(device) CSSRoot.style.setProperty('--CS-sizeScale',fontSizeUMeasure*1.5) ;
+	isMobile = isDevice.mobile();
+	let fontSizeUMeasure = Math.E/2;
+	if(isMobile) CSSRoot.style.setProperty('--CS-sizeScale',fontSizeUMeasure*1.5) ;
 	else CSSRoot.style.setProperty('--CS-sizeScale',fontSizeUMeasure) ;
-	console.log('Font-size adpted to “'+device+'„\nFont-size now is “'+CSSRoot.style.getPropertyValue('--CS-sizeScale')+'„, “'+getComputedStyle(CSSRoot).getPropertyValue('--CS-sizeScale')+'„');
+	console.log('Font-size adpted to “'+isMobile+'„\nFont-size now is “'+CSSRoot.style.getPropertyValue('--CS-sizeScale')+'„, “'+getComputedStyle(CSSRoot).getPropertyValue('--CS-sizeScale')+'„');
 };
 
 function keyDown(e) {
@@ -770,3 +782,5 @@ window.addEventListener('resize',mobileEnlargedFont);
 
 </body>
 </html>
+
+<!-- Angaroni Leonardo - date 202212 -->

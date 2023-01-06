@@ -541,7 +541,7 @@ function setURLRefs() {
 	setTimeout(function(URLQRCodeLength,tempDiv) {
 		QRCodeImg = new Image();
 		QRCodeImg.src = QRCodeSrc = tempDiv.getElementsByTagName('img')[0].src;
-		if(isMobile) for(let i=0; i<URLQRCodeLength; ) document.getElementsByClassName('URL-QRCode')[i++].innerHTML += '<i style="font-align:center;">QR-Code is not generated for mobile devices :(<br />Try on your desktop PC!</i>' ;
+		if(isMobile) for(let i=0; i<URLQRCodeLength; ) document.getElementsByClassName('URL-QRCode')[i++].innerHTML += '<i style="font-align:center;color:black;">QR-Code is not generated for mobile devices :(<br />Try on your desktop PC!</i>' ;
 		else for(let i=0; i<URLQRCodeLength; ) {
 			document.getElementsByClassName('URL-QRCode')[i].innerHTML += QRCodeImg.outerHTML;
 			document.getElementsByClassName('URL-QRCode')[i].getElementsByTagName('img')[0].src = QRCodeSrc;
@@ -577,7 +577,7 @@ document.addEventListener('touchstart',touchStart,false);
 document.addEventListener('touchmove',touchMove,false);
 document.addEventListener('touchend',touchEnd,false); 
 
-const mt=1000/10, mS=.38, MS=13.1;
+const mt=1000/10, mS=.38, MS=14;
 let Px=Py=Δx=Δy=Pt = null;
 
 function targetContainsArrayE(t,arrayE) {
