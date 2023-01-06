@@ -678,7 +678,7 @@ function rmvSwipeAnim() {
 
 function mobileEnlargedFont() {
 	let fontSizeUMeasure=Math.E/2, device=isDevice.mobile();
-	if(device) CSSRoot.style.setProperty('--CS-sizeScale',fontSizeUMeasure*1.7) ;
+	if(device) CSSRoot.style.setProperty('--CS-sizeScale',fontSizeUMeasure*1.5) ;
 	else CSSRoot.style.setProperty('--CS-sizeScale',fontSizeUMeasure) ;
 	console.log('Font-size adpted to “'+device+'„\nFont-size now is “'+CSSRoot.style.getPropertyValue('--CS-sizeScale')+'„, “'+getComputedStyle(CSSRoot).getPropertyValue('--CS-sizeScale')+'„');
 };
