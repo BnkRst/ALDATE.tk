@@ -224,6 +224,97 @@ body {
 	}
 }
 
+#swipeAnimHand {
+	position: fixed;
+	top: 90%;
+	left: 50%;
+	width: 4.8vh;
+	height: 4.8vh;
+	background: rgba(230,230,230,.37);
+	border-radius: 47.7%;
+	transform: translate(-50%,-50%) scale(1.5);
+	-webkit-animation:
+		all 1400ms,
+		switchAnimHand 5000ms linear infinite;
+} #swipeAnimHand > div:nth-child(2) {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	font-size: 4.8vh;
+	-moz-transform: translate(-50%,-50%) scale(-1);
+	-webkit-transform: translate(-50%,-50%) scale(-1);
+	-o-transform: translate(-50%,-50%) scale(-1);
+	-ms-transform: translate(-50%,-50%) scale(-1);
+	transform: translate(-50%,-50%) scale(-1);
+} @-webkit-keyframes switchAnimHand {
+	0% {
+		left: calc( 50% + 27% );
+	}
+	10% {
+		left: calc( 50% + 26.3% );
+	}
+	20% {
+		left: calc( 50% + 25.4% );
+	}
+	30% {
+		left: calc( 50% + 21.2% );
+	}
+	40% {
+		left: calc( 50% + 10% );
+	}
+	50% {
+		left: calc( 50% - 7% );
+	}
+	60% {
+		left: calc( 50% - 26% );
+	}
+	70% {
+		left: calc( 50% - 27% );
+	}
+	80% {
+		left: calc( 50% - 9% );
+	}
+	90% {
+		left: calc( 50% + 9% );
+	}
+	100% {
+		left: calc( 50% + 27% );
+	}
+} #swipeAnimHand > div:nth-child(1) {
+	position: absolute;
+	top: -5%;
+	left: 31%;
+	font-size: 3.15vh;
+	-moz-transform: translate(-50%,-50%);
+	-webkit-transform: translate(-50%,-50%);
+	-o-transform: translate(-50%,-50%);
+	-ms-transform: translate(-50%,-50%);
+	transform: translate(-50%,-50%);
+	-webkit-animation: switchAnimClick 5000ms cubic-bezier(1,.04,1,-.4) infinite;
+} @-webkit-keyframes switchAnimClick {
+	0% {
+		-moz-transform: translate(-50%,-50%) scale(1);
+		-webkit-transform: translate(-50%,-50%) scale(1);
+		-o-transform: translate(-50%,-50%) scale(1);
+		-ms-transform: translate(-50%,-50%) scale(1);
+		transform: translate(-50%,-50%) scale(1);
+	}
+	50% {
+		-moz-transform: translate(-50%,-50%) scale(0);
+		-webkit-transform: translate(-50%,-50%) scale(0);
+		-o-transform: translate(-50%,-50%) scale(0);
+		-ms-transform: translate(-50%,-50%) scale(0);
+		transform: translate(-50%,-50%) scale(0);
+	}
+	100% {
+		-moz-transform: translate(-50%,-50%) scale(1);
+		-webkit-transform: translate(-50%,-50%) scale(1);
+		-o-transform: translate(-50%,-50%) scale(1);
+		-ms-transform: translate(-50%,-50%) scale(1);
+		transform: translate(-50%,-50%) scale(1);
+	}
+}
+
 .URL-QRCode {
 	margin: auto !important;
 	margin-bottom: 1.42rem !important;
@@ -515,7 +606,7 @@ function setURLRefs() {
 	setTimeout(function(URLQRCodeLength,tempDiv) {
 		QRCodeImg = new Image();
 		QRCodeImg.src = QRCodeSrc = tempDiv.getElementsByTagName('img')[0].src;
-		if(isMobile) for(let i=0; i<URLQRCodeLength; ) document.getElementsByClassName('URL-QRCode')[i++].innerHTML += '<i style="font-align:center;color:black;">QR-Code is not generated for mobile devices :(<br />Try on your desktop PC!</i>' ;
+		if(isMobile) for(let i=0; i<URLQRCodeLength; ) document.getElementsByClassName('URL-QRCode')[i++].innerHTML += '<br /><div style="font-align:center;color:black;"><i>QR-Code is not generated for mobile devices :(<br />Try on your desktop PC!</i></div>' ;
 		else for(let i=0; i<URLQRCodeLength; ) {
 			document.getElementsByClassName('URL-QRCode')[i].innerHTML += QRCodeImg.outerHTML;
 			document.getElementsByClassName('URL-QRCode')[i].getElementsByTagName('img')[0].src = QRCodeSrc;
@@ -652,6 +743,7 @@ function displaySlideN(n) {
 	localStorage.slideIndex202212291807 = slideIndex;
 	console.log('Displayed slide: "'+n+'"');
 	if(typeof SwipeAnim!=='undefined') rmvSwipeAnim() ;
+	if(typeof SwipeAnimHand!=='undefined') rmvSwipeAnimHand() ;
 };
 
 function slideNext() {
@@ -687,6 +779,17 @@ function rmvSwipeAnim() {
 	setTimeout(function() { document.querySelector('#swipeAnim').outerHTML='' },1400);
 };
 
+function setSwipeAnimHand() {
+	SwipeAnimHand = true;
+	document.body.innerHTML += '<div id="swipeAnimHand"><div>💥</div><div>👇</div></div>';
+};
+
+function rmvSwipeAnimHand() {
+	delete SwipeAnimHand;
+	document.querySelector('#swipeAnimHand').style.transform += 'scale(0)';
+	setTimeout(function() { document.querySelector('#swipeAnimHand').outerHTML='' },1400);
+};
+
 function mobileEnlargedFont() {
 	isMobile = isDevice.mobile();
 	let fontSizeUMeasure = Math.E/2;
@@ -710,7 +813,8 @@ window.onload = function() {
 	displaySlideN(slideIndex?slideIndex:slideIndex=0);
 	mobileEnlargedFont();
 	document.getElementById('loadingAdv').outerHTML = '';
-	if(slideIndex!=slideLength-1) setSwipeAnim() ;
+	if(slideIndex!=slideLength-1) if(slideIndex!=0) setSwipeAnim() ;
+	else setSwipeAnimHand() ;
 	setURLRefs();
 };
 
