@@ -14,7 +14,6 @@
 	<meta property="og:image:alt" content="Angaroni Leonardo's web-site logo" />
 	<meta property="og:locale" content="it_IT" />
 	<meta property="og:locale:alternate" content="it_IT" />
-	<script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script> <!-- under ( URL https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@master/LICENSE ) ( date 202211232243 ) -->
 <style>
 
 @import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap'); // under ( URL https://fonts.google.com/specimen/Syne+Mono/about?query=syne ) ( date 202211232245 )
@@ -594,25 +593,8 @@ function setURLRefs() {
 	for( ; i>0; ) document.getElementsByClassName('URL-link')[--i].innerHTML=URL ;
 	for(i=document.getElementsByClassName('URL-share').length; i>0; ) document.getElementsByClassName('URL-share')[--i].href='https://wa.me/?text=*Leonardo%20Angaroni*%20%C2%B7%20_*Tutor*%20*Peer%20to%20Peer*_%0A'+encodeURIComponent(URL)+'%0A%0A&app_absent=0' ;
 	let URLQRCodeLength = document.getElementsByClassName('URL-QRCode').length;
-	let tempDiv = document.createElement('div');
-	let URLQRCode = new QRCode(tempDiv, {
-		text: URL,
-		width: 128,
-		height: 128,
-		colorDark : "black",
-		colorLight : "rgba(235,256,245,.96)",
-		correctLevel : QRCode.CorrectLevel.M,
-	});
-	setTimeout(function(URLQRCodeLength,tempDiv) {
-		QRCodeImg = new Image();
-		QRCodeImg.src = QRCodeSrc = tempDiv.getElementsByTagName('img')[0].src;
-		if(isMobile) for(let i=0; i<URLQRCodeLength; ) document.getElementsByClassName('URL-QRCode')[i++].innerHTML += '<br /><div style="font-align:center;color:black;"><i>QR-Code is not generated for mobile devices :(<br />Try on your desktop PC!</i></div>' ;
-		else for(let i=0; i<URLQRCodeLength; ) {
-			document.getElementsByClassName('URL-QRCode')[i].innerHTML += QRCodeImg.outerHTML;
-			document.getElementsByClassName('URL-QRCode')[i].getElementsByTagName('img')[0].src = QRCodeSrc;
-			document.getElementsByClassName('URL-QRCode')[i++].getElementsByTagName('img')[0].style.display = 'block';
-		};
-	},10,URLQRCodeLength,tempDiv);
+	let URLQRCodeURL = URL.slice(0,17)+'/QR-Code/logo/'+URL.slice(10,14)+'/Peer-to-Peer.png';
+	for(i=0; i<URLQRCodeLength; ) document.getElementsByClassName('URL-QRCode')[i++].innerHTML += '<img alt="QR-Code of “'+URLQRCodeURL+'„" src="'+URLQRCodeURL+'" style="display:block;" />' ;
 	document.querySelector('meta[property="og:url"]').content = URL;
 	document.querySelector('meta[property="og:image"]').content=document.querySelector('meta[property="og:image:url"]').content=document.getElementById('URL-link-href-ALpng-1').href=document.getElementById('URL-link-href-ALpng-2').href = URLALpng = URL.slice(0,17)+'/AL 300KB.png';
 };
