@@ -642,7 +642,7 @@ function setURLRefs() {
 			//~ };
 		//~ },10,URLQRCodeLength,tempDiv);
 	// method 3 (already generated) :
-		let URLQRCodeURL = URL.slice(0,17)+'/QR-Code/'+URL.slice(10,14)+'/misc2022→Slides prototype.png';
+		let URLQRCodeURL = URL.slice(0,17)+'/QR-Code/logo/'+URL.slice(10,14)+'/misc2022→Slides prototype.png';
 		for(i=0; i<URLQRCodeLength; ) document.getElementsByClassName('URL-QRCode')[i++].innerHTML += '<img alt="QR-Code of “'+URLQRCodeURL+'„" src="'+URLQRCodeURL+'" style="display:block;" />' ;
 	document.querySelector('meta[property="og:url"]').content = URL;
 	document.querySelector('meta[property="og:image"]').content=document.querySelector('meta[property="og:image:url"]').content=document.getElementById('URL-link-href-ALpng-1').href=document.getElementById('URL-link-href-ALpng-2').href = URLALpng = URL.slice(0,17)+'/AL 300KB.png';
