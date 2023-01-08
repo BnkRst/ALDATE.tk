@@ -592,8 +592,9 @@ function setURLRefs() {
 	for( ; i>0; ) document.getElementsByClassName('URL-link')[--i].innerHTML=URL ;
 	for(i=document.getElementsByClassName('URL-share').length; i>0; ) document.getElementsByClassName('URL-share')[--i].href='https://wa.me/?text=*Leonardo%20Angaroni*%2C%20*Stefano%20Tarantini*%20%C2%B7%20_*Ripetizioni*_%20di%0A_INFORMATICA_%2C%20_MATEMATICA_%2C%20_SCIENZE_%2C%20_FISICA_%20e%20_MECCANICA_%0A'+encodeURIComponent(URL)+'&app_absent=0';
 	let URLQRCodeLength = document.getElementsByClassName('URL-QRCode').length;
-	let URLQRCodeURL = URL.slice(0,17)+'/QR-Code/logo/'+URL.slice(10,14)+'/repetition.png';
-	for(i=0; i<URLQRCodeLength; ) document.getElementsByClassName('URL-QRCode')[i++].innerHTML += '<img alt="QR-Code of “'+URLQRCodeURL+'„" src="'+URLQRCodeURL+'" style="display:block;" />' ;
+	let URLQRCodeURL = URL.slice(-10)=='index.html'?URL.substring(0,URL.length-10):URL;
+	URLQRCodeURL += URL.slice(-1)=='/'?'QR-Code.png':'/QR-Code.png';
+	for(i=0; i<URLQRCodeLength; ) document.getElementsByClassName('URL-QRCode')[i++].innerHTML += '<img alt="QR-Code of “'+URL+'„" src="'+URLQRCodeURL+'" style="display:block;color:black;" />' ;
 	document.querySelector('meta[property="og:url"]').content = URL;
 	document.querySelector('meta[property="og:image"]').content=document.querySelector('meta[property="og:image:url"]').content=document.getElementById('URL-link-href-ALpng-1').href=document.getElementById('URL-link-href-ALpng-2').href = URLALpng = URL.slice(0,17)+'/AL 300KB.png';
 	
