@@ -22,8 +22,6 @@
 	<!-- Twitter best web-site support : https://dev.twitter.com/cards/overview -->
 	<!-- Facebook best web-site support : https://developers.facebook.com/docs/sharing/webmasters -->
 	<!-- favicon best web-site support : https://stackoverflow.com/a/43154399/6086226 -->
-	<!--script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script> <!-- under ( URL https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@master/LICENSE ) ( date 202211232243 ) -->
-	<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 <style>
 
 @import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap'); // under ( URL https://fonts.google.com/specimen/Syne+Mono/about?query=syne ) ( date 202211232245 )
@@ -609,36 +607,43 @@ function setURLRefs() {
 	for( ; i>0; ) document.getElementsByClassName('URL-link')[--i].innerHTML=URL ;
 	for(i=document.getElementsByClassName('URL-share').length; i>0; ) document.getElementsByClassName('URL-share')[--i].href='https://wa.me/?text=*Leonardo%20Angaroni*%20%C2%B7%20_*Slides*_%0A'+encodeURIComponent(URL)+'%0AThis%20*Slides*%20are%20%60%60%60amazing%60%60%60%21%0A%0A&app_absent=0' ;
 	let URLQRCodeLength = document.getElementsByClassName('URL-QRCode').length;
-	//~ let URLQRCode = [];
-	//~ for(i=0; i<URLQRCodeLength; ) {
-		//~ URLQRCode[i] = new QRCode(document.getElementsByClassName('URL-QRCode')[i++], {
+	//~ // method 1 (generating) :
+		//~ <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js">< /script> <!-- under ( URL https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@master/LICENSE ) ( date 202211232243 ) -->
+		//~ let URLQRCode = [];
+		//~ for(i=0; i<URLQRCodeLength; ) {
+			//~ URLQRCode[i] = new QRCode(document.getElementsByClassName('URL-QRCode')[i++], {
+				//~ text: URL,
+				//~ width: 1024,
+				//~ height: 1024,
+				//~ colorDark: 'black',
+				//~ colorLight: 'rgba(235,256,245,.96)',
+				//~ correctLevel: QRCode.CorrectLevel.M,
+			//~ });
+		//~ };
+	//~ // method 2 (generating) :
+		//~ <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js">< /script>
+		//~ let tempDiv = document.createElement('div');
+		//~ let URLQRCode = new QRCode(tempDiv, {
 			//~ text: URL,
-			//~ width: 1024,
-			//~ height: 1024,
-			//~ colorDark: 'black',
-			//~ colorLight: 'rgba(235,256,245,.96)',
-			//~ correctLevel: QRCode.CorrectLevel.M,
+			//~ width: 128,
+			//~ height: 128,
+			//~ colorDark : "black",
+			//~ colorLight : "rgba(235,256,245,.96)",
+			//~ correctLevel : QRCode.CorrectLevel.M,
 		//~ });
-	//~ };
-	let tempDiv = document.createElement('div');
-	let URLQRCode = new QRCode(tempDiv, {
-		text: URL,
-		width: 128,
-		height: 128,
-		colorDark : "black",
-		colorLight : "rgba(235,256,245,.96)",
-		correctLevel : QRCode.CorrectLevel.M,
-	});
-	setTimeout(function(URLQRCodeLength,tempDiv) {
-		QRCodeImg = new Image();
-		QRCodeImg.src = QRCodeSrc = tempDiv.getElementsByTagName('img')[0].src;
-		if(isMobile) for(let i=0; i<URLQRCodeLength; ) document.getElementsByClassName('URL-QRCode')[i++].innerHTML += '<br /><div style="font-align:center;color:black;"><i>QR-Code is not generated for mobile devices :(<br />Try on your desktop PC!</i></div>' ;
-		else for(let i=0; i<URLQRCodeLength; ) {
-			document.getElementsByClassName('URL-QRCode')[i].innerHTML += QRCodeImg.outerHTML;
-			document.getElementsByClassName('URL-QRCode')[i].getElementsByTagName('img')[0].src = QRCodeSrc;
-			document.getElementsByClassName('URL-QRCode')[i++].getElementsByTagName('img')[0].style.display = 'block';
-		};
-	},10,URLQRCodeLength,tempDiv);
+		//~ setTimeout(function(URLQRCodeLength,tempDiv) {
+			//~ QRCodeImg = new Image();
+			//~ QRCodeImg.src = QRCodeSrc = tempDiv.getElementsByTagName('img')[0].src;
+			//~ if(isMobile) for(let i=0; i<URLQRCodeLength; ) document.getElementsByClassName('URL-QRCode')[i++].innerHTML += '<br /><div style="font-align:center;color:black;"><i>QR-Code is not generated for mobile devices :(<br />Try on your desktop PC!</i></div>' ;
+			//~ else for(let i=0; i<URLQRCodeLength; ) {
+				//~ document.getElementsByClassName('URL-QRCode')[i].innerHTML += QRCodeImg.outerHTML;
+				//~ document.getElementsByClassName('URL-QRCode')[i].getElementsByTagName('img')[0].src = QRCodeSrc;
+				//~ document.getElementsByClassName('URL-QRCode')[i++].getElementsByTagName('img')[0].style.display = 'block';
+			//~ };
+		//~ },10,URLQRCodeLength,tempDiv);
+	// method 3 (already generated) :
+		let URLQRCodeURL = URL.slice(0,17)+'/QR-Code/'+URL.slice(10,14)+'/misc2022→Slides prototype.png';
+		for(i=0; i<URLQRCodeLength; ) document.getElementsByClassName('URL-QRCode')[i++].innerHTML += '<img alt="QR-Code of “'+URLQRCodeURL+'„" src="'+URLQRCodeURL+'" style="display:block;" />' ;
 	document.querySelector('meta[property="og:url"]').content = URL;
 	document.querySelector('meta[property="og:image"]').content=document.querySelector('meta[property="og:image:url"]').content=document.getElementById('URL-link-href-ALpng-1').href=document.getElementById('URL-link-href-ALpng-2').href = URLALpng = URL.slice(0,17)+'/AL 300KB.png';
 };
