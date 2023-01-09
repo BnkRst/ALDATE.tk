@@ -140,6 +140,26 @@ body {
 	height: 14rem;
 }
 
+#pressedNote {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	font-size: 4em;
+	background: var(--colorScheme-main,white);
+	border-radius: 50%;
+	height: 2em;
+	width: 2em;
+	border: .2em solid var(--colorScheme-evidence,teal);
+	transform: translate(-50%,-50%);
+	z-index: 10000;
+} #pressedNote > div {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+
 </style>
 <script>
 
@@ -398,42 +418,110 @@ function mobileEnlargedFont() {
 };
 
 function keyDown(e) {
-	e = e.which||e.keyCode;
 	console.log(e);
+	e = e.which||e.keyCode;
+	for(let i=keyNote.length; i>0; ) if(keyNote[--i][0]==e) return ;
 	if(e==32) launchSoundContext() ; /**“space„*/
-	if(e==86||e==54) pressed({"type":'note',"note":'C',"scale":4}) ; /**V6*/
-	if(e==89) pressed({"type":'note',"note":'D',"scale":4}) ; /**Y*/
-	if(e==72) pressed({"type":'note',"note":'E',"scale":4}) ; /**H*/
-	if(e==85) pressed({"type":'note',"note":'F',"scale":4}) ; /**U*/
-	if(e==74) pressed({"type":'note',"note":'G',"scale":4}) ; /**J*/
-	if(e==77||e==57) pressed({"type":'note',"note":'A',"scale":4}) ; /**M9*/
-	if(e==79) pressed({"type":'note',"note":'B',"scale":4}) ; /**O*/
-	if(e==188||e==48) pressed({"type":'note',"note":'C',"scale":5}) ; /**,0*/
+	if(e==220) setPlay(e,{"type":'note',"note":'F#',"scale":2}) ; /**\*/
+	if(e==49) setPlay(e,{"type":'note',"note":'A',"scale":2}) ; /**1*/
+	if(e==81) setPlay(e,{"type":'note',"note":'B',"scale":2}) ; /**Q*/
+	if(e==50) setPlay(e,{"type":'note',"note":'C',"scale":3}) ; /**2*/
+	if(e==65) setPlay(e,{"type":'note',"note":'C#',"scale":3}) ; /**A*/
+	if(e==87) setPlay(e,{"type":'note',"note":'D',"scale":3}) ; /**W*/
+	if(e==90||e==51) setPlay(e,{"type":'note',"note":'D#',"scale":3}) ; /**Z3*/
+	if(e==83) setPlay(e,{"type":'note',"note":'E',"scale":3}) ; /**S*/
+	if(e==69) setPlay(e,{"type":'note',"note":'F',"scale":3}) ; /**E*/
+	if(e==88||e==52) setPlay(e,{"type":'note',"note":'F#',"scale":3}) ; /**X4*/
+	if(e==68) setPlay(e,{"type":'note',"note":'G',"scale":3}) ; /**D*/
+	if(e==82) setPlay(e,{"type":'note',"note":'G#',"scale":3}) ; /**R*/
+	if(e==67||e==53) setPlay(e,{"type":'note',"note":'A',"scale":3}) ; /**C5*/
+	if(e==70) setPlay(e,{"type":'note',"note":'A#',"scale":3}) ; /**F*/
+	if(e==84) setPlay(e,{"type":'note',"note":'B',"scale":3}) ; /**T*/
+	if(e==86||e==54) setPlay(e,{"type":'note',"note":'C',"scale":4}) ; /**V6*/
+	if(e==71) setPlay(e,{"type":'note',"note":'C#',"scale":4}) ; /**G*/
+	if(e==89) setPlay(e,{"type":'note',"note":'D',"scale":4}) ; /**Y*/
+	if(e==55||e==66) setPlay(e,{"type":'note',"note":'D#',"scale":4}) ; /**7*/
+	if(e==72) setPlay(e,{"type":'note',"note":'E',"scale":4}) ; /**H*/
+	if(e==85) setPlay(e,{"type":'note',"note":'F',"scale":4}) ; /**U*/
+	if(e==56||e==78) setPlay(e,{"type":'note',"note":'F#',"scale":4}) ; /**N8*/
+	if(e==74) setPlay(e,{"type":'note',"note":'G',"scale":4}) ; /**J*/
+	if(e==73) setPlay(e,{"type":'note',"note":'G#',"scale":4}) ; /**I*/
+	if(e==77||e==57) setPlay(e,{"type":'note',"note":'A',"scale":4}) ; /**M9*/
+	if(e==75) setPlay(e,{"type":'note',"note":'A#',"scale":4}) ; /**K*/
+	if(e==79) setPlay(e,{"type":'note',"note":'B',"scale":4}) ; /**O*/
+	if(e==188||e==48) setPlay(e,{"type":'note',"note":'C',"scale":5}) ; /**,0*/
+	if(e==76) setPlay(e,{"type":'note',"note":'C#',"scale":5}) ; /**L*/
+	if(e==80) setPlay(e,{"type":'note',"note":'D',"scale":5}) ; /**P*/
+	if(e==190||e==219) setPlay(e,{"type":'note',"note":'D#',"scale":5}) ; /**.'*/
+	if(e==192) setPlay(e,{"type":'note',"note":'E',"scale":5}) ; /**ò*/
+	if(e==186) setPlay(e,{"type":'note',"note":'F',"scale":5}) ; /**è*/
+	if(e==189||e==221) setPlay(e,{"type":'note',"note":'F#',"scale":5}) ; /**-ì*/
+	if(e==222) setPlay(e,{"type":'note',"note":'G',"scale":5}) ; /**à*/
+	if(e==187) setPlay(e,{"type":'note',"note":'G#',"scale":5}) ; /**+*/
+	if(e==8) setPlay(e,{"type":'note',"note":'A',"scale":5}) ; /**del*/
+	if(e==191) setPlay(e,{"type":'note',"note":'B',"scale":5}) ; /**ù*/
+};
+
+function keyUp(e) {
+	e = e.which||e.keyCode;
+	for(let i=keyNote.length; i>0; ) if(keyNote[--i][0]==e) stopPlay(i) ;
 };
 
 let soundContext = undefined;
-let noteCntr = [];
+let keyNote = [];
 const note = {
 	0: { "C":16.35, "C#":17.32, "Db":17.32, "D":18.35, "D#":19.45, "Eb":19.45, "E":20.60, "F":21.83, "F#":23.12, "Gb":23.12, "G":24.50, "G#":25.96, "Ab":25.96, "A":27.50, "A#":29.14, "Bb":29.14, "B":30.87 },
 	1: { "C":32.70, "C#":34.65, "Db":34.65, "D":36.71, "D#":38.89, "Eb":38.89, "E":41.20, "F":43.65, "F#":46.25, "Gb":46.25, "G":49.00, "G#":51.91, "Ab":51.91, "A":55.00, "A#":58.27, "Bb":58.27, "B":61.74 },
 	2: { "C":65.41, "C#":69.30, "Db":69.30, "D":73.42, "D#":77.78, "Eb":77.78, "E":82.41, "F":87.31, "F#":92.50, "Gb":92.50, "G":98.00, "G#":103.8, "Ab":103.8, "A":110.0, "A#":116.5, "Bb":116.5, "B":123.5 },
 	3: { "C":130.8, "C#":138.6, "Db":138.6, "D":146.8, "D#":155.6, "Eb":155.6, "E":164.8, "F":174.6, "F#":185.0, "Gb":185.0, "G":196.0, "G#":207.7, "Ab":207.7, "A":220.0, "A#":233.1, "Bb":233.1, "B":246.9 },
-	4: { "C":130.8, "C#":138.6, "Db":138.6, "D":146.8, "D#":155.6, "Eb":155.6, "E":164.8, "F":174.6, "F#":185.0, "Gb":185.0, "G":196.0, "G#":207.7, "Ab":207.7, "A":220.0, "A#":233.1, "Bb":233.1, "B":246.9 },
-					4	261.6	277.2	277.2	293.7	311.1	311.1	329.6						349.2	370.0	370.0	392.0	415.3	415.3	440.0	466.2	466.2	493.9
-					5	523.3	554.4	554.4	587.3	622.3	622.3	659.3						698.5	740.0	740.0	784.0	830.6	830.6	880.0	932.3	932.3	987.8
-					6	1047	1109	1109	1175	1245	1245	1319						1397	1480	1480	1568	1661	1661	1760	1865	1865	1976
-					7	2093	2217	2217	2349	2489	2489	2637						2794	2960	2960	3136	3322	3322	3520	3729	3729	3951
-					8	4186	4435	4435	4699	4978	4978	5274						5588	5920	5920	6272	6645	6645	7040	7459	7459	7902
-}
+	4: { "C":261.6, "C#":277.2, "Db":277.2, "D":293.7, "D#":311.1, "Eb":311.1, "E":329.6, "F":349.2, "F#":370.0, "Gb":370.0, "G":392.0, "G#":415.3, "Ab":415.3, "A":440.0, "A#":466.2, "Bb":466.2, "B":493.9 },
+	5: { "C":523.3, "C#":554.4, "Db":554.4, "D":587.3, "D#":622.3, "Eb":622.3, "E":659.3, "F":698.5, "F#":740.0, "Gb":740.0, "G":784.0, "G#":830.6, "Ab":830.6, "A":880.0, "A#":932.3, "Bb":932.3, "B":987.8 },
+	6: { "C":1047, "C#":1109, "Db":1109, "D":1175, "D#":1245, "Eb":1245, "E":1319, "F":1397, "F#":1480, "Gb":1480, "G":1568, "G#":1661, "Ab":1661, "A":1760, "A#":1865, "Bb":1865, "B":1976 },
+	7: { "C":2093, "C#":2217, "Db":2217, "D":2349, "D#":2489, "Eb":2489, "E":2637, "F":2794, "F#":2960, "Gb":2960, "G":3136, "G#":3322, "Ab":3322, "A":3520, "A#":3729, "Bb":3729, "B":3951 },
+	8: { "C":4186, "C#":4435, "Db":4435, "D":4699, "D#":4978, "Eb":4978, "E":5274, "F":5588, "F#":5920, "Gb":5920, "G":6272, "G#":6645, "Ab":6645, "A":7040, "A#":7459, "Bb":7459, "B":7902 },
+	"C": 261.6,
+	"C#": 277.2,
+	"Db": 277.2,
+	"D": 293.7,
+	"D#": 311.1,
+	"Eb": 311.1,
+	"E": 329.6,
+	"F": 349.2,
+	"F#": 370.0,
+	"Gb": 370.0,
+	"G": 392.0,
+	"G#": 415.3,
+	"Ab": 415.3,
+	"A": 440.0,
+	"A#": 466.2,
+	"Bb": 466.2,
+	"B": 493.9,
+};
+
 function launchSoundContext() {
-	soundContext = new AudioContext()
-	let o = soundContext.createOscillator();
-	o.type = "sine";
-	o.connect(soundContext.destination);
-	let g = soundContext.createGain();
-	o.connect(g);
-	g.connect(soundContext.destination);
-	o.start(0);
+	soundContext = new (window.AudioContext||window.webkitAudioContext)();
+};
+
+function setPlay(k,s){
+	let i = keyNote.push([k])-1;
+	if(s.type=='note') {
+		keyNote[i].push(soundContext.createOscillator()),
+		keyNote[i][1].type = 'sine';
+		let g = soundContext.createGain();
+		keyNote[i][1].connect(g);
+		keyNote[i][1].frequency.value = note[s.scale][s.note];
+			keyNote[i][1].setPeriodicWave( soundContext.createPeriodicWave([.025,.05,.04,.04,.04,.04,.01,.01,.01,0],[.025,.05,.04,.04,.04,.04,.01,.01,.01,0],{disableNormalization: true}) );
+		g.connect(soundContext.destination);
+		keyNote[i][1].start(0);
+		g.gain.exponentialRampToValueAtTime(.18,soundContext.currentTime+1);
+		document.getElementById('pressedNote').style.display = 'block';
+		document.getElementById('pressedNote').getElementsByTagName('div')[0].innerHTML = s.note+s.scale;
+	};
+};
+
+function stopPlay(i) {
+	keyNote[i][1].stop(soundContext.currentTime);
+	keyNote.splice(i,1);
 };
 
 window.onload = function() {
@@ -451,7 +539,7 @@ window.addEventListener('resize',mobileEnlargedFont);
 
 </script>
 </head>
-<body onkeydown="keyDown(event)">
+<body onkeydown="keyDown(event);" onkeyup="keyUp(event);">
 
 <div id="displayNoneDiv">
 	<link id="URL-link-href-ALpng-1" itemprop="thumbnailUrl" href="https://AL2023.tk/AL.png">
@@ -463,9 +551,191 @@ window.addEventListener('resize',mobileEnlargedFont);
 	<p>If it doesn't work, press <i>SPACE</i> to launch the program!</p>
 </div></div>
 
+<div id="pressedNote"><div></div></div>
+
 <div id="colorModeBtn" onclick="changeColorModeLD();"><div id="colorModeBtnLetter">·</div></div>
 
 <div id="loadingAdv">Loading…</div>
+
+<div id="keyboard">
+	<style>
+		#keyboard {
+			--keys-measure: 3.5rem;
+			position: fixed;
+			top: 80%;
+			left: 50%;
+			transform: translate(-50%,-50%) scale(.25);
+			background: var(--colorScheme-main,white);
+			border-radius: 1.2em;
+			border: .2em solid var(--colorScheme-evidence,teal);
+			text-align: center;
+			z-index: 10000;
+		} #keyboard {
+			display: flex;
+			flex-direction: row;
+		} #keyboard > div:nth-child(2) {
+			margin-right: calc( var(--keys-measure) * .35 );
+		} #keyboard > div {
+			display: flex;
+			flex-direction: column;
+			flex-wrap: nowrap;
+		} #keyboard div[name] {
+			height: var(--keys-measure);
+			width: var(--keys-measure);
+			border: .1rem solid rgba(122,122,250,.6);
+			font-size: 2rem;
+			text-align: center;
+			color: var(--colorScheme-second,black);
+		} #keyboard > div > div {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			justify-content: space-between;
+			align-items: center;
+			height: var(--keys-measure);
+		} #keyboard > div > div > div {
+			height: var(--keys-measure);
+			width: var(--keys-measure);
+		} #keyboard > div > div:nth-child(1) {
+			height: calc( var(--keys-measure) / 2 ) !important;
+			margin-bottom: calc( var(--keys-measure) * .2 );
+		} #keyboard > div > div:nth-child(1) > div {
+			height: calc( var(--keys-measure) / 2 ) !important;
+		}
+	</style>
+	<div>
+		<div>
+			<div name="esc">esc</div>
+			<div name="f1">f1</div>
+			<div name="f2">f2</div>
+			<div name="f3">f3</div>
+			<div name="f4">f4</div>
+			<div name="f5">f5</div>
+			<div name="f6">f6</div>
+			<div name="f7">f7</div>
+			<div name="f8">f8</div>
+			<div name="f9">f9</div>
+			<div name="f10">f10</div>
+			<div name="f11">f11</div>
+			<div name="f12">f12</div>
+			<div name="stamp">stamp</div>
+			<div name="canc">canc</div>
+		</div>
+		<div>
+			<div name="backslash" style="width:calc(var(--keys-measure)*.7);">\</div>
+			<div name="1">1</div>
+			<div name="2">2</div>
+			<div name="3">3</div>
+			<div name="4">4</div>
+			<div name="5">5</div>
+			<div name="6">6</div>
+			<div name="7">7</div>
+			<div name="8">8</div>
+			<div name="9">9</div>
+			<div name="0">0</div>
+			<div name="question">?</div>
+			<div name="ì">ì</div>
+			<div name="backspace" style="width:calc(var(--keys-measure)*1.8);">backspace</div>
+		</div>
+		<div>
+			<div name="tab" style="width:calc(var(--keys-measure)*1.2);">tab</div>
+			<div name="Q">Q</div>
+			<div name="W">W</div>
+			<div name="E">E</div>
+			<div name="R">R</div>
+			<div name="T">T</div>
+			<div name="Y">Y</div>
+			<div name="U">U</div>
+			<div name="I">I</div>
+			<div name="O">O</div>
+			<div name="P">P</div>
+			<div name="è">è</div>
+			<div name="+">+</div>
+			<div name="ù" style="width:calc(var(--keys-measure)*1.3);">ù</div>
+		</div>
+		<div>
+			<div name="block-caps" style="width:calc(var(--keys-measure)*1.6);">block-caps</div>
+			<div name="A">A</div>
+			<div name="S">S</div>
+			<div name="D">D</div>
+			<div name="F">F</div>
+			<div name="G">G</div>
+			<div name="H">H</div>
+			<div name="J">J</div>
+			<div name="K">K</div>
+			<div name="L">L</div>
+			<div name="ò">ò</div>
+			<div name="à">à</div>
+			<div name="enter" style="width:calc(var(--keys-measure)*1.9);">enter</div>
+		</div>
+		<div>
+			<div name="shift-lt" style="width:calc(var(--keys-measure)*2.2);">shift-lt</div>
+			<div name="Z">Z</div>
+			<div name="X">X</div>
+			<div name="C">C</div>
+			<div name="V">V</div>
+			<div name="B">B</div>
+			<div name="N">N</div>
+			<div name="M">M</div>
+			<div name=",">,</div>
+			<div name=".">.</div>
+			<div name="-">-</div>
+			<div name="shift-rt" style="width:calc(var(--keys-measure)*2.5);">shift-rt</div>
+		</div>
+		<div>
+			<div name="ctrl">ctrl</div>
+			<div name="fn">fn</div>
+			<div name="meta">meta</div>
+			<div name="alt">alt</div>
+			<div name="space" style="width:calc(var(--keys-measure)*5.71);">space</div>
+			<div name="alt-gr">alt-gr</div>
+			<div name="min">&lt;</div>
+			<div name="arrow-lt">←</div>
+			<div>
+				<div name="arrow-top" style="height:calc(var(--keys-measure)*.45);">↑</div>
+				<div name="arrow-btm" style="height:calc(var(--keys-measure)*.45);">↓</div>
+			</div>
+			<div name="arrow-rt">→</div>
+		</div>
+	</div>
+	<div>
+		<div>
+			<div name="home">home</div>
+			<div name="end">end</div>
+			<div name="page-up">page↑</div>
+			<div name="page-down">page↓</div>
+		</div>
+		<div>
+			<div name="bloc-num">bloc num</div>
+			<div name="slash">/</div>
+			<div name="asterisk">*</div>
+			<div name="less">-</div>
+		</div>
+		<div>
+			<div name="n7">7</div>
+			<div name="n8">8</div>
+			<div name="n9">9</div>
+			<div name="plus" style="height:calc(var(--keys-measure)*1.93);transform:translateY(24.5%);">+</div>
+		</div>
+		<div>
+			<div name="n4">4</div>
+			<div name="n5">5</div>
+			<div name="n6">6</div>
+			<div style="visibility:hidden;"></div>
+		</div>
+		<div>
+			<div name="n1">1</div>
+			<div name="n2">2</div>
+			<div name="n3">3</div>
+			<div name="nEnter" style="height:calc(var(--keys-measure)*1.93);transform:translateY(24.5%);">enter</div>
+		</div>
+		<div>
+			<div name="n0" style="width:calc(var(--keys-measure)*2.07);">0</div>
+			<div name="dot">.</div>
+			<div style="visibility:hidden;"></div>
+		</div>
+	</div>
+</div>
 
 </body>
 </html>
