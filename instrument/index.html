@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-	<meta property="og:url" content="https://AL2023.tk/Peer-to-Peer/index.html" />
+	<meta property="og:url" content="https://AL2023.tk/instrument/index.html" />
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Peer to Peer - Angaroni Leonardo" />
-	<title>Angaroni Leonardo - Peer to Peer</title>
-	<meta property="og:description" content="Hai bisogno di aiuto a scuola? È gratis, tanto vale provare!" />
-	<meta name="description" content="Hai bisogno di aiuto a scuola? È gratis, tanto vale provare!" />
+	<meta property="og:title" content="Instrument - Angaroni Leonardo" />
+	<title>Angaroni Leonardo - Instrument</title>
+	<meta property="og:description" content="The most real Instrument of real instruments, Angaroni Leonardo." />
+	<meta name="description" content="The most real Instrument of real instruments, Angaroni Leonardo." />
 	<link rel="icon" href="../../logo.png">
 	<meta property="og:image" content="https://AL2023.tk/AL%20300KB.png" itemprop="image" />
 	<meta property="og:image:url" content="https://AL2023.tk/AL%20300KB.png" itemprop="image" />
@@ -15,7 +15,8 @@
 	<meta property="og:image:height" content="425" />
 	<meta property="og:image:alt" content="Angaroni Leonardo's web-site logo" />
 	<link rel="alternate icon" class="js-site-favicon" type="image/png" href="https://AL2023.tk/AL%20300KB.png">
-	<meta property="og:locale" content="it_IT" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:locale:alternate" content="en_GB" />
 	<meta property="og:locale:alternate" content="it_IT" />
 <style>
 
@@ -30,7 +31,6 @@
 	--colorScheme-bkg: lightgray;
 	--colorScheme-selection: teal;
 	--colorScheme-selectionFont: white;
-	--CS-sizeScale: 1.35914091423; /* math( e/2 math) */
 }
 
 ::selection {
@@ -43,6 +43,7 @@
 
 * {
 	color: var(--colorScheme-second,black);
+	font-size: calc( 99.980566681% * var(--CS-sizeScale,1.35914091423) );
 	transition-duration: 1400ms;
 	tab-size: 4;
 }
@@ -92,48 +93,6 @@ body {
 	max-width: calc( 96% / var(--scale) );
 	/* for height I'll have to insert scroll-bar if height>100% */
 	transform-origin: center;
-} #screenBox * {
-} #screenBox > * {
-	margin: .82rem .53rem;
-	/*margin-left: auto;
-	margin-right: auto;*/
-} #screenBox img {
-	max-width: 80vw;
-	max-height: 50vh;
-	margin: inherit;
-	border-radius: .6rem;
-} #screenBox ol {
-	padding-left: 1rem;
-} #screenBox ol > li {
-	padding-left: .716rem;
-	padding-right: .176rem;
-	margin: 1.2rem 0px;
-	border-top: 1.38px solid var(--colorScheme-bkg,lightgray) !important;
-	border-right: 1.38px solid var(--colorScheme-bkg,lightgray) !important;
-	border-radius: .4rem;
-	text-align: right;
-} #screenBox ul {
-	list-style-type: "📚"; /*⎆, ⚙️, ✲, ❂, ❃, 📚, ✬*/
-	padding-left: 1rem;
-} #screenBox ul > li {
-	padding-left: .716rem;
-	padding-right: .176rem;
-	margin: 1.2rem 0px;
-	border-top: 1.38px solid var(--colorScheme-bkg,lightgray) !important;
-	border-right: 1.38px solid var(--colorScheme-bkg,lightgray) !important;
-	border-radius: .4rem;
-	text-align: right;
-} #screenBox pre {
-	width: max-content;
-	text-align: left;
-	font-size: .5rem;
-	border: 1.38px solid var(--colorScheme-bkg,lightgray);
-	border-right-width: 0px;
-	border-left-width: 0px;
-	border-radius: .4rem;
-	margin-right: auto;
-	margin-left: auto;
-	padding: .5rem .6rem;
 }
 
 #colorModeBtn {
@@ -153,168 +112,12 @@ body {
 	          user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 } #colorModeBtn:active {
 	transform: rotate(1turn);
-}
-
-#colorModeBtnLetter {
+} #colorModeBtnLetter {
 	position: absolute;
 	left: 50%;
 	top: 50%;
+	font-size: 1rem;
 	transform: translate(-50%,-50%);
-}
-
-#slideNumb {
-	position: fixed;
-	bottom: .34rem;
-	right: .34rem;
-	background: var(--colorScheme-bkg);
-	z-index: 256;
-	-webkit-touch-callout: none; /* iOS Safari */
-	  -webkit-user-select: none; /* Safari */
-	   -khtml-user-select: none; /* Konqueror HTML */
-	     -moz-user-select: none; /* Old versions of Firefox */
-	      -ms-user-select: none; /* Internet Explorer/Edge */
-	          user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
-} #slideNumb > div {
-	position: relative;
-	margin: .12rem;
-	font-family: 'Syne Mono', monospace;
-}
-
-#progressBar {
-	position: fixed;
-	bottom: 0px;
-	left: 0px;
-	height: .2rem;
-	width: 100%;
-	z-index: 128;
-} #progressBar > div {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	height: 100%;
-	width: 100%;
-	background: var(--colorScheme-evidence,teal);
-}
-
-#swipeAnim {
-	position: fixed;
-	top: 50%;
-	left: 100%;
-	width: 4.8vh;
-	height: 4.8vh;
-	background: rgba(230,230,230,.37);
-	border-radius: 47.7%;
-	transform: translate(-50%,-50%);
-	-webkit-animation:
-		all 1400ms,
-		switchAnim 5000ms cubic-bezier(0.75, 0.03, 0.72, 1.2) infinite;
-} #swipeAnim > div {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	font-size: 4.8vh;
-	transform: translate(-50%,-50%);
-} @-webkit-keyframes switchAnim {
-	0% {
-		left: calc( 100% - 1.5rem );
-	}
-	50% {
-		left: calc( 100% + 1.5rem );
-	}
-	100% {
-		left: calc( 100% - 1.5rem );
-	}
-}
-
-#swipeAnimHand {
-	position: fixed;
-	top: 90%;
-	left: 50%;
-	width: 4.8vh;
-	height: 4.8vh;
-	background: rgba(230,230,230,.37);
-	border-radius: 47.7%;
-	transform: translate(-50%,-50%) scale(1.5);
-	-webkit-animation:
-		all 1400ms,
-		switchAnimHand 5000ms linear infinite;
-} #swipeAnimHand > div:nth-child(2) {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	font-size: 4.8vh;
-	-moz-transform: translate(-50%,-50%) scale(-1);
-	-webkit-transform: translate(-50%,-50%) scale(-1);
-	-o-transform: translate(-50%,-50%) scale(-1);
-	-ms-transform: translate(-50%,-50%) scale(-1);
-	transform: translate(-50%,-50%) scale(-1);
-} @-webkit-keyframes switchAnimHand {
-	0% {
-		left: calc( 50% + 27% );
-	}
-	10% {
-		left: calc( 50% + 26.3% );
-	}
-	20% {
-		left: calc( 50% + 25.4% );
-	}
-	30% {
-		left: calc( 50% + 21.2% );
-	}
-	40% {
-		left: calc( 50% + 10% );
-	}
-	50% {
-		left: calc( 50% - 7% );
-	}
-	60% {
-		left: calc( 50% - 26% );
-	}
-	70% {
-		left: calc( 50% - 27% );
-	}
-	80% {
-		left: calc( 50% - 9% );
-	}
-	90% {
-		left: calc( 50% + 9% );
-	}
-	100% {
-		left: calc( 50% + 27% );
-	}
-} #swipeAnimHand > div:nth-child(1) {
-	position: absolute;
-	top: -5%;
-	left: 31%;
-	font-size: 3.15vh;
-	-moz-transform: translate(-50%,-50%);
-	-webkit-transform: translate(-50%,-50%);
-	-o-transform: translate(-50%,-50%);
-	-ms-transform: translate(-50%,-50%);
-	transform: translate(-50%,-50%);
-	-webkit-animation: switchAnimClick 5000ms cubic-bezier(1,.04,1,-.4) infinite;
-} @-webkit-keyframes switchAnimClick {
-	0% {
-		-moz-transform: translate(-50%,-50%) scale(1);
-		-webkit-transform: translate(-50%,-50%) scale(1);
-		-o-transform: translate(-50%,-50%) scale(1);
-		-ms-transform: translate(-50%,-50%) scale(1);
-		transform: translate(-50%,-50%) scale(1);
-	}
-	50% {
-		-moz-transform: translate(-50%,-50%) scale(0);
-		-webkit-transform: translate(-50%,-50%) scale(0);
-		-o-transform: translate(-50%,-50%) scale(0);
-		-ms-transform: translate(-50%,-50%) scale(0);
-		transform: translate(-50%,-50%) scale(0);
-	}
-	100% {
-		-moz-transform: translate(-50%,-50%) scale(1);
-		-webkit-transform: translate(-50%,-50%) scale(1);
-		-o-transform: translate(-50%,-50%) scale(1);
-		-ms-transform: translate(-50%,-50%) scale(1);
-		transform: translate(-50%,-50%) scale(1);
-	}
 }
 
 .URL-QRCode {
@@ -337,113 +140,13 @@ body {
 	height: 14rem;
 }
 
-.CS-header {
-	color: var(--colorScheme-title,red);
-	font-size: 2.62rem;
-} .CS-evidence {
-	color: var(--colorScheme-evidence,red);
-} .CS-ref {
-	color: var(--colorScheme-bkg);
-	font-size: calc( 27.2925764192% * var(--CS-sizeScale,1.35914091423) );
-} .CS-sep {
-	visibility: hidden;
-    display: inline-block;
-    overflow: hidden;
-    text-indent: -1e9rem;
-} .CS-sep::after {
-	visibility: visible;
-    float: left;
-	content: '·•·';
-    text-indent: 0;
-} .CS-dataSheet {
-	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	align-content: center;
-	justify-content: space-around;
-	align-items: center;
-	gap: .4rem;
-	padding: .7rem .9rem;
-	border: 1.6px solid var(--colorScheme-bkg,lightgray);
-	border-radius: .67rem;
-	font-size: calc( 75.7036254451% * var(--CS-sizeScale,1.35914091423) ); /* CS-3_8 */
-	width: max-content;
-	margin: 1.22rem !important;
-	margin-right: auto !important;
-	margin-left: auto !important;
-} .CS-dataSheet > div {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	align-content: center;
-	align-items: center;
-	justify-content: space-between;
-	gap: .78rem;
-	width: 100%;
-} .CS-dataSheet > div > div:nth-child(1):after {
-	content: ":";
-	font-size: 86%;
-	opacity: 92%;
-} .CS-dataSheet > div > div:nth-child(n+2) {
-	font-size: 86%;
-	text-align: right;
-} .CS-dataSheet > div > div:nth-child(n+2) > div, .CS-dataSheet > div > div:nth-child(n+2) > span {
-	font-size: 62%;
-	opacity: 62%;
-} .CS-imgText {
-	bottom: 0px;
-	align-items: center;
-	height: 1em;
-	margin: unset !important;
-} .CS-link {
-	cursor: pointer;
-} .CS-link::before {
-	content: '👉';
-} .CS-btn {
-	width: min-content;
-	margin-left: auto !important;
-	margin-right: auto !important;
-	border: .1rem solid var(--colorScheme-second-opacity,rgba(0,0,0,.37));
-	padding: 0rem .4rem;
-	border-radius: .689rem;
-} .CS-q::before, .CS-qt::before {
-	content: '“';
-} .CS-q::after {
-	content: '„';
-} .CS-qt::after, .CS-qtm::after {
-	content: '”';
-} .CS-qtm::before {
-	content: '‟';
-}
-
-/* font-size: math( (((2e)^v)-.5)/1.832 math); */
-.CS-1 {
-	font-size: calc( 269.46308171% * var(--CS-sizeScale,1.35914091423) );
-} .CS-7_8 {
-	font-size: calc( 212.857897785% * var(--CS-sizeScale,1.35914091423) );
-} .CS-3_4 {
-	font-size: calc( 167.049969985% * var(--CS-sizeScale,1.35914091423) );
-} .CS-5_8 {
-	font-size: calc( 129.979756554% * var(--CS-sizeScale,1.35914091423) );
-} .CS-1_2 {
-	font-size: calc( 99.980566681% * var(--CS-sizeScale,1.35914091423) );
-} .CS-3_8 {
-	font-size: calc( 75.7036254451% * var(--CS-sizeScale,1.35914091423) );
-} .CS-1_4 {
-	font-size: calc( 56.0574323892% * var(--CS-sizeScale,1.35914091423) );
-} .CS-1_8 {
-	font-size: calc( 40.1586872449% * var(--CS-sizeScale,1.35914091423) );
-} .CS-0 {
-	font-size: calc( 27.2925764192% * var(--CS-sizeScale,1.35914091423) );
-}
-
 </style>
 <script>
 
 var CSSRoot = document.querySelector(':root');
+//~ var CSSAll = document.querySelector('*');
+var CSSHTML = document.querySelector('html');
 let colorMode = undefined;
-let slideIndex = undefined;
-let slideLength = undefined;
 let URL = undefined;
 let QRCodeSrc = undefined;
 let QRCodeImg = undefined;
@@ -590,11 +293,16 @@ const isDevice = {
 	battery: function() { return navigator.getBattery(); },
 }; /** Angaroni Leonardo - date 202301061655 */
 
+function sleep(t) {
+	let d = new Date().getTime();
+	while(new Date().getTime()<d+t) { };
+}; /** Angaroni Leonardo - date 202301061804 */
+
 function setURLRefs() {
 	URL = window.location.href;
 	let i = document.getElementsByClassName('URL-link').length;
 	for( ; i>0; ) document.getElementsByClassName('URL-link')[--i].innerHTML=URL ;
-	for(i=document.getElementsByClassName('URL-share').length; i>0; ) document.getElementsByClassName('URL-share')[--i].href='https://wa.me/?text=*Leonardo%20Angaroni*%20%C2%B7%20_*Tutor*%20*Peer%20to%20Peer*_%0A'+encodeURIComponent(URL)+'%0A%0A&app_absent=0' ;
+	for(i=document.getElementsByClassName('URL-share').length; i>0; ) document.getElementsByClassName('URL-share')[--i].href='https://wa.me/?text=*Leonardo%20Angaroni*%20%C2%B7%20_*Slides*_%0A'+encodeURIComponent(URL)+'%0AThis%20*Slides*%20are%20%60%60%60amazing%60%60%60%21%0A%0A&app_absent=0' ;
 	let URLQRCodeLength = document.getElementsByClassName('URL-QRCode').length;
 	let URLQRCodeURL = URL.slice(-10)=='index.html'?URL.substring(0,URL.length-10):URL;
 	URLQRCodeURL += URL.slice(-1)=='/'?'QR-Code.png':'/QR-Code.png';
@@ -603,54 +311,9 @@ function setURLRefs() {
 	document.querySelector('meta[property="og:image"]').content=document.querySelector('meta[property="og:image:url"]').content=document.getElementById('URL-link-href-ALpng-1').href=document.getElementById('URL-link-href-ALpng-2').href = URLALpng = URL.slice(0,17)+'/AL 300KB.png';
 };
 
-document.addEventListener('touchstart',touchStart,false);
-document.addEventListener('touchmove',touchMove,false);
-document.addEventListener('touchend',touchEnd,false); 
-
-const mt=1000/10, mS=.38, MS=14;
-let Px=Py=Δx=Δy=Pt = null;
-
 function targetContainsArrayE(t,arrayE) {
 	for(let i=arrayE.length-1; i>=0; i--) if(t.classList.contains(arrayE[i])) return true ;
 	return false;
-};
-
-function touchStart(e) {
-	let touchStartTarget = e.target;
-	if(targetContainsArrayE(touchStartTarget,['swipBlock','handle','drag-ruble'])) return ;
-	Pt = Date.now();
-	Px = e.touches[0].clientX;
-	Py = e.touches[0].clientY;
-	Δx=Δy = 0;
-};
-
-function touchMove(e) {
-	if(!Px||!Py) return ;
-	Δx = e.touches[0].clientX;
-	Δy = e.touches[0].clientY;
-};
-
-function touchEnd() {
-	Δx -= Px;
-	Δy -= Py;
-	let Δt=Math.abs(Date.now()-Pt), Δs=Math.sqrt(Δx**2+Δy**2), S=Δs/Δt;
-	if(S>=mS&&S<=MS&&mt<=Δt) // speed check
-		if(0==Δx&&0==Δy) console.log('swipe Δx=Δy=null trashhold') // resultant 0
-		else if(Math.abs(Δx)>Math.abs(Δy)*2) // Horizontal
-			if(Δx>0) slidePrev() ; // Right
-			else slideNext() ; // Left
-		else if(Math.abs(Δy)>Math.abs(Δx)*2) // Vertical
-			if(Δy>0) console.log('DOWN') ; // Down
-			else console.log('UP') ; // Up
-		else // Diagonal
-			if(Δx>0)
-				if(Δy>0) console.log('DOWN-RIGHT') ; // Down-Right
-				else console.log('UP-RIGHT') ; // Up-Right
-			else
-				if(Δy>0) console.log('DOWN-LEFT') ; // Down-Left
-				else console.log('UP-LEFT') ; // Up-Left
-	else console.log('swipe speed trashhold') ; // too fast, too slow or too quick
-	Px=Py=Pt = null;
 };
 
 function setColorScheme() {
@@ -718,62 +381,12 @@ function changeColorModeLD() {
 	setColorScheme();
 };
 
-function displaySlideN(n) {
-	if(0>n||n>slideLength) {
-		console.log('Err: slide index out of range!');
-		return 'Err: slide index out of range!';
-	};
-	document.querySelector('#screenBox').innerHTML = document.querySelectorAll('#slideSet > div')[n].innerHTML;
-	document.querySelector('#progressBar > div').style.width = n/(slideLength-1)*99.9+.1+'%';
-	document.querySelector('#slideNumb > div').innerHTML = n;
-	localStorage.slideIndex202212291807 = slideIndex;
-	console.log('Displayed slide: "'+n+'"');
-	if(typeof SwipeAnim!=='undefined') rmvSwipeAnim() ;
-	if(typeof SwipeAnimHand!=='undefined') rmvSwipeAnimHand() ;
-};
-
-function slideNext() {
-	if(slideIndex==undefined) displaySlideN(slideIndex=0) ;
-	else if(slideIndex<slideLength-1) displaySlideN(++slideIndex) ;
-};
-
-function slidePrev() {
-	if(slideIndex==undefined) displaySlideN(slideIndex=0) ;
-	else if(0<slideIndex) displaySlideN(--slideIndex) ;
-};
-
-function countSlides() {
-	slideLength = document.querySelectorAll('#slideSet > div').length;
-};
-
 let writeinLS = false;
 function launchAndRestoreLS() {
-	if (!localStorage||typeof(Storage)=="undefined") return ;
+	if(!localStorage||typeof(Storage)=="undefined"||typeof Storage=='undefined') return ;
 	writeinLS = true;
 	colorMode = localStorage.colorMode;
-	slideIndex = localStorage.slideIndex202212291807;
-};typeof elem !== 'undefined'
-
-function setSwipeAnim() {
-	SwipeAnim = true;
-	document.body.innerHTML += '<div id="swipeAnim"><div>⇠</div></div>';
-};
-
-function rmvSwipeAnim() {
-	delete SwipeAnim;
-	document.querySelector('#swipeAnim').style.transform += 'scale(0)';
-	setTimeout(function() { document.querySelector('#swipeAnim').outerHTML='' },1400);
-};
-
-function setSwipeAnimHand() {
-	SwipeAnimHand = true;
-	document.body.innerHTML += '<div id="swipeAnimHand"><div>💥</div><div>👇</div></div>';
-};
-
-function rmvSwipeAnimHand() {
-	delete SwipeAnimHand;
-	document.querySelector('#swipeAnimHand').style.transform += 'scale(0)';
-	setTimeout(function() { document.querySelector('#swipeAnimHand').outerHTML='' },1400);
+	//~ slideIndex = localStorage.slideIndex202212192102;
 };
 
 function mobileEnlargedFont() {
@@ -786,21 +399,49 @@ function mobileEnlargedFont() {
 
 function keyDown(e) {
 	e = e.which||e.keyCode;
-	if(e==37||e==80||e==65||e==66) slidePrev();
-	if(e==39||e==32||e==68||e==78) slideNext();
-	if(e==36) displaySlideN(slideIndex=0) ;
-	if(e==35) displaySlideN(slideIndex=slideLength-1) ;
+	console.log(e);
+	if(e==32) launchSoundContext() ; /**“space„*/
+	if(e==86||e==54) pressed({"type":'note',"note":'C',"scale":4}) ; /**V6*/
+	if(e==89) pressed({"type":'note',"note":'D',"scale":4}) ; /**Y*/
+	if(e==72) pressed({"type":'note',"note":'E',"scale":4}) ; /**H*/
+	if(e==85) pressed({"type":'note',"note":'F',"scale":4}) ; /**U*/
+	if(e==74) pressed({"type":'note',"note":'G',"scale":4}) ; /**J*/
+	if(e==77||e==57) pressed({"type":'note',"note":'A',"scale":4}) ; /**M9*/
+	if(e==79) pressed({"type":'note',"note":'B',"scale":4}) ; /**O*/
+	if(e==188||e==48) pressed({"type":'note',"note":'C',"scale":5}) ; /**,0*/
+};
+
+let soundContext = undefined;
+let noteCntr = [];
+const note = {
+	0: { "C":16.35, "C#":17.32, "Db":17.32, "D":18.35, "D#":19.45, "Eb":19.45, "E":20.60, "F":21.83, "F#":23.12, "Gb":23.12, "G":24.50, "G#":25.96, "Ab":25.96, "A":27.50, "A#":29.14, "Bb":29.14, "B":30.87 },
+	1: { "C":32.70, "C#":34.65, "Db":34.65, "D":36.71, "D#":38.89, "Eb":38.89, "E":41.20, "F":43.65, "F#":46.25, "Gb":46.25, "G":49.00, "G#":51.91, "Ab":51.91, "A":55.00, "A#":58.27, "Bb":58.27, "B":61.74 },
+	2: { "C":65.41, "C#":69.30, "Db":69.30, "D":73.42, "D#":77.78, "Eb":77.78, "E":82.41, "F":87.31, "F#":92.50, "Gb":92.50, "G":98.00, "G#":103.8, "Ab":103.8, "A":110.0, "A#":116.5, "Bb":116.5, "B":123.5 },
+	3: { "C":130.8, "C#":138.6, "Db":138.6, "D":146.8, "D#":155.6, "Eb":155.6, "E":164.8, "F":174.6, "F#":185.0, "Gb":185.0, "G":196.0, "G#":207.7, "Ab":207.7, "A":220.0, "A#":233.1, "Bb":233.1, "B":246.9 },
+	4: { "C":130.8, "C#":138.6, "Db":138.6, "D":146.8, "D#":155.6, "Eb":155.6, "E":164.8, "F":174.6, "F#":185.0, "Gb":185.0, "G":196.0, "G#":207.7, "Ab":207.7, "A":220.0, "A#":233.1, "Bb":233.1, "B":246.9 },
+					4	261.6	277.2	277.2	293.7	311.1	311.1	329.6						349.2	370.0	370.0	392.0	415.3	415.3	440.0	466.2	466.2	493.9
+					5	523.3	554.4	554.4	587.3	622.3	622.3	659.3						698.5	740.0	740.0	784.0	830.6	830.6	880.0	932.3	932.3	987.8
+					6	1047	1109	1109	1175	1245	1245	1319						1397	1480	1480	1568	1661	1661	1760	1865	1865	1976
+					7	2093	2217	2217	2349	2489	2489	2637						2794	2960	2960	3136	3322	3322	3520	3729	3729	3951
+					8	4186	4435	4435	4699	4978	4978	5274						5588	5920	5920	6272	6645	6645	7040	7459	7459	7902
+}
+function launchSoundContext() {
+	soundContext = new AudioContext()
+	let o = soundContext.createOscillator();
+	o.type = "sine";
+	o.connect(soundContext.destination);
+	let g = soundContext.createGain();
+	o.connect(g);
+	g.connect(soundContext.destination);
+	o.start(0);
 };
 
 window.onload = function() {
 	checkColorMode();
 	launchAndRestoreLS();
-	countSlides();
-	displaySlideN(slideIndex?slideIndex:slideIndex=0);
 	mobileEnlargedFont();
+	launchSoundContext();
 	document.getElementById('loadingAdv').outerHTML = '';
-	if(slideIndex!=slideLength-1) if(slideIndex!=0) setSwipeAnim() ;
-	else setSwipeAnimHand() ;
 	setURLRefs();
 };
 
@@ -817,60 +458,16 @@ window.addEventListener('resize',mobileEnlargedFont);
 	<span itemprop="thumbnail" itemscope itemtype="http://schema.org/ImageObject"><link id="URL-link-href-ALpng-2" itemprop="url" href="https://AL2023.tk/AL.png"></span>
 </div>
 
-<div id="slideSet">
-	<div>
-		<div class="CS-5_8">Sono un <i><span class="CS-evidence">Tutor</span> Peer to Peer</i> e mi offro <i>volontario</i> per <i>aiutarvi</i> in <i style="text-decoration:underline dotted;">qualsiasi argomento</i> delle seguenti <span class="CS-evidence">materie scientifiche</span>:</div>
-		<div class="CS-5_8"><span class="CS-header">INFORMATICA</span>, <span class="CS-header">MATEMATICA</span>, <span class="CS-header">SCIENZE</span> e <span class="CS-header">FISICA</span>.</div>
-		<div class="CS-3_8" style="text-decoration:underline wavy;">Se per qualche ragione doveste essere assenti avvisatemi prima.</div>
-		<div class="CS-1_2">Per <i>dubbi</i> o <i>perplessità</i> <span class="CS-evidence">scrivetemi pure</span>:<br /><a class="CS-link CS-btn" href="https://wa.me/393881183102?text=*_Ciao_*%2C%20ho%20visto%20che%20sei%20_Tutor_%20a%20*Peer%20to%20Peer*%3B%20Volevo%20sapere%3A%0A%0A&amp;app_absent=0&amp;app_absent=0"><span class="CS-evidence" style="text-decoration:underline;">+39 388 118 3102</span> <img alt="WhatsApp" class="CS-imgText" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/800px-WhatsApp.svg.png" style="transform:translateY(16.13%);"></a></div>
-		<div class="CS-header">Angaroni Leonardo</div>
-		<div class="CS-1_8">⇠ <img alt="👉" class="CS-imgText" src="https://static-00.iconduck.com/assets.00/swipe-left-emoji-409x512-i68ih6wb.png"> Swipe for MORE <img alt="👉" class="CS-imgText" src="https://static-00.iconduck.com/assets.00/swipe-left-emoji-409x512-i68ih6wb.png"> ⇠</div>
-	</div>
-	<div>
-		<div class="CS-5_8"><i>Avete difficoltà a scuola?</i></div>
-		<div class="CS-5_8"><i>Siete ai primi anni delle superiori?</i></div>
-		<div class="CS-3_4">Segnatevi a <span class="CS-header">Peer to Peer</span>!</div>
-		<div class="CS-1_2">È un'attività organizzata dalla <i>nostra scuola</i> e totalmente <span class="CS-evidence">gratuita</span> per <span class="CS-evidence">essere aiutati</span> negli <i>argomenti più ostici</i>.<br />Per richiedere un'ora con me <span style="text-decoration:underline dotted;">basta porre il proprio nome nel raccoglitore in <span class="CS-evidence">ufficio professori</span> sotto il nome <span style="font-size:1.25em;">“<span class="CS-header" style="font-size:1em;">Leonardo Angaroni</span>„</span></span>.</div>
-		<div class="CS-5_8"><i>Facile, no?</i></div>
-	</div>
-	<div>
-		<div class="CS-1_2">Frequento la classe <span class="CS-evidence">5Ds</span> del <span class="CS-evidence">Liceo Scientifico</span> al <span class="CS-evidence">Marie Curie</span>;</div>
-		<div class="CS-1_2">Da sempre ho una grande <span class="CS-evidence">passione</span> per le <span class="CS-evidence">materie scientifiche</span> e la loro <i><span class="CS-evidence">spiegazione</span> in maniera chiara e comprensibile</i>.</div>
-		<div class="CS-1_2">Da sempre ho grande interesse anche per la <span class="CS-evidence">matematica</span>, ho vinto diverse gare.</div>
-		<div class="CS-1_2">Ho una grande passione anche per la <span class="CS-evidence">fisica</span> e le <span class="CS-evidence">scienze</span> in quanto le vedo come strumento dell'uomo atto alla <i>comprensione</i> di se stesso e della realtà che lo circonda.</div>
-		<div class="CS-1_2">Oltre a queste discipline, programmo da quando sono piccolo e conosco svariati linguaggi di programmazione: <i>JavaScript</i>, <i>CSS</i>, <i>HTML</i>, <i>Python</i>, <i>C</i>, <i>C++</i>, <i>SQL</i>, <i>LaTeX</i>, <i>Flowgorithm</i>, <i>BASIC</i>, <i>Logo Turtle</i>, <i>Bash</i>, <i>Java</i>, …</div>
-	</div>
-	<div>
-		<div class="CS-1_2">Posso aiutarvi in <i style="text-decoration:underline dotted;">qualsiasi argomento</i> di <span class="CS-evidence">matematica</span> e <span class="CS-evidence">fisica</span>;</div>
-		<div class="CS-1_2">Qualsiasi argomento di <span class="CS-evidence">scienze</span>, <span class="CS-evidence">scienze naturali</span>, <span class="CS-evidence">scienze della terra</span>, <span class="CS-evidence">chimica</span>, <span class="CS-evidence">mineralogia</span>, <span class="CS-evidence">biologia</span> del <span class="CS-evidence">liceo</span> e</div>
-		<div class="CS-1_2">Oltre a queste materie, sono particolarmente abile a spiegare <i style="text-decoration:underline dashed;">qualsiasi argomento</i> d'<span class="CS-evidence">informatica</span>: dai <i>numeri binari, ottali ed esadecimali</i> al funzionamento delle <i>reti</i> passando per l'<i>algebra Booleana</i>, <i>porte logiche</i> e <i>composizione del computer</i>;</div>
-		<div class="CS-3_8"><i>In particolar modo …</i></div>
-		<ul class="CS-1_2">
-			<li>Posso dedicarmi alle vostre <i>singole difficoltà</i></li>
-			<li><i>soffermandomi</i> su di voi come singoli quanto necessario e</li>
-			<li>posso <i>comprendervi</i> meglio essendo vostro coetaneo.</li>
-		</ul>
-	</div>
-	<div>
-		<div class="URL-link" class="CS-evidence CS-1_2"></div>
-		<div class="URL-QRCode"></div>
-		<div><a class="CS-link URL-share CS-btn" href="https://wa.me/393881183102?text=Mi%20mandi%20il%20_link_%20per%20condividere%20la%20_pagina%20di%20*Peer%20to%20Peer*_%3F%0A%0A&app_absent=0"><span class="CS-evidence" style="text-decoration:underline;">CONDIVIDI</span> <img alt="WhatsApp" class="CS-imgText" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/800px-WhatsApp.svg.png" style="transform:translateY(16.13%);" /></a></div>
-		<div><a class="CS-link CS-btn" href="https://wa.me/393881183102?text=*_Ciao_*%2C%20ho%20visto%20che%20sei%20_Tutor_%20a%20*Peer%20to%20Peer*%3B%20Volevo%20sapere%3A%0A%0A&app_absent=0&app_absent=0"><span class="CS-evidence" style="text-decoration:underline;">CHIEDIMI PURE</span> <img alt="WhatsApp" class="CS-imgText" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/800px-WhatsApp.svg.png" style="transform:translateY(16.13%);" /></a></div>
-		<div class="CS-5_8 CS-header">Angaroni Leonardo</div>
-	</div>
-</div>
-
-<div id="screen"><div id="screenBox"></div></div>
+<div id="screen"><div id="screenBox">
+	<p>Use this from desktop Computer!</p>
+	<p>If it doesn't work, press <i>SPACE</i> to launch the program!</p>
+</div></div>
 
 <div id="colorModeBtn" onclick="changeColorModeLD();"><div id="colorModeBtnLetter">·</div></div>
-
-<div id="progressBar"><div></div></div>
-
-<div id="slideNumb"><div></div></div>
 
 <div id="loadingAdv">Loading…</div>
 
 </body>
 </html>
 
-<!-- Angaroni Leonardo - date 202212 -->
+<!-- Angaroni Leonardo - date 202301091125 -->

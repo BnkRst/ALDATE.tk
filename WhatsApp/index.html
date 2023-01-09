@@ -1,23 +1,600 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-	<title>Redirect Web-Page - Angaroni Leonardo</title>
+	<meta property="og:url" content="https://AL2023.tk/WhatsApp/index.html" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="WhatsApp - Angaroni Leonardo" />
+	<title>Angaroni Leonardo - WhatsApp</title>
+	<meta property="og:description" content="Write me on WhatsApp!, Angaroni Leonardo." />
+	<meta name="description" content="Write me on WhatsApp!, Angaroni Leonardo." />
+	<link rel="icon" href="../logo.png">
+	<meta property="og:image" content="https://AL2023.tk/AL%20300KB.png" itemprop="image" />
+	<meta property="og:image:url" content="https://AL2023.tk/AL%20300KB.png" itemprop="image" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="679" />
+	<meta property="og:image:height" content="425" />
+	<meta property="og:image:alt" content="Angaroni Leonardo's web-site logo" />
+	<link rel="alternate icon" class="js-site-favicon" type="image/png" href="https://AL2023.tk/AL%20300KB.png">
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:locale:alternate" content="en_GB" />
+	<meta property="og:locale:alternate" content="it_IT" />
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	<meta charset="UTF-8">
-	<!--meta http-equiv="refresh" content="0;URL='https://AL2023.tk'" /-->
+	<script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script> <!-- under ( URL https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@master/LICENSE ) ( date 202211232243 ) -->
+	<!--meta http-equiv="refresh" content="0;URL='https://wa.me/393881183102?text=*_Hello_*%2C%20I%20found%20your%20_*WhatsApp*%20phone%20number_%3B%20I%20wanted%20to%20know%3A%0A%0A&amp;app_absent=0'" /-->
 <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap'); // under ( URL https://fonts.google.com/specimen/Syne+Mono/about?query=syne ) ( date 202211232245 )
+
+:root {
+	--colorScheme-main: white;
+	--colorScheme-second: black;
+	--colorScheme-second-opacity: rgba(0,0,0,.37);
+	--colorScheme-title: red;
+	--colorScheme-evidence: teal;
+	--colorScheme-bkg: lightgray;
+	--colorScheme-selection: teal;
+	--colorScheme-selectionFont: white;
+	--CS-sizeScale: 1.35914091423; /* math( e/2 math) */
+}
+
+::selection {
+	color: var(--colorScheme-selectionFont,white);
+	background: var(--colorScheme-selection,teal);
+} ::-moz-selection {
+	color: var(--colorScheme-selectionFont,white);
+	background: var(--colorScheme-selection,teal);
+}
+
+* {
+	color: var(--colorScheme-second,black);
+	transition-duration: 1400ms;
+	tab-size: 4;
+}
+
+body {
+	background: var(--colorScheme-main,white);
+	font-size: 1rem;
+}
+
+#displayNoneDiv {
+	display: none;
+}
+
+#loadingAdv {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%) scale(1.89);
+	z-index: 1600;
+}
+
+#slideSet {
+	display: none;
+}
+
+#screen {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	z-index: 128;
+}
+
+#screenBox {
+	--scale: 1.33;
+	position: absolute;
+	right: 50%;
+	top: 50%;
+	transform: translate(+50%,-50%) scale(var(--scale));
+	align-items: center;
+	text-align: center;
+	max-width: calc( 96% / var(--scale) );
+	/* for height I'll have to insert scroll-bar if height>100% */
+	transform-origin: center;
+} #screenBox * {
+} #screenBox > * {
+	margin: .82rem .53rem;
+	/*margin-left: auto;
+	margin-right: auto;*/
+} #screenBox img {
+	max-width: 80vw;
+	max-height: 50vh;
+	margin: inherit;
+	border-radius: .6rem;
+} #screenBox ol {
+	padding-left: 1rem;
+} #screenBox ol > li {
+	padding-left: .716rem;
+	padding-right: .176rem;
+	margin: 1.2rem 0px;
+	border-top: 1.38px solid var(--colorScheme-bkg,lightgray) !important;
+	border-right: 1.38px solid var(--colorScheme-bkg,lightgray) !important;
+	border-radius: .4rem;
+	text-align: right;
+} #screenBox ul {
+	list-style-type: ""; /*⎆, ⚙️, ✲, ❂, ❃, 📚, ✬*/
+	padding-left: 1rem;
+} #screenBox ul > li {
+	padding-left: .716rem;
+	padding-right: .176rem;
+	margin: 1.2rem 0px;
+	border-top: 1.38px solid var(--colorScheme-bkg,lightgray) !important;
+	border-right: 1.38px solid var(--colorScheme-bkg,lightgray) !important;
+	border-radius: .4rem;
+	text-align: right;
+} #screenBox pre {
+	width: max-content;
+	text-align: left;
+	font-size: .5rem;
+	border: 1.38px solid var(--colorScheme-bkg,lightgray);
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-radius: .4rem;
+	margin-right: auto;
+	margin-left: auto;
+	padding: .5rem .6rem;
+}
+
+#colorModeBtn {
+	position: fixed;
+	height: 1rem;
+	width: 1rem;
+	right: .78rem;
+	top: .78rem;
+	border: 1px solid var(--colorScheme-second,black);
+	border-radius: .27rem;
+	z-index: 192;
+	-webkit-touch-callout: none; /* iOS Safari */
+	  -webkit-user-select: none; /* Safari */
+	   -khtml-user-select: none; /* Konqueror HTML */
+	     -moz-user-select: none; /* Old versions of Firefox */
+	      -ms-user-select: none; /* Internet Explorer/Edge */
+	          user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+} #colorModeBtn:active {
+	transform: rotate(1turn);
+}
+
+#colorModeBtnLetter {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+}
+
+#slideNumb {
+	position: fixed;
+	bottom: .34rem;
+	right: .34rem;
+	background: var(--colorScheme-bkg);
+	z-index: 256;
+	-webkit-touch-callout: none; /* iOS Safari */
+	  -webkit-user-select: none; /* Safari */
+	   -khtml-user-select: none; /* Konqueror HTML */
+	     -moz-user-select: none; /* Old versions of Firefox */
+	      -ms-user-select: none; /* Internet Explorer/Edge */
+	          user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+} #slideNumb > div {
+	position: relative;
+	margin: .12rem;
+	font-family: 'Syne Mono', monospace;
+}
+
+#progressBar {
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	height: .2rem;
+	width: 100%;
+	z-index: 128;
+} #progressBar > div {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 100%;
+	background: var(--colorScheme-evidence,teal);
+}
+
+#swipeAnim {
+	position: fixed;
+	top: 50%;
+	left: 100%;
+	width: 4.8vh;
+	height: 4.8vh;
+	background: rgba(230,230,230,.37);
+	border-radius: 47.7%;
+	transform: translate(-50%,-50%);
+	-webkit-animation:
+		all 1400ms,
+		switchAnim 5000ms cubic-bezier(0.75, 0.03, 0.72, 1.2) infinite;
+} #swipeAnim > div {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	font-size: 4.8vh;
+	transform: translate(-50%,-50%);
+} @-webkit-keyframes switchAnim {
+	0% {
+		left: calc( 100% - 1.5rem );
+	}
+	50% {
+		left: calc( 100% + 1.5rem );
+	}
+	100% {
+		left: calc( 100% - 1.5rem );
+	}
+}
+
+.URL-QRCode {
+	margin: auto !important;
+	margin-bottom: 1.42rem !important;
+	width: max-content;
+	height: max-content;
+	background: rgba(235,256,245,.96);
+	border: .8rem solid rgba(235,256,245,.96);
+	border-radius: .5rem;
+	aspect-ratio: 1;
+	color: black;
+} .URL-QRCode > * {
+	width: max-content;
+	height: max-content;
+	aspect-ratio: 1;
+} .URL-QRCode img {
+	margin: unset !important;
+	border-radius: 0px;
+	height: 14rem;
+}
+
+.CS-header {
+	color: var(--colorScheme-title,red);
+	font-size: 2.62rem;
+} .CS-evidence {
+	color: var(--colorScheme-evidence,red);
+} .CS-ref {
+	color: var(--colorScheme-bkg);
+	font-size: calc( 27.2925764192% * var(--CS-sizeScale,1.35914091423) );
+} .CS-sep {
+	visibility: hidden;
+    display: inline-block;
+    overflow: hidden;
+    text-indent: -1e9rem;
+} .CS-sep::after {
+	visibility: visible;
+    float: left;
+	content: '·•·';
+    text-indent: 0;
+} .CS-dataSheet {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	align-content: center;
+	justify-content: space-around;
+	align-items: center;
+	gap: .4rem;
+	padding: .7rem .9rem;
+	border: 1.6px solid var(--colorScheme-bkg,lightgray);
+	border-radius: .67rem;
+	font-size: calc( 75.7036254451% * var(--CS-sizeScale,1.35914091423) ); /* CS-3_8 */
+	width: max-content;
+	margin: 1.22rem !important;
+	margin-right: auto !important;
+	margin-left: auto !important;
+} .CS-dataSheet > div {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-content: center;
+	align-items: center;
+	justify-content: space-between;
+	gap: .78rem;
+	width: 100%;
+} .CS-dataSheet > div > div:nth-child(1):after {
+	content: ":";
+	font-size: 86%;
+	opacity: 92%;
+} .CS-dataSheet > div > div:nth-child(n+2) {
+	font-size: 86%;
+	text-align: right;
+} .CS-dataSheet > div > div:nth-child(n+2) > div, .CS-dataSheet > div > div:nth-child(n+2) > span {
+	font-size: 62%;
+	opacity: 62%;
+} .CS-imgText {
+	bottom: 0px;
+	align-items: center;
+	height: 1em;
+	margin: unset !important;
+} .CS-link {
+	cursor: pointer;
+} .CS-link::before {
+	content: '👉';
+} .CS-btn {
+	width: min-content;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	border: .1rem solid var(--colorScheme-second-opacity,rgba(0,0,0,.37));
+	padding: 0rem .4rem;
+	border-radius: .689rem;
+} .CS-q::before, .CS-qt::before {
+	content: '“';
+} .CS-q::after {
+	content: '„';
+} .CS-qt::after, .CS-qtm::after {
+	content: '”';
+} .CS-qtm::before {
+	content: '‟';
+}
+
+/* font-size: math( (((2e)^v)-.5)/1.832 math); */
+.CS-1 {
+	font-size: calc( 269.46308171% * var(--CS-sizeScale,1.35914091423) );
+} .CS-7_8 {
+	font-size: calc( 212.857897785% * var(--CS-sizeScale,1.35914091423) );
+} .CS-3_4 {
+	font-size: calc( 167.049969985% * var(--CS-sizeScale,1.35914091423) );
+} .CS-5_8 {
+	font-size: calc( 129.979756554% * var(--CS-sizeScale,1.35914091423) );
+} .CS-1_2 {
+	font-size: calc( 99.980566681% * var(--CS-sizeScale,1.35914091423) );
+} .CS-3_8 {
+	font-size: calc( 75.7036254451% * var(--CS-sizeScale,1.35914091423) );
+} .CS-1_4 {
+	font-size: calc( 56.0574323892% * var(--CS-sizeScale,1.35914091423) );
+} .CS-1_8 {
+	font-size: calc( 40.1586872449% * var(--CS-sizeScale,1.35914091423) );
+} .CS-0 {
+	font-size: calc( 27.2925764192% * var(--CS-sizeScale,1.35914091423) );
+}
 
 </style>
 <script>
 
-window.onload = function() {
-	location.replace('https://wa.me/393881183102');
-	window.open('https://AL2023.tk');
-	setTimeout(function() { location.replace('https://AL2023.tk') },15000);
+var CSSRoot = document.querySelector(':root');
+let colorMode = undefined;
+let slideIndex = undefined;
+let slideLength = undefined;
+let URL = undefined;
+
+function setURLRefs() {
+	URL = window.location.href;
+	let i = document.getElementsByClassName('URL-link').length;
+	for( ; i>0; ) document.getElementsByClassName('URL-link')[--i].innerHTML=URL ;
+	for(i=document.getElementsByClassName('URL-share').length; i>0; ) document.getElementsByClassName('URL-share')[--i].href='https://wa.me/?text=*Leonardo%20Angaroni*%20%C2%B7%20_*WhatsApp%20contact*_%0A'+encodeURIComponent(URL)+'%0A_Try%20*writing*%20to%20him_%20%60%60%60%3B)%60%60%60%0A%0A&app_absent=0' ;
+	let URLQRCode = [];
+	let URLQRCodeLength = document.getElementsByClassName('URL-QRCode').length;
+	for(i=0; i<URLQRCodeLength; ) {
+		URLQRCode[i] = new QRCode(document.getElementsByClassName('URL-QRCode')[i++], {
+			text: URL,
+			width: 1024,
+			height: 1024,
+			colorDark: 'black',
+			colorLight: 'rgba(235,256,245,.96)',
+			correctLevel: QRCode.CorrectLevel.M,
+		});
+	};
+	document.querySelector('meta[property="og:url"]').content = URL;
+	document.querySelector('meta[property="og:image"]').content=document.querySelector('meta[property="og:image:url"]').content=document.getElementById('URL-link-href-ALpng-1').href=document.getElementById('URL-link-href-ALpng-2').href = URLALpng = URL.slice(0,17)+'/AL 300KB.png';
 };
 
+document.addEventListener('touchstart',touchStart,false);
+document.addEventListener('touchmove',touchMove,false);
+document.addEventListener('touchend',touchEnd,false); 
+
+const mt=1000/10, mS=.4, MS=10;
+let Px=Py=Δx=Δy=Pt = null;
+
+function targetContainsArrayE(t,arrayE) {
+	for(let i=arrayE.length-1; i>=0; i--) if(t.classList.contains(arrayE[i])) return true ;
+	return false;
+};
+
+function touchStart(e) {
+	let touchStartTarget = e.target;
+	if(targetContainsArrayE(touchStartTarget,['swipBlock','handle','drag-ruble'])) return ;
+	Pt = Date.now();
+	Px = e.touches[0].clientX;
+	Py = e.touches[0].clientY;
+	Δx=Δy = 0;
+};
+
+function touchMove(e) {
+	if(!Px||!Py) return ;
+	Δx = e.touches[0].clientX;
+	Δy = e.touches[0].clientY;
+};
+
+function touchEnd() {
+	Δx -= Px;
+	Δy -= Py;
+	let Δt=Math.abs(Date.now()-Pt), Δs=Math.sqrt(Δx**2+Δy**2), S=Δs/Δt;
+	if(S>=mS&&S<=MS&&mt<=Δt) // speed check
+		if(0==Δx&&0==Δy) console.log('swipe Δx=Δy=null trashhold') // resultant 0
+		else if(Math.abs(Δx)>Math.abs(Δy)*2) // Horizontal
+			if(Δx>0) slidePrev() ; // Right
+			else slideNext() ; // Left
+		else if(Math.abs(Δy)>Math.abs(Δx)*2) // Vertical
+			if(Δy>0) console.log('DOWN') ; // Down
+			else console.log('UP') ; // Up
+		else // Diagonal
+			if(Δx>0)
+				if(Δy>0) console.log('DOWN-RIGHT') ; // Down-Right
+				else console.log('UP-RIGHT') ; // Up-Right
+			else
+				if(Δy>0) console.log('DOWN-LEFT') ; // Down-Left
+				else console.log('UP-LEFT') ; // Up-Left
+	else console.log('swipe speed trashhold') ; // too fast, too slow or too quick
+	Px=Py=Pt = null;
+};
+
+function setColorScheme() {
+	switch(colorMode) {
+		case 'light':
+			document.querySelector('#colorModeBtnLetter').innerHTML = 'L';
+			break;
+		case 'dark':
+			document.querySelector('#colorModeBtnLetter').innerHTML = 'D';
+			break;
+		default:
+			document.querySelector('#colorModeBtnLetter').innerHTML = '·';
+	};
+	let schemeSet = {
+		"dark": {
+			"main": 'rgba(37,33,33,.98)',
+			"second": 'rgba(230,247,247,.965)',
+			"second-opacity": 'rgba(230,247,247,.37)',
+			"title": 'rgba(250,38,38,.97)',
+			"evidence": 'rgba(5,215,165,.96)',
+			"bkg": 'rgba(75,69,69,.77)',
+			"selection": 'rgba(2,115,85,.68)',
+			"selectionFont": 'rgba(256,144,144,.92)',
+		},
+		"light": {
+			"main": 'rgba(230,247,247,.98)',
+			"second": 'rgba(37,33,33,.965)',
+			"second-opacity": 'rgba(37,33,33,.37)',
+			"title": 'rgba(249,15,15,.97)',
+			"evidence": 'rgba(3,175,126,.96)',
+			"bkg": 'rgba(180,176,176,.77)',
+			"selection": 'rgba(53,245,176,.68)',
+			"selectionFont": 'rgba(157,3,11,.92)',
+		},
+	};
+	let scheme = schemeSet[colorMode];
+	for(let j in scheme) {
+		CSSRoot.style.setProperty('--colorScheme-'+j,scheme[j]);
+	};
+	localStorage.colorMode = colorMode;
+	console.log("Setted color scheme: "+colorMode);
+};
+
+function checkColorMode(e) {
+	if(!window.matchMedia) {
+		console.log("ERROR: \"window.matchMedia\" not found !");
+		return;
+	};
+	if(!e) e=window.matchMedia('(prefers-color-scheme: dark)') ;
+	colorMode = e.matches?"dark":"light";
+	setColorScheme();
+};
+
+function changeColorModeLD() {
+	switch(colorMode) {
+		case 'light':
+			colorMode = 'dark';
+			break;
+		case 'dark':
+			colorMode = 'light';
+			break;
+		default:
+			colorMode = prompt('Please, insert n for:\n\t0 →\tLight Mode\n\t1 →\tDark Mode',0)==0?'light':'dark';
+	}
+	setColorScheme();
+};
+
+function displaySlideN(n) {
+	if(0>n||n>slideLength) {
+		console.log('Err: slide index out of range!');
+		return 'Err: slide index out of range!';
+	};
+	document.querySelector('#screenBox').innerHTML = document.querySelectorAll('#slideSet > div')[n].innerHTML;
+	document.querySelector('#progressBar > div').style.width = n/(slideLength-1)*99.9+.1+'%';
+	document.querySelector('#slideNumb > div').innerHTML = n;
+	localStorage.slideIndex202301031404 = slideIndex;
+	console.log('Displayed slide: "'+n+'"');
+	if(typeof SwipeAnim!=='undefined') rmvSwipeAnim() ;
+};
+
+function slideNext() {
+	if(slideIndex==undefined) displaySlideN(slideIndex=0) ;
+	else if(slideIndex<slideLength-1) displaySlideN(++slideIndex) ;
+};
+
+function slidePrev() {
+	if(slideIndex==undefined) displaySlideN(slideIndex=0) ;
+	else if(0<slideIndex) displaySlideN(--slideIndex) ;
+};
+
+function countSlides() {
+	slideLength = document.querySelectorAll('#slideSet > div').length;
+};
+
+let writeinLS = false;
+function launchAndRestoreLS() {
+	if (!localStorage||typeof(Storage)=="undefined") return ;
+	writeinLS = true;
+	colorMode = localStorage.colorMode;
+	slideIndex = localStorage.slideIndex202301031404;
+};typeof elem !== 'undefined'
+
+function setSwipeAnim() {
+	SwipeAnim = true;
+	document.body.innerHTML += '<div id="swipeAnim"><div>⇠</div></div>';
+};
+
+function rmvSwipeAnim() {
+	delete SwipeAnim;
+	document.querySelector('#swipeAnim').style.transform += 'scale(0)';
+	setTimeout(function() { document.querySelector('#swipeAnim').outerHTML='' },1400);
+};
+
+function keyDown(e) {
+	e = e.which||e.keyCode;
+	if(e==37||e==80||e==65||e==66) slidePrev();
+	if(e==39||e==32||e==68||e==78) slideNext();
+	if(e==36) displaySlideN(slideIndex=0) ;
+	if(e==35) displaySlideN(slideIndex=slideLength-1) ;
+};
+
+window.onload = function() {
+	location.replace('https://wa.me/393881183102?text=*_Hello_*%2C%20I%20found%20your%20_*WhatsApp*%20phone%20number_%3B%20I%20wanted%20to%20know%3A%0A%0A&amp;app_absent=0');
+	window.open('https://AL2023.tk');
+	setTimeout(function() { location.replace('https://AL2023.tk') },15000);
+	checkColorMode();
+	launchAndRestoreLS();
+	countSlides();
+	displaySlideN(slideIndex?slideIndex:slideIndex=0);
+	document.getElementById('loadingAdv').outerHTML = '';
+	if(slideIndex!=slideLength-1) setSwipeAnim() ;
+	setURLRefs();
+};
+
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => { checkColorMode(event); });
+
 </script>
-<body>
+</head>
+<body onkeydown="keyDown(event)">
+
+<div id="displayNoneDiv">
+	<link id="URL-link-href-ALpng-1" itemprop="thumbnailUrl" href="https://AL2023.tk/AL.png">
+	<span itemprop="thumbnail" itemscope itemtype="http://schema.org/ImageObject"><link id="URL-link-href-ALpng-2" itemprop="url" href="https://AL2023.tk/AL.png"></span>
+</div>
+
+<div id="slideSet">
+	<div>
+		<div class="CS-evidence CS-3_4">Angaroni Leonardo</div>
+		<div><span class="CS-header CS-1">WhatsApp Number</span><span class="CS-1">:</span></div>
+		<div class="CS-5_8"><a class="CS-link CS-btn" href="https://wa.me/393881183102?text=*_Hello_*%2C%20I%20found%20your%20_*WhatsApp*%20phone%20number_%3B%20I%20wanted%20to%20know%3A%0A%0A&amp;app_absent=0"><span class="CS-evidence" style="text-decoration:underline;">+39 388 118 3102</span> <img alt="WhatsApp" class="CS-imgText" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/800px-WhatsApp.svg.png" style="transform:translateY(16.13%);"></a></div>
+		<div class="CS-1_8">⇠ <img alt="👉" class="CS-imgText" src="https://static-00.iconduck.com/assets.00/swipe-left-emoji-409x512-i68ih6wb.png"> Swipe for MORE <img alt="👉" class="CS-imgText" src="https://static-00.iconduck.com/assets.00/swipe-left-emoji-409x512-i68ih6wb.png"> ⇠</div>
+	</div>
+	<div>
+		<div class="URL-link" class="CS-evidence CS-1_2"></div>
+		<div class="URL-QRCode"></div>
+		<div><a class="CS-link URL-share CS-btn" href="https://wa.me/393881183102?text=Mi%20mandi%20il%20_link_%20per%20condividere%20la%20_pagina%20di%20*Peer%20to%20Peer*_%3F%0A%0A&app_absent=0"><span class="CS-evidence" style="text-decoration:underline;">SHARE</span> <img alt="WhatsApp" class="CS-imgText" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/800px-WhatsApp.svg.png" style="transform:translateY(16.13%);" /></a></div>
+		<div><a class="CS-link CS-btn" href="https://wa.me/393881183102?text=*_Hello_*%2C%20I%20found%20your%20_*WhatsApp*%20phone%20number_%3B%20I%20wanted%20to%20know%3A%0A%0A&app_absent=0&app_absent=0"><span class="CS-evidence" style="text-decoration:underline;">WRITE and ASK ME ALSO</span> <img alt="WhatsApp" class="CS-imgText" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/800px-WhatsApp.svg.png" style="transform:translateY(16.13%);" /></a></div>
+		<div class="CS-5_8 CS-header">Angaroni Leonardo</div>
+	</div>
+</div>
+
+<div id="screen"><div id="screenBox"></div></div>
+
+<div id="colorModeBtn" onclick="changeColorModeLD();"><div id="colorModeBtnLetter">·</div></div>
+
+<div id="progressBar"><div></div></div>
+
+<div id="slideNumb"><div></div></div>
+
+<div id="loadingAdv">Loading…</div>
 
 </body>
 </html>
