@@ -1,28 +1,429 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-	<title>Gneu.tk</title>
+	<meta property="og:url" content="https://AL2023.tk/index.html" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Web-Site - Angaroni Leonardo" />
+	<title>Angaroni Leonardo - Web-Site</title>
+	<meta property="og:description" content="Angaroni Leonardo - Web-Site" />
+	<meta name="description" content="Angaroni Leonardo - Web-Site" />
+	<link rel="icon" href="../../logo.png">
+	<meta property="og:image" content="https://AL2023.tk/AL 300KB.png" itemprop="image" />
+	<meta property="og:image:url" content="https://AL2023.tk/AL 300KB.png" itemprop="image" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:alt" content="Angaroni Leonardo's web-site logo" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:locale:alternate" content="en_GB" />
+	<meta property="og:locale:alternate" content="it_IT" />
 <style>
 
-#centeredDiv {
+@import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap'); // under ( URL https://fonts.google.com/specimen/Syne+Mono/about?query=syne ) ( date 202211232245 )
+
+:root {
+	--colorScheme-main: white;
+	--colorScheme-second: black;
+	--colorScheme-second-opacity: rgba(0,0,0,.37);
+	--colorScheme-title: red;
+	--colorScheme-evidence: teal;
+	--colorScheme-bkg: lightgray;
+	--colorScheme-selection: teal;
+	--colorScheme-selectionFont: white;
+}
+
+::selection {
+	color: var(--colorScheme-selectionFont,white);
+	background: var(--colorScheme-selection,teal);
+} ::-moz-selection {
+	color: var(--colorScheme-selectionFont,white);
+	background: var(--colorScheme-selection,teal);
+}
+
+* {
+	color: var(--colorScheme-second,black);
+	font-size: calc( 99.980566681% * var(--CS-sizeScale,1.35914091423) );
+	transition-duration: 1400ms;
+	tab-size: 4;
+}
+
+html {
+	--CS-sizeScale: 1.35914091423; /* math( e/2 math) */
+}
+
+body {
+	background: var(--colorScheme-main,white);
+	font-size: 1rem;
+}
+
+#displayNoneDiv {
+	display: none;
+}
+
+#loadingAdv {
 	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%) scale(1.89);
+	z-index: 1600;
+}
+
+#slideSet {
+	display: none;
+}
+
+#screen {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	z-index: 128;
+}
+
+#screenBox {
+	--scale: 1.33;
+	position: absolute;
+	right: 50%;
+	top: 50%;
+	transform: translate(+50%,-50%) scale(var(--scale));
+	align-items: center;
+	text-align: center;
+	max-width: calc( 96% / var(--scale) );
+	/* for height I'll have to insert scroll-bar if height>100% */
+	transform-origin: center;
+}
+
+#colorModeBtn {
+	position: fixed;
+	height: 1rem;
+	width: 1rem;
+	right: .78rem;
+	top: .78rem;
+	border: 1px solid var(--colorScheme-second,black);
+	border-radius: .27rem;
+	z-index: 192;
+	-webkit-touch-callout: none; /* iOS Safari */
+	  -webkit-user-select: none; /* Safari */
+	   -khtml-user-select: none; /* Konqueror HTML */
+	     -moz-user-select: none; /* Old versions of Firefox */
+	      -ms-user-select: none; /* Internet Explorer/Edge */
+	          user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+} #colorModeBtn:active {
+	transform: rotate(1turn);
+} #colorModeBtnLetter {
+	position: absolute;
 	left: 50%;
 	top: 50%;
-	transform: translate(-50%,-50%) scale(4.5);
+	font-size: 1rem;
+	transform: translate(-50%,-50%);
+}
+
+.URL-QRCode {
+	margin: auto !important;
+	margin-bottom: 1.42rem !important;
+	width: max-content;
+	height: max-content;
+	background: rgba(235,256,245,.96);
+	border: .8rem solid rgba(235,256,245,.96);
+	border-radius: .5rem;
+	aspect-ratio: 1;
+	color: black;
+} .URL-QRCode > * {
+	width: max-content;
+	height: max-content;
+	aspect-ratio: 1;
+} .URL-QRCode img {
+	margin: unset !important;
+	border-radius: 0px;
+	height: 14rem;
 }
 
 </style>
 <script>
 
-window.onload = function() {
-	document.getElementsByTagName('title')[0].innerText=document.getElementById('centeredDiv').innerText=window.location.href;
+var CSSRoot = document.querySelector(':root');
+//~ var CSSAll = document.querySelector('*');
+var CSSHTML = document.querySelector('html');
+let colorMode = undefined;
+let URL = undefined;
+let QRCodeSrc = undefined;
+let QRCodeImg = undefined;
+let isMobile = undefined;
+
+const isDevice = {
+	AdblockBrowser: function() { return navigator.userAgent.match(/Adblock/i); },
+	Android: function() { return navigator.userAgent.match(/Android/i); },
+	AppleSafari: function() { return isDevice.Safari() },
+	AvantBrowser: function() { return navigator.userAgent.match(/Avant\//i); },
+	AvantGo: function() { return navigator.userAgent.match(/AvantGo/i); },
+	BeOS: function() { return navigator.userAgent.match(/BeOS/i); },
+	Bada: function() { return navigator.userAgent.match(/Bada\//i); },
+	BlackBerry: function() { return navigator.userAgent.match(/BlackBerry/i); },
+	BlackBerryPlayBook: function() { return navigator.userAgent.match(/PlayBook/i); },
+	BlackBerry10: function() { return navigator.userAgent.match(/BB10/i); },
+	BlackHawk: function() { return navigator.userAgent.match(/BlackHawk/i); },
+	Blazer: function() { return navigator.userAgent.match(/Blazer/i); },
+	Blink: function() { return (isDevice.Chrome()||isDevice.Opera())&&!!window.CSS; },
+	Brave: function() { return navigator.userAgent.match(/Brave/i); },
+	Canaima: function() { return navigator.userAgent.match(/Canaima/i); },
+	Camino: function() { return navigator.userAgent.match(/Camino/i); },
+	Chrome: function() { return navigator.userAgent.match(/Chrome/i)||(!!window.chrome&&!!window.chrome.webstore); },
+	CMSecure: function() { return navigator.userAgent.match(/CM( |)Secure/i); },
+	Compal: function() { return navigator.userAgent.match(/Compal/i); },
+	Cubicle: function() { return navigator.userAgent.match(/Cubicle/i); },
+	Debian: function() { return navigator.userAgent.match(/Debian/i); },
+	DeepnetExplorer: function() { return navigator.userAgent.match(/Deepnet/i); },
+	Dolphin: function() { return navigator.userAgent.match(/Dolphin/i); },
+	Edge: function() { return navigator.userAgent.match(/Edge/i)||(!isDevice.InternetExplorer()&&!!window.StyleMedia); },
+	Elaine: function() { return navigator.userAgent.match(/Elaine/i); },
+	Epic: function() { return navigator.userAgent.match(/Epic\//i); },
+	Falcon: function() { return navigator.userAgent.match(/Falcon/i); },
+	Fedora: function() { return navigator.userAgent.match(/Fedora/i); },
+	FireFox: function() { return navigator.userAgent.match(/Firefox|FXIOS/i)||typeof InstallTrigger!=='undefined'; },
+	FireFoxMobile: function() { return navigator.userAgent.match(/Fennec/i)||typeof InstallTrigger!=='undefined'; },
+	FireMonkey: function() { return navigator.userAgent.match(/FireMonkey/i); },
+	GoogleChrome: function() { return navigator.userAgent.match(/Chrome|Chromium|CRIOS/i); },
+	Guava: function() { return navigator.userAgent.match(/Guava/i); },
+	Haiku: function() { return navigator.userAgent.match(/Haiku/i); },
+	Hiptop: function() { return navigator.userAgent.match(/Hiptop/i); },
+	HPUX: function() { return navigator.userAgent.match(/HP-UX/i); },
+	InternetExplorer: function() { return navigator.userAgent.match(/MSIE|trident/i)||!!document.documentMode; },
+	iOS: function() { return isDevice.iPhone()||isDevice.iPad()||isDevice.iPod()||(window.navigator?.userAgentData?.platform||window.navigator.platform).match(/iPhone|iPad|iPod/i); },
+	iPad: function() { return navigator.userAgent.match(/iPad/i); },
+	iPhone: function() { return navigator.userAgent.match(/iPhone/i); },
+	iPod: function() { return navigator.userAgent.match(/iPod/i); },
+	Iris: function() { return navigator.userAgent.match(/Iris/i); },
+	KaiOS: function() { return navigator.userAgent.match(/KaiOS/i); },
+	KFAPWI: function() { return navigator.userAgent.match(/KFAPWI/i); },
+	Kindle: function() { return navigator.userAgent.match(/Kindle/i); },
+	KindleFire: function() { return navigator.userAgent.match(/Kindle Fire/i); },
+	LGE: function() { return navigator.userAgent.match(/LGE /i); },
+	Lineage: function() { return navigator.userAgent.match(/Lineage/i); },
+	LinkBubble: function() { return navigator.userAgent.match(/Link( |)Bubble/i); },
+	Linux: function() { return (window.navigator?.userAgentData?.platform||window.navigator.platform).match(/Linux/i); },
+	MacOS: function() { return (window.navigator?.userAgentData?.platform||window.navigator.platform).match(/Macintosh|MacIntel|MacPPC|Mac68K/i); },
+	Maemo: function() { return navigator.userAgent.match(/Maemo/i); },
+	Maxthon: function() { return navigator.userAgent.match(/Maxthon/i); },
+	MeeGo: function() { return navigator.userAgent.match(/MeeGo/i); },
+	MIDP: function() { return navigator.userAgent.match(/MIDP/i); },
+	MSDOS: function() { return navigator.userAgent.match(/MS-DOS/i); },
+	NCBrowserFree: function() { return navigator.userAgent.match(/NC( |)Browser( |)Free/i); },
+	NetFront: function() { return navigator.userAgent.match(/NetFront/i); },
+	NetGroove: function() { return navigator.userAgent.match(/NetGroove/i); },
+	NetViewerLite: function() { return navigator.userAgent.match(/Net( |)Viewer( |)Lite/i); },
+	Nexus: function() { return navigator.userAgent.match(/Nexus/i); },
+	Nexus7: function() { return navigator.userAgent.match(/Nexus 7/i); },
+	Nexus10: function() { return navigator.userAgent.match(/Nexus 10/i); },
+	Nokia: function() { return navigator.userAgent.match(/Nokia/i); },
+	Oneweb: function() { return navigator.userAgent.match(/Oneweb/i); },
+	Opera: function() { return navigator.userAgent.match(/Opera Mini|OPR\//i)||(!!window.opr && !!opr.addons)||!!window.opera||navigator.userAgent.indexOf(' OPR/')>=0; },
+	OperaMini: function() { return navigator.userAgent.match(/Opera Mini/i); },
+	Palm: function() { return navigator.userAgent.match(/PalmSource|Palm/i); },
+	Pixi: function() { return navigator.userAgent.match(/Pixi\//i); },
+	Plan9: function() { return navigator.userAgent.match(/Plan(\/|9)/i); },
+	Plasma: function() { return navigator.userAgent.match(/Plasma/i); },
+	Plucker: function() { return navigator.userAgent.match(/Plucker/i); },
+	Pocket: function() { return navigator.userAgent.match(/Pocket/i); },
+	Polarity: function() { return navigator.userAgent.match(/Polarity/i); },
+	Postmarket: function() { return navigator.userAgent.match(/Postmarket/i); },
+	Pre: function() { return navigator.userAgent.match(/Pre\//i); },
+	ProtectedPornBrowser: function() { return navigator.userAgent.match(/Protected( |)Porn/i); },
+	PSP: function() { return navigator.userAgent.match(/PSP/i); },
+	Pure: function() { return navigator.userAgent.match(/Pure/i); },
+	QNX: function() { return navigator.userAgent.match(/QNX/i); },
+	QupZilla: function() { return navigator.userAgent.match(/QupZilla/i); },
+	RockMelt: function() { return navigator.userAgent.match(/RockMelt/i); },
+	Sabayon: function() { return navigator.userAgent.match(/Sabayon/i); },
+	Safari: function() { return navigator.userAgent.match(/Safari/i)||/constructor/i.test(window.HTMLElement)||function(p) {return p.toString()==="[object SafariRemoteNotification]";}(!window['safari']||safari.pushNotification); },
+	Sailfish: function() { return navigator.userAgent.match(/Sailfish/i); },
+	SamsungBrowser: function() { return navigator.userAgent.match(/SamsungBrowser/i); },
+	SeaMonkey: function() { return navigator.userAgent.match(/SeaMonkey/i); },
+	Silk: function() { return navigator.userAgent.match(/Silk/i); },
+	Skyfire: function() { return navigator.userAgent.match(/Skyfire/i); },
+	SlimBrowser: function() { return navigator.userAgent.match(/SlimBrowser/i); },
+	Solaris: function() { return navigator.userAgent.match(/Solaris/i); },
+	Steel: function() { return navigator.userAgent.match(/Steel/i); },
+	Superbird: function() { return navigator.userAgent.match(/Superbird/i); },
+	Symbian: function() { return navigator.userAgent.match(/Symbian/i); },
+	Tizen: function() { return navigator.userAgent.match(/Tizen/i); },
+	Torch: function() { return navigator.userAgent.match(/Torch/i); },
+	Tuquito: function() { return navigator.userAgent.match(/Tuquito/i); },
+	Ubuntu: function() { return navigator.userAgent.match(/Ubuntu/i); },
+	UbuntuTouch: function() { return navigator.userAgent.match(/UbuntuTouch|Ubuntu-Touch|Ubuntu Touch/i); },
+	UCBrowser: function() { return navigator.userAgent.match(/UCBrowser/i); },
+	UNIXOS: function() { return (window.navigator?.userAgentData?.platform||window.navigator.platform).match(/X11/i); },
+	Vodafone: function() { return navigator.userAgent.match(/Vodafone/i); },
+	WAP: function() { return navigator.userAgent.match(/WAP/i); },
+	Wave: function() { return navigator.userAgent.match(/Wave/i); },
+	webOS: function() { return navigator.userAgent.match(/webOS/i); },
+	Windows: function() { return isDevice.WindowsDesktop()||isDevice.WindowsMobile()||(window.navigator?.userAgentData?.platform||window.navigator.platform).match(/Macintosh|MacIntel|MacPPC|Mac68K/i); },
+	WindowsDesktop: function() { return navigator.userAgent.match(/WPDesktop/i); },
+	WindowsMobile: function() { return navigator.userAgent.match(/IEMobile|Windows Mobile/i); },
+	WindowsPhone: function() { return navigator.userAgent.match(/Windows Phone/i); },
+	Wyzo: function() { return navigator.userAgent.match(/Wyzo\//i); },
+	XDA: function() { return navigator.userAgent.match(/XDA/i); },
+	Xiino: function() { return navigator.userAgent.match(/Xiino/i); },
+	Yandex: function() { return navigator.userAgent.match(/Yandex/i); },
+	detect: function() { return navigator.userAgent; },
+	mobile: function() { return window.orientation||navigator.userAgent.match(/Mobile/i)||isDevice.Android()||isDevice.BlackBerry()||isDevice.iPhone()||isDevice.iPod()||isDevice.OperaMini()||isDevice.WindowsMobile()||isDevice.WindowsPhone()||isDevice.FireFoxMobile()||isDevice.Sailfish()||isDevice.Tizen()||isDevice.UbuntuTouch()||isDevice.KaiOS()||isDevice.Postmarket()||isDevice.Pure()||isDevice.Lineage()||isDevice.Symbian()||isDevice.Palm(); },
+	tablet: function() { return navigator.userAgent.match(/Tablet/i)||isDevice.iPad()||isDevice.Nexus()||isDevice.KFAPWI()||isDevice.OperaMini()||isDevice.WindowsMobile()||isDevice.WindowsPhone()||isDevice.FireFoxMobile(); },
+	geoLocation: function() {
+		if(!navigator.geolocation) return 'not supported' ;
+		function findGeoPosition(p) { console.log('geoLocation: '+(geoPosition='Latitude: '+p.coords.latitude+'; Longitude: '+p.coords.longitude)) ; }
+		var allowPosition = navigator.geolocation.getCurrentPosition(findGeoPosition);
+		sleep(5000);
+		findGeoPosition();
+		setTimeout(function() { if(geoPosition!=='undefined') delete geoPosition ; },10);
+		setTimeout(function() { if(allowPosition!=='undefined') delete allowPosition ; },10);
+		return geoPosition;
+	},
+	language: function() { return navigator.language||navigator.userLanguage; },
+	screenBrightness: function() { return window.screen.mozBrightness; },
+	screenOrientation: function() { return window.orientation/360 },
+	screenOrientationNormal: function() { return -45<window.orientation&&window.orientation<45||315<window.orientation },
+	screenOrientationRevert: function() { return 135<window.orientation&&window.orientation<225 },
+	screenOrientationSideClockWise: function() { return 45<window.orientation&&window.orientation<135 },
+	screenOrientationSideCounterClockWise: function() { return 225<window.orientation&&window.orientation<315 },
+	screenOrientationSide: function() { return isDevice.screenOrientationSideClockWise()||isDevice.screenOrientationSideCounterClockWise() },
+	screenOrientationProtrait: function() { return isDevice.screenOrientationNormal()||isDevice.screenOrientationRevert() },
+	screenOrientationLandscape: function() { return isDevice.screenOrientationSide() },
+	touchscreen: function() { return 'ontouchstart'in window; },
+	battery: function() { return navigator.getBattery(); },
+}; /** Angaroni Leonardo - date 202301061655 */
+
+function sleep(t) {
+	let d = new Date().getTime();
+	while(new Date().getTime()<d+t) { };
+}; /** Angaroni Leonardo - date 202301061804 */
+
+function setURLRefs() {
+	URL = window.location.href;
+	let i = document.getElementsByClassName('URL-link').length;
+	for( ; i>0; ) document.getElementsByClassName('URL-link')[--i].innerHTML=URL ;
+	for(i=document.getElementsByClassName('URL-share').length; i>0; ) document.getElementsByClassName('URL-share')[--i].href='https://wa.me/?text=*Leonardo%20Angaroni*%20%C2%B7%20_*Slides*_%0A'+encodeURIComponent(URL)+'%0AThis%20*Slides*%20are%20%60%60%60amazing%60%60%60%21%0A%0A&app_absent=0' ;
+	let URLQRCodeLength = document.getElementsByClassName('URL-QRCode').length;
+	let URLQRCodeURL = URL.slice(-10)=='index.html'?URL.substring(0,URL.length-10):URL;
+	URLQRCodeURL += URL.slice(-1)=='/'?'QR-Code.png':'/QR-Code.png';
+	for(i=0; i<URLQRCodeLength; ) document.getElementsByClassName('URL-QRCode')[i++].innerHTML += '<img alt="QR-Code of “'+URL+'„" src="'+URLQRCodeURL+'" style="display:block;color:black;" />' ;
+	document.querySelector('meta[property="og:url"]').content = URL;
+	document.querySelector('meta[property="og:image"]').content=document.querySelector('meta[property="og:image:url"]').content=document.getElementById('URL-link-href-ALpng-1').href=document.getElementById('URL-link-href-ALpng-2').href = URLALpng = URL.slice(0,17)+'/AL 300KB.png';
 };
+
+function targetContainsArrayE(t,arrayE) {
+	for(let i=arrayE.length-1; i>=0; i--) if(t.classList.contains(arrayE[i])) return true ;
+	return false;
+};
+
+function setColorScheme() {
+	switch(colorMode) {
+		case 'light':
+			document.querySelector('#colorModeBtnLetter').innerHTML = 'L';
+			break;
+		case 'dark':
+			document.querySelector('#colorModeBtnLetter').innerHTML = 'D';
+			break;
+		default:
+			document.querySelector('#colorModeBtnLetter').innerHTML = '·';
+	};
+	let schemeSet = {
+		"dark": {
+			"main": 'rgba(37,33,33,.98)',
+			"second": 'rgba(230,247,247,.965)',
+			"second-opacity": 'rgba(230,247,247,.37)',
+			"title": 'rgba(250,38,38,.97)',
+			"evidence": 'rgba(5,215,165,.96)',
+			"bkg": 'rgba(75,69,69,.77)',
+			"selection": 'rgba(2,115,85,.68)',
+			"selectionFont": 'rgba(256,144,144,.92)',
+		},
+		"light": {
+			"main": 'rgba(230,247,247,.98)',
+			"second": 'rgba(37,33,33,.965)',
+			"second-opacity": 'rgba(37,33,33,.37)',
+			"title": 'rgba(249,15,15,.97)',
+			"evidence": 'rgba(3,175,126,.96)',
+			"bkg": 'rgba(180,176,176,.77)',
+			"selection": 'rgba(53,245,176,.68)',
+			"selectionFont": 'rgba(157,3,11,.92)',
+		},
+	};
+	let scheme = schemeSet[colorMode];
+	for(let j in scheme) {
+		CSSRoot.style.setProperty('--colorScheme-'+j,scheme[j]);
+	};
+	localStorage.colorMode = colorMode;
+	console.log("Setted color scheme: "+colorMode);
+};
+
+function checkColorMode(e) {
+	if(!window.matchMedia) {
+		console.log("ERROR: \"window.matchMedia\" not found !");
+		return;
+	};
+	if(!e) e=window.matchMedia('(prefers-color-scheme: dark)') ;
+	colorMode = e.matches?"dark":"light";
+	setColorScheme();
+};
+
+function changeColorModeLD() {
+	switch(colorMode) {
+		case 'light':
+			colorMode = 'dark';
+			break;
+		case 'dark':
+			colorMode = 'light';
+			break;
+		default:
+			colorMode = prompt('Please, insert n for:\n\t0 →\tLight Mode\n\t1 →\tDark Mode',0)==0?'light':'dark';
+	}
+	setColorScheme();
+};
+
+let writeinLS = false;
+function launchAndRestoreLS() {
+	if(!localStorage||typeof(Storage)=="undefined"||typeof Storage=='undefined') return ;
+	writeinLS = true;
+	colorMode = localStorage.colorMode;
+	//~ slideIndex = localStorage.slideIndex202212192102;
+};
+
+function mobileEnlargedFont() {
+	isMobile = isDevice.mobile();
+	let fontSizeUMeasure = Math.E/2;
+	if(isMobile) CSSRoot.style.setProperty('--CS-sizeScale',fontSizeUMeasure*1.5) ;
+	else CSSRoot.style.setProperty('--CS-sizeScale',fontSizeUMeasure) ;
+	console.log('Font-size adpted to “'+isMobile+'„\nFont-size now is “'+CSSRoot.style.getPropertyValue('--CS-sizeScale')+'„, “'+getComputedStyle(CSSRoot).getPropertyValue('--CS-sizeScale')+'„');
+};
+
+window.onload = function() {
+	checkColorMode();
+	launchAndRestoreLS();
+	mobileEnlargedFont();
+	document.getElementById('loadingAdv').outerHTML = '';
+	setURLRefs();
+};
+
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => { checkColorMode(event); });
+
+window.addEventListener('resize',mobileEnlargedFont);
 
 </script>
 </head>
-<body>
+<body onkeydown="keyDown(event)">
 
-<div id="centeredDiv"></div>
+<div id="displayNoneDiv">
+	<link id="URL-link-href-ALpng-1" itemprop="thumbnailUrl" href="https://AL2023.tk/AL.png">
+	<span itemprop="thumbnail" itemscope itemtype="http://schema.org/ImageObject"><link id="URL-link-href-ALpng-2" itemprop="url" href="https://AL2023.tk/AL.png"></span>
+</div>
+
+<div id="screen"><div id="screenBox">
+	<div class="URL-link" style="font-size:2.5em;"></div>
+</div></div>
+
+<div id="colorModeBtn" onclick="changeColorModeLD();"><div id="colorModeBtnLetter">·</div></div>
+
+<div id="loadingAdv">Loading…</div>
 
 </body>
 </html>
+
+<!-- Angaroni Leonardo - date 20221201 -->
