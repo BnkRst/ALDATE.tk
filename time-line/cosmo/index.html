@@ -1,1 +1,1042 @@
-.
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<title>Angaroni Leonardo - cosmo - time line</title>
+	<meta charset="UTF-8">
+<style>
+
+* {
+	transition-duration: 0.4s;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	background: rgba(0,0,0,1);
+	color: rgba(233,233,233,0.95)!important;
+	font-family: 'Lucida Console', monospace;
+	font-family: 'Ubuntu Mono', monospace;
+	font-size: calc(1.2em + 0.2vmax); /**2.5vmin; 1vmax; 20px; 1.5em*/
+	transition-duration: 0.4s;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	height: 88vh;
+	overflow-y: hidden;
+} body * {
+	transition-duration: 0.4s;
+}
+
+div {
+	transition-duration: 0.4s;
+}
+
+::placeholder {
+	color: rgba(55,55,55,0.8);
+}:-ms-input-placeholder {
+	color: rgba(55,55,55,0.8);
+}::-ms-input-placeholder {
+	color: rgba(55,55,55,0.8);
+}
+
+::selection {
+	background: rgba(99,99,99,0.8);
+}::-moz-selection {
+	background: rgba(99,99,99,0.8);
+}
+
+::-webkit-scrollbar {
+	width: 12px;
+	background: rgba(88,88,88,0);
+	border-radius: 6px;
+	transition-duration: 0.4s;
+}::-webkit-scrollbar-track {
+	background: linear-gradient(90deg,rgba(0,0,0,0) 0%,rgba(88,88,88,0.2) 8%,rgba(88,88,88,0.2) 92%,rgba(0,0,0,0) 100%);
+	border-radius: 6px;
+}::-webkit-scrollbar-track:hover {
+	background: rgba(88,88,88,0.4);
+}::-webkit-scrollbar-thumb {
+	background: rgba(170,170,170,0.5);
+	border-radius: 6px;
+}::-webkit-scrollbar-thumb:hover {
+	background: rgba(188,188,188,0.8);
+}
+
+.BMP {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+#JSErrorOnPageLoad {
+	display: block;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	text-align: center;
+}
+
+#invisible {
+	display: none;
+}
+
+#main {
+	display: block;
+	position: relative;
+	height: 100%;
+	max-height: 100%;
+	font-size: calc( 2rem * var(--CS-sizeScale,1.35914091423) / 3 );
+	font-family: monospace;
+	left: .25em;
+}
+
+#description {
+	position: absolute;
+	top: 50%;
+	left: 1.6em;
+	max-width: 34%;
+	background: rgba(130,130,130,.3);
+	border-radius: 1em;
+	transform: translateY(-50%);
+} #description > * {
+	margin: 1em;
+}
+
+#bigHistoryContainer {
+	display: block;
+	position: absolute;
+	left: 56%;
+	top: 0;
+	height: 100%;
+	width: 290000px;
+} #bigHistoryLine {
+	display: block;
+	position: absolute;
+	top: 84.8%;
+	left: 0;
+	height: 0;
+	width: 100%;
+	transform: translateY(-50%);
+} event {
+	display: block;
+	position: absolute;
+	bottom: 1em;
+	height: 1em;
+	padding-bottom: .135em;
+	padding-left: .3em;
+	border: .1px solid white;
+	border-width: 0px 0px .1px .1px;
+	border-radius: 0;
+	border-image: radial-gradient(circle at bottom left, white, transparent 1em) 1;
+	border-image: -webkit-radial-gradient(circle bottom left, white, transparent) 1;
+	transform-origin: bottom left;
+	transform: rotate(-.15turn);
+	z-index: 15;
+} event:first-letter {
+	text-transform: uppercase;
+} #today {
+	border-image: radial-gradient(circle at bottom left, rgba(255,50,50,1), transparent 1em) 1;
+	border-image: -webkit-radial-gradient(circle bottom left, rgba(255,50,50,1), transparent) 1;
+	color: rgba(255,50,50,1);
+} period {
+	display: block;
+	position: absolute;
+	bottom: -1em;
+	height: 1em;
+	background: gray;
+	z-index: 5;
+} period > div {
+	display: block;
+	position: absolute;
+	left: 0px;
+	top: 0;
+	transform: translateX(-50%);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+} #timeBar {
+	display: block;
+	position: absolute;
+	left: 0;
+	bottom: 40px;
+	height: .8em;
+	width: 290000px;
+} #timeBar > div {
+	position: absolute;
+	bottom: -100px;
+	height: 100%;
+	width: 1px;
+	background: white;
+} #timeBar > div.timeBarBigSign {
+	height: 350%;
+}
+
+#timeAgeIndicator {
+	position: fixed;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	right: 43.39%;
+	bottom: 50px;
+	z-index: 20;
+} #timeAgeIndicator > div {
+	align-self: flex-end;
+	color: rgba(255,70,70,1);
+} #timeAgeIndicator tr > td:nth-child(1) {
+	text-align: right;
+} #timeAgeIndicator tr > td:nth-child(2) {
+	opacity: .8;
+}
+
+.markRed {
+	color:rgba(255,70,70,1);
+} .underline {
+	text-decoration: underline .104em solid;
+} .uppercase {
+	text-transform: uppercase;
+} .markGreen {
+	font-weight: bold;
+	color: rgba(0,175,0,1);
+}
+
+</style>
+<script>
+
+const todayCosmoDate = CristAgeToCosmoAge(new Date().getFullYear());
+const historyEventsDB = [
+	{
+		"name": 'nasce la più antica stella conosciuta (HE 1523-0901)',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-13.2e9),
+		"pos": 6,
+	},
+	{
+		"name": 'nascita delle megastelle',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-13.5e9),
+		"pos": 6,
+	},
+	{
+		"name": 'inizio produzione delle condensazioni delle galassie (protogalassie)<br />e inizio della formazione delle stelle',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-12.7e9),
+		"pos": 6,
+	},
+	{
+		"name": 'formazione della Via Lattea',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-10e9),
+		"pos": 6,
+	},
+	{
+		"name": 'nascita sistema solare e Sole',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-5e9),
+		"pos": 6,
+	},
+	{
+		"name": 'nascita della terra',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-4.56e9),
+		"pos": 2,
+	},
+	{
+		"name": 'la Terra esce dall\'età oscura',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-4e9),
+		"pos": 3,
+	},
+	{
+		"name": 'formazione dell\'idrosfera',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-3.9e9),
+		"pos": 3,
+	},
+	{
+		"name": 'inizio solidificazione crosta terrestre',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-3.65e9),
+		"pos": 3,
+	},
+	{
+		"name": 'primi batteri',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-3.5e9),
+		"pos": 7,
+	},
+	{
+		"name": 'primi organismi pluricellulari',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-2.1e9),
+		"pos": 7,
+	},
+	{
+		"name": 'primi funghi sulle terre emerse',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-1e9),
+		"pos": 7,
+	},
+	{
+		"name": 'prime piante sulle terre emerse',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-.7e9),
+		"pos": 7,
+	},
+	{
+		"name": 'comparsa trilobiti',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-560e6),
+		"pos": 8,
+	},
+	{
+		"name": 'primi ritrovamenti di piante e funghi sulla terra-ferma',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-490e6),
+		"pos": 7,
+	},
+	{
+		"name": 'primi vertebrati',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-480e6),
+		"pos": 7,
+	},
+	{
+		"name": 'Orogenesi caledoniana',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-430e6),
+		"pos": -2,
+	},
+	{
+		"name": 'comparsa mascelle e mandibole',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-420e6),
+		"pos": 7,
+	},
+	{
+		"name": 'primi anfibi',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-360e6),
+		"pos": 7,
+	},
+	{
+		"name": 'primi rettili',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-330e6),
+		"pos": 7,
+	},
+	{
+		"name": 'primi ritrovamenti di blattoidei',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-324.5e6),
+		"pos": 7,
+	},
+	{
+		"name": 'Orogenesi ercinica',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-320e6),
+		"pos": -2,
+	},
+	{
+		"name": 'inizio formazione Pangea',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-310e6),
+		"pos": -1,
+	},
+	{
+		"name": 'inizio disgregazione Pangea',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-240e6),
+		"pos": -1,
+	},
+	{
+		"name": 'primi dinosauri',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-243e6),
+		"pos": 8,
+	},
+	{
+		"name": 'primo ritrovamento di un mammifero (Brasilodon quadrangolaris)',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-225.42e6),
+		"pos": 7,
+	},
+	{
+		"name": 'primi mammiferi',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-205e6),
+		"pos": 7,
+	},
+	{
+		"name": 'inizio deriva dei continenti',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-190e6),
+		"pos": -1,
+	},
+	{
+		"name": 'primi volatili',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-150e6),
+		"pos": 7,
+	},
+	{
+		"name": 'primi fiori',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-140e6),
+		"pos": 7,
+	},
+	{
+		"name": 'comparsa angiosperme',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-135e6),
+		"pos": 7,
+	},
+	{
+		"name": 'Orogenesi alpina',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-70e6),
+		"pos": -2,
+	},
+	{
+		"name": 'PETM (Thermal Maximum)',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-55.5e6),
+		"pos": 6,
+	},
+	{
+		"name": 'comparsa australopiteco',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-4.2e6),
+		"pos": 7,
+	},
+	{
+		"name": 'comparsa dell\'Hylobatidae (prima scimmia antropomorfa)',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-18e6),
+		"pos": 7,
+	},
+	{
+		"name": 'comparsa dell\'Kenyapithecus (seconda scimmia antropomorfa)',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-13e6),
+		"pos": 7,
+	},
+	{
+		"name": 'comparsa dell\'orango',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-11e6),
+		"pos": 7,
+	},
+	{
+		"name": 'comparsa del gorilla',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-9e6),
+		"pos": 7,
+	},
+	{
+		"name": 'comparsa dello scimpanzé',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-6e6),
+		"pos": 7,
+	},
+	{
+		"name": 'comparsa del bonobo',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-5e6),
+		"pos": 7,
+	},
+	{
+		"name": 'prime traccie di vita sulla Terra',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(-3.7e9),
+		"pos": 7,
+	},
+	{
+		"name": 'la terra diventa troppo calda per essere vivibile<br />a causa dell\'aumento dell\'intensità della radiazione solare',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(1e9),
+		"pos": 7,
+	},
+	{
+		"name": 'distruzione della terra da parte del sole',
+		"type": 'event',
+		"date": CristAgeToCosmoAge(6.25e9),
+		"pos": -2,
+	},
+	{
+		"name": 'australopiteco',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-4.2e6),
+		"end": CristAgeToCosmoAge(-2e6),
+		"pos": 7,
+		"color": 'orange',
+	},
+	{
+		"name": 'Pangea',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-310e6),
+		"end": CristAgeToCosmoAge(-190e6),
+		"pos": -2,
+		"color": '#654321',
+	},
+	{
+		"name": 'vita sulla terra',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-3.7e9),
+		"end": CristAgeToCosmoAge(1e9),
+		"pos": 6,
+		"color": 'green',
+	},
+	{
+		"name": 'trilobiti',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-560e6),
+		"end": CristAgeToCosmoAge(-250e6),
+		"pos": 7,
+		"color": '#446633',
+	},
+	{
+		"name": 'Terra',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-4.56e9),
+		"end": CristAgeToCosmoAge(6.25e9),
+		"pos": -3,
+		"color": '#C03333',
+	},
+	{
+		"name": 'Precambriano',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-4.6e9),
+		"end": CristAgeToCosmoAge(-541e6),
+		"pos": 0,
+		"color": '#333333',
+	},
+	{
+		"name": 'Adeano',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-4.56717e9),
+		"end": CristAgeToCosmoAge(-4e9),
+		"pos": 1,
+		"color": 'dimgray',
+	},
+	{
+		"name": 'Archeano',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-4e9),
+		"end": CristAgeToCosmoAge(-2.5e9),
+		"pos": 1,
+		"color": '#484040',
+	},
+	{
+		"name": 'Eoarcheano',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-4e9),
+		"end": CristAgeToCosmoAge(-3.6e9),
+		"pos": 2,
+		"color": '#894040',
+	},
+	{
+		"name": 'Paleoarcheano',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-3.6e9),
+		"end": CristAgeToCosmoAge(-3.2e9),
+		"pos": 2,
+		"color": '#774040',
+	},
+	{
+		"name": 'Mesoarcheano',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-3.2e9),
+		"end": CristAgeToCosmoAge(-2.8e9),
+		"pos": 2,
+		"color": '#644040',
+	},
+	{
+		"name": 'Neoarcheano',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-2.8e9),
+		"end": CristAgeToCosmoAge(-2.5e9),
+		"pos": 2,
+		"color": '#524040',
+	},
+	{
+		"name": 'Proterozoico',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-2.5e9),
+		"end": CristAgeToCosmoAge(-541e6),
+		"pos": 1,
+		"color": '#405540',
+	},
+	{
+		"name": 'Paleoproterozoico',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-2.5e9),
+		"end": CristAgeToCosmoAge(-1.6e9),
+		"pos": 2,
+		"color": '#505040',
+	},
+	{
+		"name": 'Sideriano',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-2.5e9),
+		"end": CristAgeToCosmoAge(-2.3e9),
+		"pos": 3,
+		"color": '#505048',
+	},
+	{
+		"name": 'Rhyaciano',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-2.3e9),
+		"end": CristAgeToCosmoAge(-2.05e9),
+		"pos": 3,
+		"color": '#505056',
+	},
+	{
+		"name": 'Orosiriano',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-2.05e9),
+		"end": CristAgeToCosmoAge(-1.8e9),
+		"pos": 3,
+		"color": '#505064',
+	},
+	{
+		"name": 'Statheriano',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-1.8e9),
+		"end": CristAgeToCosmoAge(-1.6e9),
+		"pos": 3,
+		"color": '#505072',
+	},
+	{
+		"name": 'Mesoproterozoico',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-1.6e9),
+		"end": CristAgeToCosmoAge(-1e9),
+		"pos": 2,
+		"color": '#405040',
+	},
+	{
+		"name": 'Calymmiano',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-1.6e9),
+		"end": CristAgeToCosmoAge(-1.4e9),
+		"pos": 3,
+		"color": '#405051',
+	},
+	{
+		"name": 'Ectasiano',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-1.4e9),
+		"end": CristAgeToCosmoAge(-1.2e9),
+		"pos": 3,
+		"color": '#405056',
+	},
+	{
+		"name": 'Steniano',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-1.2e9),
+		"end": CristAgeToCosmoAge(-1e9),
+		"pos": 3,
+		"color": '#405061',
+	},
+	{
+		"name": 'Neoproterozoico',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-1e9),
+		"end": CristAgeToCosmoAge(-541e6),
+		"pos": 2,
+		"color": '#305040',
+	},
+	{
+		"name": 'Toniano',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-1e9),
+		"end": CristAgeToCosmoAge(-720e6),
+		"pos": 3,
+		"color": '#305051',
+	},
+	{
+		"name": 'Cryogeniano',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-720e6),
+		"end": CristAgeToCosmoAge(-635e6),
+		"pos": 3,
+		"color": '#305056',
+	},
+	{
+		"name": 'Ediacarano',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-635e6),
+		"end": CristAgeToCosmoAge(-541e6),
+		"pos": 3,
+		"color": '#305061',
+	},
+	{
+		"name": 'Fanerozoico',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-541e6),
+		"end": todayCosmoDate,
+		"pos": 1,
+		"color": '#205060',
+	},
+	{
+		"name": 'Paleozoico',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-541e6),
+		"end": CristAgeToCosmoAge(-252.17e6),
+		"pos": 2,
+		"color": '#157060',
+	},
+	{
+		"name": 'Cambriano',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-541e6),
+		"end": CristAgeToCosmoAge(-485.4e6),
+		"pos": 3,
+		"color": '#158660',
+	},
+	{
+		"name": 'Terranoviano',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-541e6),
+		"end": CristAgeToCosmoAge(-521e6),
+		"pos": 4,
+		"color": '#008256',
+	},
+	{
+		"name": 'Epoca 2',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-521e6),
+		"end": CristAgeToCosmoAge(-509e6),
+		"pos": 4,
+		"color": '#118256',
+	},
+	{
+		"name": 'Miaolingiano',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-509e6),
+		"end": CristAgeToCosmoAge(-497e6),
+		"pos": 4,
+		"color": '#228256',
+	},
+	{
+		"name": 'Furongiano',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-497e6),
+		"end": CristAgeToCosmoAge(-485.4e6),
+		"pos": 4,
+		"color": '#328256',
+	},
+	{
+		"name": 'Ordoviciano',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-485.4e6),
+		"end": CristAgeToCosmoAge(-443.8e6),
+		"pos": 3,
+		"color": '#157560',
+	},
+	{
+		"name": 'Siluriano',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-443.8e6),
+		"end": CristAgeToCosmoAge(-419.2e6),
+		"pos": 3,
+		"color": '#196660',
+	},
+	{
+		"name": 'Devoniano',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-419.2e6),
+		"end": CristAgeToCosmoAge(-358.9e6),
+		"pos": 3,
+		"color": '#326860',
+	},
+	{
+		"name": 'Inferiore',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-419.2e6),
+		"end": CristAgeToCosmoAge(-397.5e6),
+		"pos": 4,
+		"color": '#266270',
+	},
+	{
+		"name": 'Medio',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-397.5e6),
+		"end": CristAgeToCosmoAge(-385.3e6),
+		"pos": 4,
+		"color": '#326872',
+	},
+	{
+		"name": 'Superiore',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-385.3e6),
+		"end": CristAgeToCosmoAge(-358.9e6),
+		"pos": 4,
+		"color": '#377367',
+	},
+	{
+		"name": 'Carbonifero',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-358.9e6),
+		"end": CristAgeToCosmoAge(-298.9e6),
+		"pos": 3,
+		"color": '#507060',
+	},
+	{
+		"name": 'Mississippiano',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-358.9e6),
+		"end": CristAgeToCosmoAge(-323.2e6),
+		"pos": 4,
+		"color": '#507069',
+	},
+	{
+		"name": 'Pennsylvaniano',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-323.2e6),
+		"end": CristAgeToCosmoAge(-298.9e6),
+		"pos": 4,
+		"color": '#507051',
+	},
+	{
+		"name": 'Permiano',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-298.9e6),
+		"end": CristAgeToCosmoAge(-252.17e6),
+		"pos": 3,
+		"color": '#587060',
+	},
+	{
+		"name": 'Mesozoico',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-252.17e6),
+		"end": CristAgeToCosmoAge(-66e6),
+		"pos": 2,
+		"color": '#253060',
+	},
+	{
+		"name": 'Triassico',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-252.17e6),
+		"end": CristAgeToCosmoAge(-199.6e6),
+		"pos": 3,
+		"color": '#252070',
+	},
+	{
+		"name": 'Giurassico',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-199.6e6),
+		"end": CristAgeToCosmoAge(-145e6),
+		"pos": 3,
+		"color": '#252056',
+	},
+	{
+		"name": 'Cretacico',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-145e6),
+		"end": CristAgeToCosmoAge(-66e6),
+		"pos": 3,
+		"color": '#402060',
+	},
+	{
+		"name": 'Cretacico inferiore',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-145e6),
+		"end": CristAgeToCosmoAge(-100.5e6),
+		"pos": 4,
+		"color": '#302063',
+	},
+	{
+		"name": 'Cretacico superiore',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-100.5e6),
+		"end": CristAgeToCosmoAge(-66e6),
+		"pos": 4,
+		"color": '#502057',
+	},
+	{
+		"name": 'Cenozoico',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-66e6),
+		"end": todayCosmoDate,
+		"pos": 2,
+		"color": '#706010',
+	},
+	{
+		"name": 'Paleogene',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-66e6),
+		"end": CristAgeToCosmoAge(-23.03e6),
+		"pos": 3,
+		"color": '#857560',
+	},
+	{
+		"name": 'Paleocene',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-66e6),
+		"end": CristAgeToCosmoAge(-56e6),
+		"pos": 4,
+		"color": '#857574',
+	},
+	{
+		"name": 'Eocene',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-56e6),
+		"end": CristAgeToCosmoAge(-33.9e6),
+		"pos": 4,
+		"color": '#857568',
+	},
+	{
+		"name": 'Oligocene',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-33.9e6),
+		"end": CristAgeToCosmoAge(-23.03e6),
+		"pos": 4,
+		"color": '#857554',
+	},
+	{
+		"name": 'Neogene',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-23.03e6),
+		"end": CristAgeToCosmoAge(-2.588e6),
+		"pos": 3,
+		"color": '#916850',
+	},
+	{
+		"name": 'Miocene',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-23.03e6),
+		"end": CristAgeToCosmoAge(-5.333e6),
+		"pos": 4,
+		"color": '#A16256',
+	},
+	{
+		"name": 'Pliocene',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-5.333e6),
+		"end": CristAgeToCosmoAge(-2.588e6),
+		"pos": 4,
+		"color": '#837342',
+	},
+	{
+		"name": 'Quaternario',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-2.588e6),
+		"end": todayCosmoDate,
+		"pos": 3,
+		"color": '#908000',
+	},
+	{
+		"name": 'Pleistocene',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-2.588e6),
+		"end": CristAgeToCosmoAge(-11.784e3),
+		"pos": 4,
+		"color": '#906515',
+	},
+	{
+		"name": 'Olocene',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-11.784e3),
+		"end": todayCosmoDate,
+		"pos": 4,
+		"color": '#905030',
+	},
+	{
+		"name": 'era dei dinosauri',
+		"type": 'period',
+		"start": CristAgeToCosmoAge(-243e6),
+		"end": CristAgeToCosmoAge(-65.95e6),
+		"pos": 7,
+		"color": '#455035',
+	},
+];
+
+function numParseQuotes(n) {
+	n = String(Number(n)).replace(/\s/g,'');
+	if(n.includes('.')) {
+		let i = n.lastIndexOf('.');
+		return numParseQuotes(n.slice(0,i))+'.'+numParseQuotes(n.slice(i+1).split('').reverse().join('')).split('').reverse().join('');
+	} else for(let i=n.length-3; i>0; i-=3) n=n.slice(0,i)+'\''+n.slice(i) ;
+	return n;
+};
+
+function CristAgeToCosmoAge(y) { return y+13.787e9 };
+function CosmoAgeToCristAge(y) { return y-13.787e9 };
+
+function timeLine() {
+	//~ history size : 290'000px (29'000'000'000y/100'000)
+	let r = '<div id="timeBar">';
+	for(let i=0; i<2900; i++) r+='<div'+(i%100?'':' class="timeBarBigSign"')+' style="left:'+i+'00px;"></div>' ;
+	return r+'</div>';
+};
+
+function historyEvents() {
+	let r = '';
+	for(let j in historyEventsDB) {
+		j = historyEventsDB[j];
+		if(j.type=='event') r+='<event style="left:'+j.date/1e5+'px;bottom:'+j.pos+'em;">'+j.name+'</event>' ;
+		else r+='<period style="left:'+j.start/1e5+'px;bottom:'+j.pos+'em;width:'+(j.end-j.start)/1e5+'px;background:'+j.color+';"><div>'+j.name+'</div></period>' ;
+	};
+	return r+'<event id="today" style="left:'+todayCosmoDate/1e5+'px;bottom:7em;">presente</event>';
+};
+
+window.onload = function() {
+	document.getElementById('main').innerHTML += '<div id="bigHistoryContainer">'+timeLine()+'<div id="bigHistoryLine">'+historyEvents()+'</div></div>';
+	document.querySelector('#indicatorYearHomo').textContent = numParseQuotes(todayCosmoDate);
+	document.getElementById('JSErrorOnPageLoad').outerHTML = '';
+	//~ La velocità sarà di una vita di 1'000'000 anni al secondo. Ed esempi in quanto a vite umane ed ere geologiche e robe varie …
+};
+
+window.onscroll = function (e) {
+	document.querySelector('#indicatorYearCosmo').textContent = numParseQuotes(window.scrollX+'00000');
+	const y = CosmoAgeToCristAge(Number(window.scrollX+'00000'));
+	document.querySelector('#indicatorYearHomo').textContent = numParseQuotes(Math.abs(y));
+	document.querySelector('#indicatorYearHomoCrist').textContent = y<0?'BCE':'CE';
+	for(let i=0; i<document.getElementsByTagName('period').length; i++) {
+		let	d = window.scrollX-parseFloat(document.getElementsByTagName('period')[i].style.left)-80,
+			m = parseFloat(document.getElementsByTagName('period')[i].querySelector('div').offsetWidth)/2,
+			M = parseFloat(document.getElementsByTagName('period')[i].style.width)-m;
+		document.getElementsByTagName('period')[i].querySelector('div').style.left = (d>m?d<M?d:M:m)+'px';
+	};
+};
+
+</script>
+</head>
+<body>
+
+<div id="JSErrorOnPageLoad">
+	<span>ERROR :/</span><br />
+	<span>Please enable Javascripts.</span>
+</div>
+
+<div id="invisible"></div>
+
+<div id="main">
+	<div id="description">
+		<p>La <span class="markRed">storia</span> del nostro <span class="markRed uppercase">cosmo</span>.</p>
+		<p>Ogni px<span style="font-size:.23em;">&nbsp;</span><span class="markRed" style="display:inline-block;transform:translateY(-20%);">↘</span><span style="font-size:.2em;">&nbsp;</span><span style="display:inline-block;width:1px;height:1px;background:white;"></span><span style="font-size:.2em;">&nbsp;</span><span class="markRed" style="display:inline-block;transform:translateY(-20%);">↙</span><span style="font-size:.2em;">&nbsp;</span>corrisponde a <span class="markRed"><span class="underline">100'000</span> anni terrestri</span>.</p>
+		<p>Il nostro cosmo ha approssimativamente <span class="markRed">13'787'000'000 anni</span> con una <i>sensibilità di 20'000'000 anni</i>.</p>
+	</div>
+	<div id="timeAgeIndicator">
+		<table>
+			<tr>
+				<td id="indicatorYearHomo">13'787'002'050</td>
+				<td id="indicatorYearHomoCrist">BCE</td>
+			</tr>
+			<tr>
+				<td id="indicatorYearCosmo">0</td>
+				<td>years after Big-Bang</td>
+			</tr>
+		</table>
+		<div>↓</div>
+	</div>
+</div>
+
+</body>
+</html>
+
+<!-- Angaroni Leonardo - created date 202302050022 -->
